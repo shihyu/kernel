@@ -1,0 +1,256 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:34 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="1.2.files/filelist.html">
+<title> Linux的开发模式和运作机制</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-14T01:43:00Z</o:Created>
+  <o:LastSaved>2007-08-14T01:43:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>266</o:Words>
+  <o:Characters>1520</o:Characters>
+  <o:Lines>12</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1783</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><b><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>1.2 Linux</span></b><b><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;mso-font-kerning:0pt'>的开发模式和运作机制</span></b><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>自 由软件的出现，改变了传统的以公司为主体的封闭的软件开发模式。采用了开放和协作的开发模式，无偿提供源代码，允许任何人取得、修改和重新发布自由软件的
+源代码。这种开发模式激发了世界各地的软件开发人员的积极性和创造热情。大量软件开发人员投入到自由软件的开发中。软件开发人员的集体智慧得到充分发挥， 大大减少了不必要的重复劳动，并使自由软件的脆弱点能够及时发现和克服。任何一家公司都不可能投入如此强大的人力去开发和检验商品化软件。这种开发模式使
+自由软件具有强大的生命力。</span><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>商业<span lang=EN-US>Unix</span>开 发过程中，整个系统的开发要有严格的质量保证措施、完整的文挡、完善的源代码、全面的测试报告及相应的解决方案。开发者不能随意增加程序的特性和修改代码
+的关键部分，如果要修改代码，他们得将其写入错误报告中才能使其有效，并随后接收源代码控制系统的检查，如果发现修改不合适，修改也可能作废。每个开发者 设计系统代码的一个或几个部分，开发者只有在程序检查过程中才能更改相应的代码。质量保证部门在内部对新的操作系统进行严格的回归测试，并报告发现的问
+题，开发者则有责任解决所报告的问题。质量保证部门采用复杂的统计分析系统以确保在下次发行时有百分之几的程序错误已修改。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>总之，商业<span lang=EN-US>Unix</span>开发过程使得其代码非常复杂，因此，公司为了保证下次操作系统的修订质量，因此得收集和统计分析操作系统的性能。开发商业<span
+lang=EN-US>Uinx</span>是一个很大的工程，常常大到有数以百计的编程者、测试员、<span class=GramE>文挡员以及</span>系统管理员参与。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>对于<span lang=EN-US>Linux</span>，你可将整个组织开发的概念、源代码控制系统、结构化的错误报告、统计分析等通通扔到一边去。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt'>Linux</span><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>最初是由一群来自世界各地的自愿者通过<span
+lang=EN-US>Internet</span>共同进行开发的。通过互连网和其它途径，任何人都有机会辅助开发和调试<span lang=EN-US>Linux</span>的内核、链接新的软件、编写文挡或帮助新用户。实际上，并没有单独的组织负责开发此系统，<span
+lang=EN-US>Linux</span>团体大部分通过邮递清单和<span lang=EN-US>USENET</span>的消息组通信。许多协定已跳过开发过程，如果你想将自己的代码包括进“正式”内核，只需给<span
+lang=EN-US>Linus Torvalds</span>发一个邮件，他就会进行测试并将其包括进内核<span lang=EN-US>(</span>只要代码不使内核崩溃并且不与整个系统设计相悖，<span
+lang=EN-US>Linus</span>都很乐意将其包括进去<span lang=EN-US>)</span>。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt'>Linux</span><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>系统本身采用彻底开放、注重特性的方法进行设计。一般规律是大约隔几个月就发行一个<span
+lang=EN-US>Linux</span>内核的新版本。当然发行周期还依赖于其它一些因素，如排除的程序故障数、用户测试预发行版的返回数以及<span
+lang=EN-US>Linux</span>的工作量等。</span><span lang=EN-US style='font-size:12.0pt;
+font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>可以说在两次发行间，并不是每个故障都已排除，每个问题都已得到了解决。只要系统不出现很挑剔或明显的故障，就认为比较稳定，可以推出新版本。<span
+lang=EN-US>Linux</span>开发的动力不在于追求完美、无故障，而是要开发<span lang=EN-US>Unix</span>的免费实现。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>如果你想把新的特性或应用软件增加到系统上，你就得经过一个“初始”阶段。所谓“初始”阶段，就是一个由一些想对新代码挑出问题的用户不断进行测试的阶段。由于<span
+lang=EN-US>Linux</span>团体大多在<span lang=EN-US>Internet</span>上，“初始”软件通常安装在一个或多个<span
+lang=EN-US>LinuxFTP</span>上，并且在<span lang=EN-US>LinuxUSENET</span>消息组上张贴一张如何获取和测试其代码的消息，从而使得下载和测试“初始”软件的用户可以将结果、故障或问题等邮件告之作者。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>初始代码中的问题解决后，代码就进入“第二”阶段：工作稳定但还不完全<span lang=EN-US>(</span>即能够工作，但可能还不具备所有特性<span
+lang=EN-US>)</span>。当然，它也可能进入“最后”阶段，即软件已完备并且可以使用。对于内核代码，一旦它完备，开发者就可让<span
+lang=EN-US>Linus</span>将其包括进标准内核内，或者作为内核的可增加选项。</span><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>注意，这些仅只达成协定，并未形成规则。很多人对他们的软件不必发行“初始”或测试<span class=GramE>版充满</span>信心，因此发行哪个版本是根据开发者的决定而定的。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>你可能对一群自愿者居然能编写、调试出完整的<span lang=EN-US>Unix</span>系统惊讶不已。整个<span
+lang=EN-US>Linux</span>内核通过拼凑<span class=GramE>凑</span>而成，没有采用专利的源代码，大量工作都由自愿者完成，他们将<span
+lang=EN-US>GNU</span>下的免费软件移植到<span lang=EN-US>Linux</span>系统下，同时开发出库、文件系统以及通用的设备硬件驱动程序等。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>实际上，<span lang=EN-US>Linus</span>率领的分布在世界各地的<span lang=EN-US>Linux</span>内核开发队伍仍然在高速向前推进。当前推出的稳定的<span
+lang=EN-US>Linux</span>内核的<span lang=EN-US>2.4.x</span>版本充分显示了<span lang=EN-US>Linux</span>开发队伍的非凡的创造能力以及协作开发模式的价值。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:34 GMT -->
+</html>

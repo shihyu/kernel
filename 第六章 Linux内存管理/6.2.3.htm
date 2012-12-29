@@ -1,0 +1,725 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.2.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:36 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.2.3.files/filelist.html">
+<title> 物理内存的描述</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T07:45:00Z</o:Created>
+  <o:LastSaved>2007-08-15T07:45:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>758</o:Words>
+  <o:Characters>4322</o:Characters>
+  <o:Lines>36</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>5070</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1553033278;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-outline-level:1'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US>6.2.3</span></st1:chsdate><span lang=EN-US> </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>物理内存的描述</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>为了对内存的初始化内容进行进一步的讨论，我们首先要了解</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>对物理内存的描述机制。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>1</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．一致存储结构（</span><span
+lang=EN-US>UMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>）和非一致存储结构（</span><span lang=EN-US>NUMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在传统的计算机结构中，整个物理内存都是均匀一致的，</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>访问这个空间中的任何一个地址所需要的时间都相同，所以把这种内存称为“<b style='mso-bidi-font-weight:
+normal'>一致存储结构（</b></span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US>Uniform Memory Architecture</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>）”，简称</span><span lang=EN-US>UMA</span></b><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。可是，在一些新的系统结构中，特别是多</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构的系统中，物理存储空间在这方面的一致性却成了问题。这是因为，在多</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构中，系统中只有一条总线（例如，</span><span lang=EN-US>PCI</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>总线），有多个</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>模块连接在系统总线上，每个</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>模块都有本地的物理内存，但是也可以通过系统总线访问其它</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>模块上的内存。另外，系统总线上还连接着一个公用的存储模块，所有的</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>模块都可以通过系统总线来访问它。因此，所有这些物理内存的地址可以互相连续而形成一个连续的物理地址空间。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>显然，就某个特定的</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>而言，访问其本地的存储器速度是最快的，而穿过系统总线访问公用存储模块或其它</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>模块上的存储器就比较慢，而且还面临因可能的竞争而引起的不确定性。也就是说，在这样的系统中，其物理存储空间虽然地址连续，但因为所处“位置”不同而导致的存取速度不一致，所以称为“<b
+style='mso-bidi-font-weight:normal'>非一致存储结构（</b></span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>Non-Uniform Memory Architecture</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>），简称</span><span
+lang=EN-US>NUMA</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>事实上，严格意义上的</span><span
+lang=EN-US>UMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>结构几乎不存在。就拿配置最简单的单</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>来说，其物理存储空间就包括了</span><span lang=EN-US>RAM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>ROM</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>（用于</span><span
+lang=EN-US>BIOS</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>），还有图形卡上的静态</span><span lang=EN-US>RAM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。但是，在</span><span lang=EN-US>UMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中，除主存</span><span lang=EN-US>RAM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>之外的存储器空间都很小，因此可以把它们放在特殊的地址上，在编程时加以特别注意就行，那么，可以认为以</span><span
+lang=EN-US>RAM</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>为主体的主存是</span><span lang=EN-US>UMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由于</span><span
+lang=EN-US>NUMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的引入，就需要存储管理机制的支持，因此，</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核从</span><span lang=EN-US>2.4</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>版本开始就提供了对</span><span lang=EN-US>NUMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的支持（作为一个编译可选项）。为了对</span><span lang=EN-US>NUMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进行描述，引入一个新的概念－“<b style='mso-bidi-font-weight:normal'>存储节点</b></span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>(</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或叫节点</span><span
+lang=EN-US>)</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>”，把访问时间相同的存储空间就叫做一个“存储节点”。一般来说，连续的物理页面应该分配在相同的存储节点上。例如，如果</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>模块</span><span lang=EN-US>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>要求分配</span><span lang=EN-US>5</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个页面，但是由于本模块上的存储空间已经不够，只能分配</span><span
+lang=EN-US>3</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个页面，那么此时，是把另外两个页面分配在其它</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>模块上呢，还是把</span><span lang=EN-US>5</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个页面干脆分配在一个模块上？显然，合理的分配方式因该是将这</span><span lang=EN-US>5</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个页面都分配在公用模块上。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>把物理内存划分为三个层次来管理：存储节点（</span><span lang=EN-US>Node</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）、管理区（</span><span lang=EN-US>Zone</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）和页面（</span><span lang=EN-US>Page</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>），并用三个相应的数据结构来描述。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．页面数据结构</span><span
+lang=EN-US>page</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>对一个物理页面的描述在／</span><span lang=EN-US>include/linux/mm.h</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* Each physical page in the system has a
+struct page associated with</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>it</span> to keep
+track of whatever it is we are using the page for at the</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>moment</span>. Note
+that we have no way to track which tasks are using</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>a</span> page.</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* Try to keep the most commonly accessed
+fields in single cache lines</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>here</span> (16
+bytes or greater).<span style='mso-spacerun:yes'>&nbsp; </span>This ordering
+should be particularly</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>beneficial</span> on
+32-bit processors.</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* The first line is data used in page
+cache lookup, the second line</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* is used for linear searches (eg. clock
+algorithm scans). </span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* TODO: make this structure smaller, it
+could be as small as 32 bytes.</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>*/</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span class=GramE><span
+lang=EN-US>typedef</span></span><span lang=EN-US> struct page {</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>struct</span> list_head list;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* -&gt;mapping has some page lists. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> address_space *mapping;<span
+style='mso-spacerun:yes'>&nbsp; </span>/* The inode (or ...) we belong to. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long index;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Our offset within mapping. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> page *next_hash;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Next page sharing our hash bucket in</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>the</span> pagecache hash table. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>atomic_t</span> count;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Usage count, see below. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long flags;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* atomic flags, some possibly</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>updated</span> asynchronously */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> list_head lru;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Pageout list, eg. active_list;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>protected</span> by pagemap_lru_lock !! */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>wait_queue_head_t</span> wait;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Page locked?<span style='mso-spacerun:yes'>&nbsp; </span>Stand in
+line... */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> page **pprev_hash;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+Complement to *next_hash. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> buffer_head * buffers;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>/* Buffer maps us to a disk block.
+*/</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>void</span>
+*virtual;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* Kernel virtual address (NULL if</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>not</span> kmapped, ie. <span class=GramE>highmem</span>)
+*/</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>struct</span>
+zone_struct *zone;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/* Memory
+zone we are in. */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>} mem_map_t;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>extern mem_map_t
+* mem_map</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>；</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>源代码的注释中对这个数据结构给出了一定的说明，从中我们可以对此结构有一定的理解，后面还要对此结构中的每个域给出具体的解释。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核中用来表示这个数据结构的变量常常是</span><span
+lang=EN-US>page</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>或</span><span lang=EN-US>map</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>当页面的数据来自一个文件时，</span><span
+lang=EN-US>index</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>代表着该页面中的数据在文件中的偏移量；当页面的内容被换出到交换设备上，则</span><span
+lang=EN-US>index</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>指明了页面的去向。结构中各个成分的次序是有讲究的，尽量使得联系紧密的若干域存放在一起，这样当这个数据结构被装入到高速缓存中时，联系紧密的域就可以存放在同一缓冲行（</span><span
+lang=EN-US>cache line</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）中。因为同一缓冲行（其大小为</span><span
+lang=EN-US>16</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>字节）中的内容几乎可以同时存取，因此，代码注释中希望这个数据结构尽量地小到用</span><span
+lang=EN-US>32</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个字节可以描述。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统中的每个物理页面都有一个</span><span
+lang=EN-US>page</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>（或</span><span lang=EN-US>mem_map_t</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）结构。系统在初始化阶段根据内存的大小建立起一个</span><span lang=EN-US>page</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构的数组</span><span lang=EN-US>mem_map</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，数组的下标就是内存中物理页面的序号。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>3. </span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>管理区</span><span
+lang=EN-US>zone</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>为了对物理页面进行有效的管理，</span><span lang=EN-US style='color:black'>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>又把物理页面划分为三个区：</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>专供</span><span
+lang=EN-US style='color:black'>DMA</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>使用的</span><span lang=EN-US style='color:black'>ZONE_DMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>区（小于</span><span lang=EN-US style='color:black'>16BM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>常规的</span><span
+lang=EN-US style='color:black'>ZONE_NORMAL</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>区（大于</span><span lang=EN-US style='color:black'>16MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>小于</span><span lang=EN-US style='color:black'>896MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>内核不能直接映射的区</span><span
+lang=EN-US style='color:black'>ZONE_HIGME</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>区（大于</span><span lang=EN-US style='color:black'>896MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>）。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这里进一步说明为什么对</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>要单独设置管理区。首先，</span><span lang=EN-US>DMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用的页面是磁盘</span><span lang=EN-US>I</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>／</span><span lang=EN-US>O</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所需的，如果在页面的分配过程中，所有的页面全被分配完，那么页面及盘区的交换就无法进行了，这是操作系统决不允许出现的现象。另外，在</span><span
+lang=EN-US>i386CPU</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中，页式存储管理的硬件支持是在</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内部实现的，而不像有些</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>那样由一个单独的</span><span lang=EN-US>MMU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>来提供，所以</span><span lang=EN-US>DMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>对内存的访问不经过</span><span lang=EN-US>MMU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>提供的地址映射。这样，外部设备就要直接访问物理页面的地址。可是，有些外设（特别是插在</span><span
+lang=EN-US>ISA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>总线上的外设接口卡）在这方面往往有些限制，要求用于</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的物理地址不能过高。另一方面，当</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>所需的缓冲区超过一个物理页面的大小时，就要求两个物理页面在物理上是连续的，但因为此时</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>控制器不能依靠</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内部的</span><span lang=EN-US>MMU</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>将连续的虚存页面映射到物理上也连续的页面上，因此，用于</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的物理页面必须加以单独管理。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>关于管理区的数据结构</span><span lang=EN-US>zone_struct(</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>或</span><span lang=EN-US>zone_t)</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>将在后面进行描述。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>4.</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>存储节点的数据结构</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>存储节点的数据结构为</span><span lang=EN-US>pglist_data</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，定义于</span><span lang=EN-US>Include/linux/mmzone.h</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span><span class=GramE>typedef</span> struct pglist_data {</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>zone_t node_<span
+class=GramE>zones[</span>MAX_NR_ZONES];</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>zonelist_t node_<span
+class=GramE>zonelists[</span>GFP_ZONEMASK+1];</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>int</span>
+nr_zones;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>struct</span>
+page *node_mem_map;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>unsigned</span>
+long *valid_addr_bitmap;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>struct</span>
+bootmem_data *bdata;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>unsigned</span>
+long node_start_paddr;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>unsigned</span>
+long node_start_mapnr;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>unsigned</span>
+long node_size;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>int</span>
+node_id;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>struct</span>
+pglist_data *node_next;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}
+pg_data_t;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>显然，若干存储节点的</span><span lang=EN-US>pglist_data</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>数据结构可以通过</span><span lang=EN-US>node_next</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>形成一个单链表队列。每个结构中的</span><span lang=EN-US>node_mem_map</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>指向具体节点的</span><span lang=EN-US>page</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构数组，而数组</span><span lang=EN-US>node_zone[]</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>就是该节点的最多三个页面管理区。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在</span><span lang=EN-US>pglist_data</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构里设置了一个</span><span lang=EN-US>node_zonelists</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>数组，其类型定义也在同一文件中：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span class=GramE>typedef</span> struct zonelist_struct {</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>zone_t *<span class=GramE>zone[</span>MAX_NR_ZONE+1];<span
+style='mso-spacerun:yes'>&nbsp; </span>//NULL delimited</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Int
+gfp_mast;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>} zonelist_t</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这里的</span><span
+lang=EN-US>zone[]</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>是个指针数组，各个元素按特定的次序指向具体的页面管理区，表示分配页面时先试</span><span
+lang=EN-US>zone[0]</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所指向的管理区，如果不能满足要求就试</span><span
+lang=EN-US>zone[1]</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所指向的管理区，等等。这些管理区可以属于不同的存储节点。关于管理区的分配可以有很多种策略，例如，</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>模块</span><span lang=EN-US>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>需要分配</span><span lang=EN-US>5</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个用于</span><span
+lang=EN-US>DMA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的页面，可是它的</span><span lang=EN-US>ZONE_DMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>只有三个页面，于是就从公用模块的</span><span lang=EN-US>ZONE_DMA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中分配全部</span><span lang=EN-US>5</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个页面。就是说，每个</span><span
+lang=EN-US>zonelist_t</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>规定了一种分配策略。然而，每个存储节点不应该只有一种分配策略，所以在</span><span
+lang=EN-US>pglist_data</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中提供的是一个</span><span
+lang=EN-US>zonelist_t</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>数组，数组的大小</span><span
+lang=EN-US>NR_GFPINDEX</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>为</span><span
+lang=EN-US>100</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.2.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:37 GMT -->
+</html>

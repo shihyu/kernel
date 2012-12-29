@@ -1,0 +1,1635 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.6.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:48 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.6.2.files/filelist.xml">
+<link rel=Edit-Time-Data href="6.6.2.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>页面交换守护进程kswapd</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T08:14:00Z</o:Created>
+  <o:LastSaved>2007-08-15T08:14:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1046</o:Words>
+  <o:Characters>5967</o:Characters>
+  <o:Lines>49</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>7000</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:66850283;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l1
+	{mso-list-id:1825269612;
+	mso-list-type:simple;
+	mso-list-template-ids:-1199388958;}
+@list l1:level1
+	{mso-level-text:%1．;
+	mso-level-tab-stop:16.2pt;
+	mso-level-number-position:left;
+	margin-left:16.2pt;
+	text-indent:-16.2pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><b
+ style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+ mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>6.6.2</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>页面交换守护进程<span lang=EN-US>kswapd<o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>从原理上说，</span><span lang=EN-US style='color:black'>kswapd</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>相当于一个进程，它有自己的进程控制块</span><span lang=EN-US
+style='color:black'>task_struct</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>结构。与其它进程一样受内核的调度。而正因为内核将它<span
+class=GramE>按进程</span>来调度，就可以让它在系统相对空闲的时候来运行。不过，与普通进程相比，</span><span
+lang=EN-US style='color:black'>kswapd</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>有其特殊性。首先，它没有自己独立的地址空间，所以在近代操作系统理论中把它称为“线程”以与进程相区别。那么，</span><span
+lang=EN-US style='color:black'>kswapd</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>的地址空间是什么？实际上，内核空间就是它的地址空间。在这一点上，它与中断服务例程相似。其次，它的代码是静态地链接在内核中的，因此，可以直接调用内核中的各种子程序和函数。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'>Kswapd</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>的源代码基本上都在</span><span lang=EN-US style='color:black'>mm/vmscan.c</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>中，图</span><span lang=EN-US style='color:black'>6.18</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>给出了</span><span lang=EN-US style='color:black'>kswapd</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>中与交换有关的主要函数调用关系。</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><!--[if gte vml 1]><o:wrapblock><v:group
+  id="_x0000_s1026" style='position:absolute;left:0;text-align:left;
+  margin-left:20.9pt;margin-top:0;width:323.95pt;height:338.55pt;z-index:1'
+  coordorigin="2289,8969" coordsize="6479,6771" o:allowincell="f">
+  <v:rect id="_x0000_s1027" style='position:absolute;left:6469;top:8969;
+   width:2299;height:4428' stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1027'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span>swap_out_<span
+      class=GramE>mm()</span><o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span
+      style='mso-spacerun:yes'>&nbsp;</span>swap_out_vma<o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span
+      style='mso-spacerun:yes'>&nbsp;</span>swap_out_pgd<o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span>swap_out_<span
+      class=GramE>pmd()</span><o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span style='mso-spacerun:yes'>&nbsp; </span>try_to
+      swap_<span class=GramE>out()</span><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:rect><v:line id="_x0000_s1028" style='position:absolute' from="7305,9338"
+   to="7305,9707">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1029" style='position:absolute' from="7305,10076"
+   to="7305,10445">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1030" style='position:absolute' from="7305,10814"
+   to="7305,11183">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1031" style='position:absolute' from="7305,11552"
+   to="7305,11921">
+   <v:stroke endarrow="block"/>
+  </v:line><v:rect id="_x0000_s1032" style='position:absolute;left:2289;top:8969;
+   width:3344;height:3690' stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1032'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US style='color:black'>Kswapd</span><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman";color:black'>（）</span><span lang=EN-US
+      style='color:black'><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='color:black'>kswapd_balance</span><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman";color:black'>（）</span><span lang=EN-US
+      style='color:black'><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'>try_to_free_pages</span><span style='font-family:
+      宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+      color:black'>（）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span>shrink_cache</span><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman";color:black'>（）</span><span lang=EN-US
+      style='color:black'><o:p></o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+      none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+      style='color:black'>swap_out( )</span><span style='font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+      color:black'>及</span><span lang=EN-US style='color:black'>refill_inactive</span><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman";color:black'>（）</span><span lang=EN-US
+      style='color:black'><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:rect><v:line id="_x0000_s1033" style='position:absolute' from="2916,9338"
+   to="2916,9707">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1034" style='position:absolute' from="2916,10076"
+   to="2916,10445">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1035" style='position:absolute' from="2916,10814"
+   to="2916,11183">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1036" style='position:absolute' from="2916,11552"
+   to="2916,11921">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1037" style='position:absolute' from="2916,12290"
+   to="2916,12659"/>
+  <v:line id="_x0000_s1038" style='position:absolute' from="2916,12659" to="5215,12659"/>
+  <v:line id="_x0000_s1039" style='position:absolute;flip:y' from="5215,9338"
+   to="5215,12659"/>
+  <v:line id="_x0000_s1040" style='position:absolute' from="5215,9338" to="7305,9338"/>
+  <v:line id="_x0000_s1041" style='position:absolute' from="7305,12290" to="7305,12659">
+   <v:stroke endarrow="block"/>
+  </v:line><v:shapetype id="_x0000_t19" coordsize="21600,21600" o:spt="19"
+   adj="-5898240,,,21600,21600" path="wr-21600,,21600,43200,,,21600,21600nfewr-21600,,21600,43200,,,21600,21600l,21600nsxe"
+   filled="f">
+   <v:formulas>
+    <v:f eqn="val #2"/>
+    <v:f eqn="val #3"/>
+    <v:f eqn="val #4"/>
+   </v:formulas>
+   <v:path arrowok="t" o:extrusionok="f" gradientshapeok="t" o:connecttype="custom"
+    o:connectlocs="0,0;21600,21600;0,21600"/>
+   <v:handles>
+    <v:h position="@2,#0" polar="@0,@1"/>
+    <v:h position="@2,#1" polar="@0,@1"/>
+   </v:handles>
+  </v:shapetype><v:shape id="_x0000_s1042" type="#_x0000_t19" style='position:absolute;
+   left:4588;top:13029;width:2508;height:1080;flip:y' coordsize="21600,21078"
+   adj="-5070751,,,21078" path="wr-21600,-522,21600,42678,4722,,21600,21078nfewr-21600,-522,21600,42678,4722,,21600,21078l,21078nsxe">
+   <v:stroke startarrow="block"/>
+   <v:path o:connectlocs="4722,0;21600,21078;0,21078"/>
+  </v:shape><v:shapetype id="_x0000_t176" coordsize="21600,21600" o:spt="176"
+   adj="2700" path="m@0,qx0@0l0@2qy@0,21600l@1,21600qx21600@2l21600@0qy@1,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="val #0"/>
+    <v:f eqn="sum width 0 #0"/>
+    <v:f eqn="sum height 0 #0"/>
+    <v:f eqn="prod @0 2929 10000"/>
+    <v:f eqn="sum width 0 @3"/>
+    <v:f eqn="sum height 0 @3"/>
+    <v:f eqn="val width"/>
+    <v:f eqn="val height"/>
+    <v:f eqn="prod width 1 2"/>
+    <v:f eqn="prod height 1 2"/>
+   </v:formulas>
+   <v:path gradientshapeok="t" limo="10800,10800" o:connecttype="custom"
+    o:connectlocs="@8,0;0,@9;@8,@7;@6,@9" textboxrect="@3,@3,@4,@5"/>
+  </v:shapetype><v:shape id="_x0000_s1043" type="#_x0000_t176" style='position:absolute;
+   left:3334;top:13766;width:2090;height:738'>
+   <v:fill opacity=".5"/>
+   <v:textbox style='mso-next-textbox:#_x0000_s1043'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US>Rw_swap_<span class=GramE>page()</span></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1044" type="#_x0000_t176" style='position:absolute;
+   left:3334;top:14873;width:2090;height:738'>
+   <v:fill opacity=".5"/>
+   <v:textbox style='mso-next-textbox:#_x0000_s1044'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span class=GramE><span lang=EN-US>Brw(</span></span><span
+      lang=EN-US>)_page()</span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1045" style='position:absolute' from="4379,14504"
+   to="4379,14873">
+   <v:stroke endarrow="block"/>
+  </v:line><v:shapetype id="_x0000_t202" coordsize="21600,21600" o:spt="202"
+   path="m,l,21600r21600,l21600,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path gradientshapeok="t" o:connecttype="rect"/>
+  </v:shapetype><v:shape id="_x0000_s1046" type="#_x0000_t202" style='position:absolute;
+   left:5424;top:14135;width:1672;height:738' stroked="f">
+   <v:fill opacity=".5"/>
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:
+      "Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>低级交换函数</span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1047" type="#_x0000_t202" style='position:absolute;
+   left:5424;top:14873;width:1463;height:867' stroked="f">
+   <v:fill opacity=".5"/>
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:
+      "Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>块设备驱动程序函数</span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><w:wrap type="topAndBottom"/>
+ </v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=28 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=436 height=456 src="6.6.2.files/image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045 _x0000_s1046 _x0000_s1047"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>图</span><span lang=EN-US style='color:black'>
+6.18 kswapd </span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>的实现代码中与交换相关的主要函数的调用关系</span><span
+lang=EN-US style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>从上面的调用关系可以看出，</span><span lang=EN-US
+style='color:black'> kswapd</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>的实现相当复杂，这不仅仅涉及复杂的页面交换技术，还涉及与磁盘相关的具体文件操作，因此，为了理清思路，搞清主要内容，我们对一些主要函数给予描述：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:16.2pt;text-indent:-16.2pt;mso-list:l1 level1 lfo1;
+tab-stops:list 16.2pt'><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:
+"Times New Roman";color:black'><span style='mso-list:Ignore'>1．</span></span><![endif]><span
+lang=EN-US style='color:black'>Kswapd</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:16.2pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>在</span><span lang=EN-US style='color:black'>Linux<st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on">2.4.10</st1:chsdate></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>以后的版本中对</span><span lang=EN-US style='color:
+black'>kswapd</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>（）的实现代码进行了模块化组织，可读性大大加强，代码如下：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+class=GramE>int</span> kswapd(void *unused)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> task_struct *tsk = current;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DECLARE_<span class=GramE>WAITQUEUE(</span>wait, tsk);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>daemonize();<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>内核线程的初始化</span><span lang=EN-US
+style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>strcpy(</span>tsk-&gt;comm, &quot;kswapd&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>sigfillset(&amp;tsk-&gt;blocked);<span style='mso-spacerun:yes'>&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>／</span><span lang=EN-US
+style='color:black'>*</span><span class=GramE><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>把进程</span></span><span lang=EN-US style='color:black'>PCB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>中的阻塞标志位全<span class=GramE>部置</span>为</span><span
+lang=EN-US style='color:black'>1*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Tell the memory management that we're a &quot;memory allocator&quot;,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>and</span> that if we need more memory we should get
+access to it<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>regardless</span> (see &quot;__alloc_pages()&quot;).
+&quot;<span class=GramE>kswapd</span>&quot; should<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>never</span> get caught in the normal page freeing
+logic.<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* (Kswapd normally doesn't need memory anyway, but sometimes<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>you</span> need a small amount of memory in order to
+be able to<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>page</span> out something else, and this flag
+essentially protects<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>us</span> from recursively trying to free more
+memory as we're<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* trying to free the first piece of memory in the first place).<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>tsk-&gt;flags |= PF_MEMALLOC; </span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>这个标志表示给</span><span lang=EN-US style='color:
+black'>kswapd</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>要留一定的内存</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Kswapd main loop.<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>for</span> (;;) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>__set_current_<span class=GramE>state(</span>TASK_INTERRUPTIBLE); <o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>add_wait_queue(&amp;kswapd_wait, &amp;wait); </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>把</span><span lang=EN-US style='color:black'>kswapd
+</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>加入等待队列</span><span
+lang=EN-US style='color:black'>*</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>／</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>mb();<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>增加一条汇编指令</span><span lang=EN-US
+style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>if (kswapd_can_sleep())<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>／</span><span lang=EN-US
+style='color:black'>*</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>检查调度标志是否置位</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>schedule();<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>／</span><span lang=EN-US
+style='color:black'>*</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>调用调度程序</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>_set_current_state(TASK_RUNNING); </span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>让</span><span lang=EN-US style='color:black'>kswapd
+</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>处于就绪状态</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>remove_wait_queue(&amp;kswapd_wait, &amp;wait); </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>／</span><span lang=EN-US style='color:black'>*</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>把</span><span lang=EN-US style='color:black'>kswapd
+</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>从等待队列删除</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* If we actually get into a low-memory situation,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>the</span> processes needing more memory will wake
+us<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>* up on a more timely basis.</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>kswapd_balance();<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>／</span><span lang=EN-US style='color:black'>*
+kswapd </span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>的核心函数，请看后面内容</span><span
+lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>run_task_queue(&amp;tq_disk);<span style='mso-spacerun:yes'>&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>／</span><span lang=EN-US
+style='color:black'>*</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>运行</span><span
+lang=EN-US style='color:black'>tq_disk </span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>队列中的例程</span><span lang=EN-US style='color:black'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>kswapd</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>内核线程的创建如下：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span class=GramE><span
+lang=EN-US style='color:black'>static</span></span><span lang=EN-US
+style='color:black'> int __init kswapd_init(void)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>printk(</span>&quot;Starting kswapd\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>swap_<span class=GramE>setup(</span>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>kernel_<span class=GramE>thread(</span>kswapd, NULL, CLONE_FS |
+CLONE_FILES | CLONE_SIGNAL);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>函数</span><span lang=EN-US style='color:black'>kswapd_init</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）是在系统初始化期间被调用的。它主要做两件事，其中</span><span
+lang=EN-US style='color:black'>swap_setup()</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>根据物理内存的大小设定一个全局变量</span><span lang=EN-US style='color:black'>page_cluster</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。这是一个与磁盘设备驱动有关的参数。由于读磁盘时先要经过寻道，而寻道是比较费时的操作，因此，为了节省时间，每次最好多读几个页面，这叫“预读”。到底每次预读几个页面，就是由这个函数根据内存本身的大小给出的（为</span><span
+lang=EN-US style='color:black'>2</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>，</span><span
+lang=EN-US style='color:black'>3</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>或</span><span
+lang=EN-US style='color:black'>4</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>）。另外一个主要的任务就是调用</span><span
+lang=EN-US style='color:black'>kernel_thread</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）创建内核线程</span><span lang=EN-US style='color:black'>kswapd</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>从上面的介绍可以看出，</span><span
+lang=EN-US style='color:black'>kswapd</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>成为内核的一个线程，其主循环是一个无限循环。循环一开始，把它加入等待队列，但如果调度标志为</span><span
+lang=EN-US style='color:black'>1</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>，就执行调度程序，紧接着就又把它从等待队列删除，将其状态变为就绪。只要调度程序再次执行，它就会得到执行，如此周而复始进行下去。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:16.2pt;text-align:left;
+text-indent:-16.2pt;mso-list:l1 level1 lfo1;tab-stops:list 16.2pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:"Times New Roman";color:black'><span
+style='mso-list:Ignore'>2．</span></span><![endif]><span lang=EN-US
+style='color:black'>kswapd_balance()</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>函数</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>从该函数的名字可以看出，这是一个要求得平衡的函数，那么，求得什么样的平衡呢？在本章的初始化一节中，我们介绍了物理内存的三个层次，即存储节点、管理区和页面。所谓平衡就是对页面的释放要均衡地在各个存储节点、管理区中进行，代码如下：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+class=GramE><span lang=EN-US style='color:black'>static</span></span><span
+lang=EN-US style='color:black'> void kswapd_balance(void)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> need_more_balance;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>pg_data_t * pgdat;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>do</span> {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>need_more_balance = 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>pgdat</span> = pgdat_list;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>do</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>need_more_balance |= kswapd_balance_<span class=GramE>pgdat(</span>pgdat);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>while</span> ((pgdat = pgdat-&gt;node_next));<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}
+while (need_more_balance);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>这个函数比较简单，主要是对每个存储节点进行扫描。然后又调用</span><span
+lang=EN-US style='color:black'>kswapd_balance_pgdat</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）对每个管理区进行扫描：</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+class=GramE><span lang=EN-US style='color:black'>static</span></span><span
+lang=EN-US style='color:black'> int kswapd_balance_pgdat(pg_data_t * pgdat)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> need_more_balance = 0, i;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>zone_t * zone;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>for</span> (i = pgdat-&gt;nr_zones-1; i &gt;= 0; i--)
+{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>zone</span> = pgdat-&gt;node_zones + i;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (unlikely(current-&gt;need_resched))<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>schedule(</span>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (!zone-&gt;need_balance)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>continue</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (!try_to_free_pages(zone, GFP_KSWAPD, 0)) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>zone</span>-&gt;need_balance = 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>__set_current_<span class=GramE>state(</span>TASK_INTERRUPTIBLE);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>schedule_<span class=GramE>timeout(</span>HZ);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>continue</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (check_classzone_need_balance(zone))<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>need_more_balance = 1;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>else</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>zone</span>-&gt;need_balance = 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>其中，最主要的函数是</span><span lang=EN-US
+style='color:black'>try_to_free_pages</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（），能否调用这个函数取决于平衡标志</span><span lang=EN-US style='color:black'>need_balance</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>是否为</span><span lang=EN-US style='color:black'>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>，也就是说看<span class=GramE>某个管理</span>区的空闲页面数是否小于最高警戒线，这是由</span><span
+lang=EN-US style='color:black'>check_classzone_need_balance()</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>函数决定的。当<span class=GramE>某个管理</span>区的空闲页面数小于其最高警戒线时就调用</span><span
+lang=EN-US style='color:black'>try_to_free_pages</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:16.2pt;text-align:left;
+text-indent:-16.2pt;mso-list:l1 level1 lfo1;tab-stops:list 16.2pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:"Times New Roman";color:black'><span
+style='mso-list:Ignore'>3．</span></span><![endif]><span lang=EN-US
+style='color:black'>try_to_free_pages</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:16.2pt;text-align:left;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>该函数代码如下：</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+class=GramE>int</span> try_to_free_pages(zone_t *classzone, unsigned int
+gfp_mask, unsigned int order)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> priority = DEF_PRIORITY;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> nr_pages = SWAP_CLUSTER_MAX;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>gfp_mask = pf_gfp_<span class=GramE>mask(</span>gfp_mask);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>do</span> {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>nr_pages = shrink_<span class=GramE>caches(</span>classzone, priority,
+gfp_mask, nr_pages);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (nr_pages &lt;= 0)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> 1;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}
+while (--priority);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>* Hmm<span
+class=GramE>..</span> Cache shrink failed - time to kill something?<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Mhwahahhaha! This is the part I really like. Giggle.<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>out_of_<span class=GramE>memory(</span>);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>其中的优先级表示对队列进行扫描的长度，缺省的优先级</span><span
+lang=EN-US style='color:black'>DEF_PRIORITY</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>为</span><span lang=EN-US style='color:black'>6</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（最低优先级）。假定队列长度为</span><span lang=EN-US
+style='color:black'>L</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>，优先级</span><span
+lang=EN-US style='color:black'>6</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>就表示要扫描的队列长度为</span><span
+lang=EN-US style='color:black'>L</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>／</span><span
+lang=EN-US style='color:black'>2<sup>6</sup></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>，所以这个循环至少循环</span><span lang=EN-US style='color:black'>6</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>次。</span><span lang=EN-US style='color:black'>nr_pages</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>为要换出的页面数，其最大值</span><span lang=EN-US
+style='color:black'>SWAP_CLUSTER_MAX</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>为</span><span lang=EN-US style='color:black'>32</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。其中主要调用的函数为</span><span lang=EN-US
+style='color:black'>shrink_caches</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>（）：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+class=GramE>static</span> int shrink_caches(zone_t * classzone, int priority,
+unsigned int gfp_mask, int nr_pages)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> chunk_size = nr_pages;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long ratio;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>nr_pages -= kmem_cache_<span class=GramE>reap(</span>gfp_mask);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>if</span> (nr_pages &lt;= 0)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>nr_pages = chunk_size;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* try to keep the active list 2/3 of the size of the cache */<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>ratio</span> = (unsigned long) nr_pages *
+nr_active_pages / ((nr_inactive_pages + 1) * 2);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>refill_<span class=GramE>inactive(</span>ratio);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>nr_pages = shrink_<span class=GramE>cache(</span>nr_pages, classzone,
+gfp_mask, priority);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>if</span> (nr_pages &lt;= 0)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>shrink_dcache_<span class=GramE>memory(</span>priority, gfp_mask);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>shrink_icache_<span class=GramE>memory(</span>priority, gfp_mask);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>1 #ifdef CONFIG_QUOTA<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>shrink_dqcache_<span class=GramE>memory(</span>DEF_PRIORITY, gfp_mask);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>#endif<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>return</span> nr_pages;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>其中</span><span lang=EN-US style='color:black'>kmem_cache_reap</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）函数“收割</span><span lang=EN-US style='color:
+black'>(reap)”</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>由</span><span lang=EN-US
+style='color:black'>Slab</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>机制管理的空闲页面。如果从</span><span
+lang=EN-US style='color:black'>Slap</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>回收的页面数已经达到要换出的页面数</span><span lang=EN-US style='color:black'>nr_pages</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>，就不用从其它地方进行换出。</span><span lang=EN-US
+style='color:black'>refill_inactive</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）函数把活跃队列中的页面移到<span class=GramE>非活跃</span>队列。</span><span
+lang=EN-US style='color:black'>shrink_cache</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）函数把一个“洗净”且未加锁的页面移到<span class=GramE>非活跃</span>队列，以便该页能<span
+class=GramE>被尽快</span>释放。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>此外，除了从各个进程的用户空间所映射的物理页面中回收页面外，还调用</span><span
+lang=EN-US style='color:black'>shrink_dcache_memory</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）、</span><span lang=EN-US style='color:black'>shrink_icache_memory</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）及</span><span lang=EN-US style='color:black'>shrink_dqcache_memory</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）回收内核数据结构所占用的空间。在文件系统一章将会看到，在打开文件的过程中，要分配和使用代表着目录项的</span><span
+lang=EN-US style='color:black'>dentry</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>数据结构，还有代表着文件索引节点</span><span lang=EN-US style='color:black'>inode</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>的数据结构。这些数据结构在文件关闭后并不立即释放，而是放在</span><span
+lang=EN-US style='color:black'>LRU</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>队列中作为后备，以防在不久将来的文件操作中又用到。这样经过一段时间后，就有可能积累起大量的</span><span
+lang=EN-US style='color:black'>dentry</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>数据结构和</span><span lang=EN-US style='color:black'>inode</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>数据结构，从而占用数量可观的物理页面。这时，就要通过这些函数适当加以回收。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'>4.</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>页面置换</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>到底哪些页面会被作为<span class=GramE>后选页以备</span>换出，这是由</span><span
+lang=EN-US style='color:black'>Swap_out</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（）和</span><span lang=EN-US style='color:black'>shrink_cache</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）一起完成的。这个过程比较复杂，这里我们抛开源代码，以理清思路为目标。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:16.2pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span>shrink_cache</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（）要做很多换出的准备工作。它关注两个队列：“活跃的”</span><span
+lang=EN-US style='color:black'> LRU </span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>队列</span><span style='color:black'> </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>和</span><span style='color:black'> </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>“非活跃的”</span><span lang=EN-US style='color:black'> FIFO </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>队列，每个队列都是</span><span lang=EN-US
+style='color:black'>struct page</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>形成的链表。该函数的代码比较长，我们把它所做的工作概述如下：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:21.25pt;text-align:left;
+text-indent:-21.25pt;mso-list:l0 level1 lfo2;tab-stops:list 21.25pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>把引用过的页面从活跃队列的队尾移到该队列的队头（实现</span><span
+lang=EN-US style='color:black'>LRU</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>策略）。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:21.25pt;text-align:left;
+text-indent:-21.25pt;mso-list:l0 level1 lfo2;tab-stops:list 21.25pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>把未引用过的页面从活跃队列的队尾移到<span
+class=GramE>非活跃</span>队列的队头（为准备换出而排队）。</span><span lang=EN-US style='color:
+black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:21.25pt;text-align:left;
+text-indent:-21.25pt;mso-list:l0 level1 lfo2;tab-stops:list 21.25pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>把脏页面安排在非活跃队列的队尾准备写到磁盘。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='margin-left:21.25pt;text-align:left;
+text-indent:-21.25pt;mso-list:l0 level1 lfo2;tab-stops:list 21.25pt;mso-layout-grid-align:
+none;text-autospace:none;vertical-align:middle'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>从<span
+class=GramE>非活跃</span>队列的队尾恢复干净页面</span><span lang=EN-US style='color:black'>(</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>写出的页面就成为干净的</span><span lang=EN-US
+style='color:black'>)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.6.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:49 GMT -->
+</html>

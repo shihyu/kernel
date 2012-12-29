@@ -1,0 +1,825 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.4.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:08 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="3.4.3.files/filelist.xml">
+<link rel=Edit-Time-Data href="3.4.3.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>与堆栈有关的常量、数据结构及宏</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-14T09:40:00Z</o:Created>
+  <o:LastSaved>2007-08-14T09:40:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>373</o:Words>
+  <o:Characters>2131</o:Characters>
+  <o:Lines>17</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2500</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:5.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:912932521;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoPlainText style='mso-outline-level:1'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><b
+ style='mso-bidi-font-weight:normal'><span lang=EN-US>3.4.3</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> </span>与堆栈有关的常量、数据结构及宏<span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>在中断、异常及系统调用的处理中，涉及一些相关的常量、数据结构及宏，在此先给予介绍（大部分代码在<span
+lang=EN-US>arch/i386/kernel/entry.S</span>中）。</p>
+
+<p class=MsoPlainText style='mso-outline-level:1'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>1</span>． 常量定义</p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'>下面这些常量定义了进入中断处理程序时，相关寄存器与堆栈指针（<span
+lang=EN-US>ESP</span>）的相对位置，图<span lang=EN-US>3.6</span>给出了在相应位置上所保存的寄存器内容：</p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=PT-BR style='mso-ansi-language:PT-BR'>EBX
+= 0x00<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=PT-BR style='mso-ansi-language:PT-BR'>ECX=
+0x04<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=PT-BR style='mso-ansi-language:PT-BR'>EDX=
+0x08<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=PT-BR style='mso-ansi-language:PT-BR'>ESI=
+0x<st1:chmetcnv UnitName="C" SourceValue="0" HasSpace="False" Negative="False"
+NumberType="1" TCSC="0" w:st="on">0C</st1:chmetcnv><o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>EDI= 0x10</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>EB = 0x14</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>EAX= 0x18</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>DS= 0x<st1:chmetcnv
+UnitName="C" SourceValue="1" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">1C</st1:chmetcnv></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>ES = 0x20</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>ORIG_EAX = 0x24</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>EIP = 0x28</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span class=GramE><span lang=EN-US>CS<span
+style='mso-spacerun:yes'>&nbsp; </span>=</span></span><span lang=EN-US> 0x<st1:chmetcnv
+UnitName="C" SourceValue="2" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">2C</st1:chmetcnv></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>EFLAGS = 0x30</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>OLDESP= 0x34</span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>OLDSS = 0x38<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><!--[if gte vml 1]><v:group
+ id="_x0000_s1026" style='position:absolute;left:0;text-align:left;
+ margin-left:-11pt;margin-top:0;width:284pt;height:241.8pt;z-index:1'
+ coordorigin="744,8448" coordsize="5680,4836" o:allowincell="f">
+ <v:group id="_x0000_s1027" style='position:absolute;left:4429;top:8448;
+  width:1680;height:4836' coordorigin="4378,2064" coordsize="1680,4836">
+  <v:line id="_x0000_s1028" style='position:absolute' from="4378,2064" to="4378,6900"/>
+  <v:line id="_x0000_s1029" style='position:absolute' from="6058,2064" to="6058,6900"/>
+  <v:line id="_x0000_s1030" style='position:absolute' from="4378,2376" to="6058,2376"/>
+  <v:line id="_x0000_s1031" style='position:absolute' from="4378,2688" to="6058,2688"/>
+  <v:line id="_x0000_s1032" style='position:absolute' from="4378,3000" to="6058,3000"/>
+  <v:line id="_x0000_s1033" style='position:absolute' from="4378,3312" to="6058,3312"/>
+  <v:line id="_x0000_s1034" style='position:absolute' from="4378,3624" to="6058,3624"/>
+  <v:line id="_x0000_s1035" style='position:absolute' from="4378,3936" to="6058,3936"/>
+  <v:line id="_x0000_s1036" style='position:absolute' from="4378,4248" to="6058,4248"/>
+  <v:line id="_x0000_s1037" style='position:absolute' from="4378,4560" to="6058,4560"/>
+  <v:line id="_x0000_s1038" style='position:absolute' from="4378,4872" to="6058,4872"/>
+  <v:line id="_x0000_s1039" style='position:absolute' from="4378,5184" to="6058,5184"/>
+  <v:line id="_x0000_s1040" style='position:absolute' from="4378,5496" to="6058,5496"/>
+  <v:line id="_x0000_s1041" style='position:absolute' from="4378,5808" to="6058,5808"/>
+  <v:line id="_x0000_s1042" style='position:absolute' from="4378,6120" to="6058,6120"/>
+  <v:line id="_x0000_s1043" style='position:absolute' from="4378,6432" to="6058,6432"/>
+  <v:line id="_x0000_s1044" style='position:absolute' from="4378,6744" to="6058,6744"/>
+ </v:group><v:line id="_x0000_s1045" style='position:absolute' from="744,13175"
+  to="3789,13175">
+  <v:stroke endarrow="block"/>
+ </v:line><v:shapetype id="_x0000_t88" coordsize="21600,21600" o:spt="88"
+  adj="1800,10800" path="m,qx10800@0l10800@2qy21600@11,10800@3l10800@1qy,21600e"
+  filled="f">
+  <v:formulas>
+   <v:f eqn="val #0"/>
+   <v:f eqn="sum 21600 0 #0"/>
+   <v:f eqn="sum #1 0 #0"/>
+   <v:f eqn="sum #1 #0 0"/>
+   <v:f eqn="prod #0 9598 32768"/>
+   <v:f eqn="sum 21600 0 @4"/>
+   <v:f eqn="sum 21600 0 #1"/>
+   <v:f eqn="min #1 @6"/>
+   <v:f eqn="prod @7 1 2"/>
+   <v:f eqn="prod #0 2 1"/>
+   <v:f eqn="sum 21600 0 @9"/>
+   <v:f eqn="val #1"/>
+  </v:formulas>
+  <v:path arrowok="t" o:connecttype="custom" o:connectlocs="0,0;21600,@11;0,21600"
+   textboxrect="0,@4,7637,@5"/>
+  <v:handles>
+   <v:h position="center,#0" yrange="0,@8"/>
+   <v:h position="bottomRight,#1" yrange="@9,@10"/>
+  </v:handles>
+ </v:shapetype><v:shape id="_x0000_s1046" type="#_x0000_t88" style='position:absolute;
+  left:6214;top:8607;width:210;height:465'/>
+ <v:shape id="_x0000_s1047" type="#_x0000_t88" style='position:absolute;left:6109;
+  top:9426;width:315;height:624'/>
+</v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout;position:
+relative;z-index:1'><span style='left:0px;position:absolute;left:-16px;
+top:-1px;width:381px;height:324px'><img width=381 height=324
+src="3.4.3.files/image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045 _x0000_s1046 _x0000_s1047"></span></span><![endif]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x38<span
+style='mso-spacerun:yes'>&nbsp; </span><span style='mso-tab-count:1'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用户<span class=GramE>栈</span>的</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>SS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x34<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用户<span class=GramE>栈</span>的</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>ESP<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用户堆栈指针</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x30<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>EFLAGS<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x<st1:chmetcnv UnitName="C"
+SourceValue="2" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">2C</st1:chmetcnv><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>用户空间的</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>CS<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x28 <span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>EIP<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>返回到用户态的地址</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x24<span
+style='mso-spacerun:yes'>&nbsp; </span><span style='mso-tab-count:1'>&nbsp;&nbsp; </span></span><span
+lang=EN-US>ORIG_EAX</span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x20<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ES<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x<st1:chmetcnv UnitName="C"
+SourceValue="1" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">1C</st1:chmetcnv><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>DS<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span lang=PT-BR
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:PT-BR'>+0x18<span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>EAX<span
+style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=PT-BR
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:PT-BR'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x14<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>EBP <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=PT-BR
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:PT-BR'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0x10<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>EDI<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=PT-BR
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:PT-BR'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+0XC<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ESI<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=PT-BR
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:PT-BR'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>+8<span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>EDX<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核堆栈指针</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>ESP<span style='mso-tab-count:
+2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>+4<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ECX<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span style='mso-tab-count:
+2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>0<span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>EBX<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;mso-outline-level:1'><span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>3.6 </span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进入中断理程序时内核堆栈示意图</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>其中，<span
+lang=EN-US>ORIG_EAX</span>是<span lang=EN-US>Original eax</span>之意，其具体含义将在后面介绍。</p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;mso-outline-level:1'><span
+lang=EN-US>2</span>．存放在<span class=GramE>栈</span>中的寄存器结构<span lang=EN-US>pt_regs</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>在内核中，很多函数的参数是<span
+lang=EN-US>pt_regs</span>数据结构，定义在<span lang=EN-US>include/i386/ptrace.h</span>中：</p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span class=GramE>struct</span>
+pt_regs {</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> ebx;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> ecx;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> edx;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> esi;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> edi;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> ebp;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> eax;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int<span style='mso-spacerun:yes'>&nbsp; </span>xds</span>;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int<span style='mso-spacerun:yes'>&nbsp; </span>xes</span>;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> orig_eax;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> eip;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int<span style='mso-spacerun:yes'>&nbsp; </span>xcs</span>;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> eflags;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>long</span> esp;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int<span style='mso-spacerun:yes'>&nbsp; </span>xss</span>;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>};</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt'>把这个结构与内核<span class=GramE>栈</span>的内容相比较，会发现堆栈的内容是这个数据结构的一个<span
+class=GramE>映象</span>。</p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;mso-outline-level:1'><span
+lang=EN-US>3</span>．保存现场的宏<span lang=EN-US>SAVE_ALL</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>在中断发生前夕，要把所有相关寄存器的内容都保存在堆栈中<span
+lang=EN-US>,</span>这是通过<span lang=EN-US>SAVE_ALL</span><span class=GramE>宏完成</span>的：</p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US>#define SAVE_ALL \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>cld</span>; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>pushl</span> %es; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ds; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %eax; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ebp; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %edi; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %esi; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %edx; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ecx; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ebx; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> $(__KERNEL_DS),%edx; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %edx,%ds; \</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %edx,%es;</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>该<span class=GramE>宏执行</span>以后，堆栈内容如图<span
+lang=EN-US>3.6</span>所示。把这个宏与图<span lang=EN-US>3.5 </span>结合起来就很容易理解图<span
+lang=EN-US>3.6</span>，在此对<span class=GramE>该宏再给予</span>解释：</p>
+
+<p class=MsoPlainText style='margin-left:37.45pt;text-indent:-21.25pt;
+mso-list:l0 level1 lfo1;tab-stops:list 21.25pt 48.25pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>CPU</span>在进入中断处理程序时自动将用户栈指针（如果更换堆栈）、<span
+lang=EN-US>EFLAGS</span>寄存器及返回地址一同压入堆栈。</p>
+
+<p class=MsoPlainText style='margin-left:37.45pt;text-indent:-21.25pt;
+mso-list:l0 level1 lfo1;tab-stops:list 21.25pt 48.25pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>段寄存器<span lang=EN-US>DS</span>和<span lang=EN-US>ES</span>原来的内容入<span
+class=GramE>栈</span>，然后装入内核数据段描述符<span lang=EN-US>__KERNEL_DS</span>（定义为<span
+lang=EN-US>0x18</span>）<span lang=EN-US>,</span>内核段的<span lang=EN-US>DPL</span>为<span
+lang=EN-US>0</span>。</p>
+
+<p class=MsoPlainText style='margin-left:16.2pt;mso-outline-level:1'><span
+lang=EN-US>4</span>．恢复现场的宏<span lang=EN-US>RESTORE_ALL</span></p>
+
+<p class=MsoPlainText style='margin-left:16.2pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span></span>当从中断返回时，恢复相关寄存器的内容，这是通过<span
+lang=EN-US>RESTORE_ALL</span><span class=GramE>宏完成</span>的：</p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>#define RESTORE_ALL<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %ebx;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %ecx;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>popl %edx;<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>popl %esi;<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>popl %edi;<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=GramE><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>popl</span></span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt'> %ebp;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>popl</span> %eax;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span>1:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>popl %ds;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span>2:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>popl %es;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>addl</span>
+$4,%esp;<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span>3:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>iret;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>可以看出，</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>RESTORE_ALL</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>与</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>SAVE_ALL</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>遥相呼应。当执行到</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>iret</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>指令时，内核<span
+class=GramE>栈</span>又恢复到刚进入中断门时的状态，并使</span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt'>CPU</span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>从中断返回。</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'>5</span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>．将当前进程的</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>task_struct </span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>结构的地址放在寄存器中</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span>#define GET_<span class=GramE>CURRENT(</span>reg)
+\<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> $-8192, reg; \<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>andl</span> %esp, reg<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>从下一章“</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>task_struct </span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>结构在内存存放”一节我们将知道，当前进程的</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>task_struct</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>存放在内核<span
+class=GramE>栈</span>的底部，因此，以上两条指令就可以把</span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt'>task_struct</span><span style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>结构的地址放在</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>reg</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>寄存器中。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.4.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:09 GMT -->
+</html>

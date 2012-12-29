@@ -1,0 +1,832 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.1.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:00 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="3.1.3.files/filelist.html">
+<title>异常及非屏蔽中断</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>49</o:TotalTime>
+  <o:Created>2007-08-14T09:02:00Z</o:Created>
+  <o:LastSaved>2007-08-14T09:02:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>165</o:Words>
+  <o:Characters>944</o:Characters>
+  <o:Lines>7</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1107</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:5.0pt;}
+p.MsoDate, li.MsoDate, div.MsoDate
+	{mso-style-next:正文;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoDate><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><b style='mso-bidi-font-weight:
+ normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3.1.3</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>异常及非屏蔽中断<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>异常就是</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>CPU</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内部出现的中断</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>,</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>也就是说，在</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>CPU</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>执行特定指令时出现的非法情况。非屏蔽中断就是计算机内部硬件出错时引起的异常情况。从上图可以看出，二者与外部</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>I/O</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>接口没有任何关系。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>Intel</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>把非屏蔽中断作为异常的一种来处理，因此，后面所提到的异常也包括了非屏蔽中断。在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>CPU</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>执行一个异常处理程序时，就不再为其他异常或可屏蔽中断请求服务，也就是说，当某个<span
+class=GramE>异常被</span>响应后，</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>CPU</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>清除</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>eflag</span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的中</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IF</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>位，禁止任何可屏蔽中断。但如果又有异常产生，则由</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>CPU</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>锁存（</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>CPU</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>具有缓冲异常的能力），待这个异常处理完后，才响应被锁存的异常。我们这里讨论的异常中断向量在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>0</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>～</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>31</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>之间，不包括系统调用（中断向量为</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>0x80</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>Intel x86</span>处理器发布了大约<span
+lang=EN-US>20</span>种异常（具体数字与处理器模式有关）。<span lang=EN-US>Linux</span>内核必须为每种异常提供一个专门的异常处理程序。这里特别说明的是，在某些异常处理程序开始执行之前，<span
+lang=EN-US>CPU</span>控制单元会产生一个硬件错误码，<span class=GramE>内核先</span>把这个错误码压入内核<span
+class=GramE>栈</span>中。</p>
+
+<p class=MsoPlainText style='text-indent:21.25pt'>在表<span lang=EN-US>3.1</span>中给出了<span
+lang=EN-US>Pentium</span>模型中异常的向量、名字、类型及简单描述。更多的信息可以在<span lang=EN-US>Intel</span>的技术文挡中找到。</p>
+
+<p class=MsoPlainText style='text-indent:21.25pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText style='mso-outline-level:1'>表<span lang=EN-US>3.1 </span>异常的简单描述</p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=741
+ style='width:444.3pt;margin-left:32.4pt;border-collapse:collapse;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+ mso-border-insideh:.5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:15.6pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.6pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>向量</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.6pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>异常名<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.6pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
+  "Courier New";color:black;mso-font-kerning:1.0pt'>类别</span><span lang=EN-US
+  style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.6pt'>
+  <p class=MsoNormal style='text-indent:31.5pt;mso-char-indent-count:3.0'><span
+  style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman"'>描述</span><span lang=EN-US
+  style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;height:14.4pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>除法出</span><span
+  style='font-size:10.5pt;font-family:宋体;mso-hansi-font-family:"Courier New";
+  color:black;mso-font-kerning:1.0pt'>错</span><span lang=EN-US
+  style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoPlainText><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+  color:windowtext;mso-font-kerning:5.0pt'>故</span><span style='mso-bidi-font-size:
+  10.5pt'>障<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>被<span
+  lang=EN-US>0</span>除<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;height:13.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>调试</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>故障／陷阱</span><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  "Times New Roman";color:windowtext;mso-font-kerning:5.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>当对一个程序进行逐步调试时<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;height:28.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>2<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>非屏蔽中断</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>（</span><span
+  lang=EN-US style='font-size:10.5pt'>NMI</span><span style='font-size:10.5pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>）</span><span lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>／<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>为不可屏蔽中断保留<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;height:12.6pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>3<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>断点</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>陷阱<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>由<span
+  lang=EN-US>int3</span>（断点指令）指令引起<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;height:19.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:19.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>4<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>溢出</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>陷阱<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>当<span
+  lang=EN-US>into(check for overflow)</span>指令被执行<span lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;height:19.2pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:19.2pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>5<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.2pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>边界检查</span><span
+  lang=EN-US style='font-size:10.5pt'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.2pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>故障<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:19.2pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>当<span
+  lang=EN-US>bound</span>指令被执行<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7;height:15.0pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>6<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>非法操作码</span><span
+  lang=EN-US style='font-size:10.5pt'><span style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>故障<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>当<span
+  lang=EN-US>CPU</span>检查到一个无效的操作码<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;height:30.0pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>7<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>设备<span
+  class=GramE>不</span>可用</span><span lang=EN-US style='font-size:10.5pt'><span
+  style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
+  <p class=MsoPlainText style='margin-left:89.25pt;text-indent:-89.25pt;
+  mso-char-indent-count:-8.5'><span style='mso-bidi-font-size:10.5pt'>故障<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>随着设置<span
+  lang=EN-US>cr0</span>的<span lang=EN-US>TS</span>标志， <span lang=EN-US>ESCAPE</span>或<span
+  lang=EN-US>MMX</span>指令被<span lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>执行<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;height:13.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>8<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>双重故障</span><span
+  lang=EN-US style='font-size:10.5pt'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>故障<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:13.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>处理器不能串行处理异常而引起的<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10;height:28.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>9<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>协处理器段越界</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoPlainText style='margin-left:89.25pt;text-indent:-89.25pt;
+  mso-char-indent-count:-8.5'><span style='mso-bidi-font-size:10.5pt'>故障<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:28.8pt'>
+  <p class=MsoPlainText><span style='mso-bidi-font-size:10.5pt'>因外部的数学协处理器引起的问题（仅用在<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoPlainText><span lang=EN-US style='mso-bidi-font-size:10.5pt'>80386</span><span
+  style='mso-bidi-font-size:10.5pt'>）<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11;height:12.6pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>10<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>无效</span><span
+  lang=EN-US style='font-size:10.5pt'>TSS<span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoPlainText>故障<span lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.6pt'>
+  <p class=MsoPlainText>要切换到的进程具有无效的<span lang=EN-US>TSS</span><span
+  lang=EN-US style='mso-bidi-font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12;height:12.0pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:12.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>11<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.0pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>段不存在</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.0pt'>
+  <p class=MsoPlainText>故障</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:12.0pt'>
+  <p class=MsoPlainText>引用一个不存在的内存段</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13;height:11.4pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>12<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:11.4pt'>
+  <p class=MsoNormal><span class=GramE><span style='font-size:10.5pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>栈</span></span><span style='font-size:10.5pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>段异常</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:11.4pt'>
+  <p class=MsoPlainText style='margin-left:57.75pt;text-indent:-57.75pt;
+  mso-char-indent-count:-5.5'>故障</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:11.4pt'>
+  <p class=MsoPlainText>试图超过<span class=GramE>栈</span>段界限，或由<span lang=EN-US>ss</span>标识的段不在内存</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14;height:10.8pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:10.8pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>13<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:10.8pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>通用保护</span><span
+  lang=EN-US style='font-size:10.5pt'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:10.8pt'>
+  <p class=MsoPlainText>故障</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:10.8pt'>
+  <p class=MsoPlainText>违反了<span lang=EN-US>Intelx86</span>保护模式下的一个保护规则</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15;height:18.0pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:18.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>14<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.0pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>页异常</span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.0pt'>
+  <p class=MsoPlainText>故障</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.0pt'>
+  <p class=MsoPlainText>寻址的页不在内存，或违反了一种分<span class=GramE>页保护</span>机制</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;height:15.0pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>15<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>Intel </span><span
+  style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman"'>保留</span><span lang=EN-US
+  style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoPlainText>／</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:15.0pt'>
+  <p class=MsoPlainText>保留</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17;height:14.4pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>16<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>浮点出错</span><span
+  lang=EN-US style='font-size:10.5pt'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoPlainText>故障</p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:14.4pt'>
+  <p class=MsoPlainText>浮点单元用信号通知一个错误情形，如溢出。</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18;mso-yfti-lastrow:yes;height:58.2pt'>
+  <td width=60 valign=top style='width:36.0pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:58.2pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt'>17<o:p></o:p></span></p>
+  </td>
+  <td width=165 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:58.2pt'>
+  <p class=MsoNormal><span style='font-size:10.5pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>对齐检查</span><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+  style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN-US style='font-size:10.5pt'><o:p></o:p></span></p>
+  </td>
+  <td width=120 valign=top style='width:72.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:58.2pt'>
+  <p class=MsoPlainText>故障</p>
+  <p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=396 valign=top style='width:237.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:58.2pt'>
+  <p class=MsoPlainText>操作数的地址没有被正确地排列</p>
+  <p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoPlainText style='text-indent:31.5pt;mso-char-indent-count:3.0'><span
+lang=EN-US>18</span>～<span lang=EN-US>31</span>由<span lang=EN-US>Intel</span>保留，为将来的扩充用</p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.1.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:01 GMT -->
+</html>

@@ -1,0 +1,1068 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.2.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:34 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.2.1.files/filelist.xml">
+<link rel=Edit-Time-Data href="6.2.1.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>启用分页机制</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-15T04:05:00Z</o:Created>
+  <o:LastSaved>2007-08-15T04:05:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>995</o:Words>
+  <o:Characters>5675</o:Characters>
+  <o:Lines>47</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>6657</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-outline-level:1'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US>6.2.1</span></st1:chsdate><span lang=EN-US> </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启用分页机制</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>当</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启动时，首先运行在实模式下，随后就要转到保护模式下运行。因为在第二<span class=GramE>章段机制</span>中，我们已经介绍了</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>对段的设置，在此我们主要讨论与分<span class=GramE>页机制</span>相关的问题。</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核代码的入口点就是</span><span lang=EN-US>/arch/i386/kernel/head.S</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的</span><span lang=EN-US>startup_32</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>．页表的初步初始化：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* The page tables are initialized to only 8MB here - the final page</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* <span class=GramE>tables</span> are set up later depending on memory
+size.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>*/</span></p>
+
+<p class=MsoNormal><span lang=EN-US>.org 0x2000</span></p>
+
+<p class=MsoNormal><span class=GramE><span lang=EN-US>ENTRY(</span></span><span
+lang=EN-US>pg0)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>.org 0x3000</span></p>
+
+<p class=MsoNormal><span class=GramE><span lang=EN-US>ENTRY(</span></span><span
+lang=EN-US>pg1)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* <span class=GramE>empty_zero_page</span> must immediately follow the
+page tables ! (The</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* initialization loop counts until empty_zero_page)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>*/</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>.org 0x4000</span></p>
+
+<p class=MsoNormal><span class=GramE><span lang=EN-US>ENTRY(</span></span><span
+lang=EN-US>empty_zero_page)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>／</span><span
+lang=EN-US>*</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* Initialize page tables</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>*/</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> $pg0-__PAGE_OFFSET,%edi /* initialize page
+tables */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> $007,%eax<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* &quot;007&quot; doesn't mean with right to kill, but</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>PRESENT+RW+USER */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span>2:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>stosl</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class=GramE>add</span>
+$0x1000,%eax</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>cmp</span> $empty_zero_page-__PAGE_OFFSET,%edi</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>jne</span> 2b</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核的这段代码执行时，因为<span
+class=GramE>页机制</span>还没有启用，还没有进入保护模式，因此指令寄存器</span><span lang=EN-US>EIP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的地址还是物理地址，但因为</span><span lang=EN-US>pg0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中存放的是虚拟地址（想想</span><span lang=EN-US>gcc</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>编译内核以后形成的符号地址都是虚拟地址），因此，“</span><span lang=EN-US>$pg0-__PAGE_OFFSET
+</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>”获得</span><span lang=EN-US>pg0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的物理地址，可见</span><span lang=EN-US>pg0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>存放在相对于内核代码起点为</span><span lang=EN-US>0x2000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的地方</span><span lang=EN-US>,</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>即物理地址为</span><span
+lang=EN-US>0x00102000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，而</span><span
+lang=EN-US>pg1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的物理地址则为</span><span lang=EN-US>0x00103000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span><span lang=EN-US>Pg0</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>pg1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>这个两个页表中的表项则依次被设置为</span><span
+lang=EN-US>0x007</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>、</span><span lang=EN-US>0x1007</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>0x2007</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>等。其中最低的三位均为</span><span lang=EN-US>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，表示这两个页为用户页，可写，<span class=GramE>且页的</span>内容在内存中（参见图</span><span
+lang=EN-US>2.24</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>）。所映射的物理页的基地址则为</span><span
+lang=EN-US>0x0</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>、</span><span lang=EN-US>0x1000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>0x2000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>等，也就是物理内存中的页面</span><span lang=EN-US>0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>1</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>2</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>、</span><span lang=EN-US>3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>等等，共映射</span><span lang=EN-US>2K</span><span class=GramE><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个</span></span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>页面，即</span><span
+lang=EN-US>8MB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的存储空间。由此可以看出，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内核对物理内存的最低要求为</span><span lang=EN-US>8MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。紧接着存放的是</span><span lang=EN-US>empty_zero_page</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>页</span><span lang=EN-US>(</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>即零页</span><span
+lang=EN-US>)</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，零页存放的是系统启动参数和命令行参数，具体内容参见第十三章。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US>2</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>．启用分页机制：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* This is initialized to create an identity-mapping at 0<st1:chmetcnv
+UnitName="m" SourceValue="8" HasSpace="False" Negative="True" NumberType="1"
+TCSC="0" w:st="on">-8M</st1:chmetcnv> (for bootup</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* purposes) and another mapping of the 0<st1:chmetcnv UnitName="m"
+SourceValue="8" HasSpace="False" Negative="True" NumberType="1" TCSC="0" w:st="on">-8M</st1:chmetcnv>
+area at virtual address</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>* PAGE_OFFSET.</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span>*/</span></p>
+
+<p class=MsoNormal><span lang=EN-US>.org 0x1000</span></p>
+
+<p class=MsoNormal><span class=GramE><span lang=EN-US>ENTRY(</span></span><span
+lang=EN-US>swapper_pg_dir)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.long 0x00102007</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.long 0x00103007</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.fill BOOT_USER_PGD_PTRS-2<span class=GramE>,4,0</span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* default: 766 entries */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.long 0x00102007</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.long 0x00103007</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* default: 254 entries */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.fill BOOT_KERNEL_PGD_PTRS-2<span class=GramE>,4,0</span></span></p>
+
+<p class=MsoNormal><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span>* Enable paging</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span>*/</span></p>
+
+<p class=MsoNormal><span lang=EN-US>3:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> $swapper_pg_dir-__PAGE_OFFSET,%eax</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %eax,%cr3<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+set the page table pointer.. */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %cr0,%eax</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>orl</span> $0x80000000,%eax</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %eax,%cr0<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+..<span class=GramE>and</span> set paging (PG) bit */</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>jmp</span> <st1:chmetcnv UnitName="F" SourceValue="1"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on">1f</st1:chmetcnv><span
+style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+flush the prefetch-queue */</span></p>
+
+<p class=MsoNormal><span lang=EN-US>1:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> $<st1:chmetcnv UnitName="F" SourceValue="1"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on">1f</st1:chmetcnv>,%eax</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>jmp</span> *%eax<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+make sure eip is relocated */</span></p>
+
+<p class=MsoNormal><span lang=EN-US>1:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>我们先来看这段代码的功能。这段代码<span
+class=GramE>就是把页目录</span></span><span lang=EN-US>swapper_pg_dir</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的物理地址装入控制寄存器</span><span lang=EN-US>cr3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，并把</span><span lang=EN-US>cr0</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的最高位置成</span><span
+lang=EN-US>1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，这就开启了分页机制。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>但是，启用了分页机制，并不说明</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核真正进入了保护模式，因为此时，指令寄存器</span><span
+lang=EN-US>EIP</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中的地址还是物理地址，而不是虚地址。“</span><span
+lang=EN-US>jmp <st1:chmetcnv UnitName="F" SourceValue="1" HasSpace="False"
+Negative="False" NumberType="1" TCSC="0" w:st="on">1f</st1:chmetcnv></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>”指令从逻辑上说不起什么作用，但是，从功能上说它起到丢弃指令流水线中内容的作用（这是</span><span
+lang=EN-US>Intel</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在</span><span lang=EN-US>i386</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>技术资料中所建议的），因为这是一个短跳转，</span><span lang=EN-US>EIP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中还是物理地址。紧接着的</span><span lang=EN-US>mov</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>jmp</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>指令把第二个标号为</span><span
+lang=EN-US>1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的地址装入</span><span lang=EN-US>EAX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>寄存器并跳转到那儿。在这两条指令执行的过程中</span><span lang=EN-US>, EIP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>还是指向物理地址“</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>＋某处”。因为编译程序使所有的符号地址都在虚拟内存空间中，因此，第二个标号</span><span
+lang=EN-US>1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的地址就在虚拟内存空间的某处（</span><span
+lang=EN-US>(PAGE_OFFSET+</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>某处</span><span
+lang=EN-US>)</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，于是，</span><span lang=EN-US>jmp</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>指令执行以后，</span><span lang=EN-US>EIP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>就指向虚拟内核空间的某个地址，这就使</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>转入了内核空间，从而完成了从实模式到保护模式的平稳过渡。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>然后再看页目录</span><span
+lang=EN-US>swapper_pg_dir</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的内容。从前面的讨论我们知道</span><span
+lang=EN-US>pg0</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>和</span><span lang=EN-US>pg1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>这两个页表的起始物理地址分别为</span><span lang=EN-US>0x00102000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>0x00103000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。从图</span><span lang=EN-US>2&shy;.22</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可知，页目录项的最低</span><span lang=EN-US>12</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>位用来描述页表的属性。因此，在</span><span lang=EN-US>swapper_pg_dir</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的第</span><span lang=EN-US>0</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和第</span><span
+lang=EN-US>1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个目录项</span><span lang=EN-US>0x00102007</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>0x00103007</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，就表示</span><span lang=EN-US>pg0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>pg1</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这两个页表是用户页表、可写且页表的内容在内存。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>接着，把</span><span
+lang=EN-US>swapper_pg_dir</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的第</span><span
+lang=EN-US>2</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>～</span><span lang=EN-US>767</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>共</span><span lang=EN-US>766</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个目录项全<span
+class=GramE>部置</span>为</span><span lang=EN-US>0</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。因为一个页表的大小为</span><span
+lang=EN-US>4KB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，每个<span class=GramE>表项占<span
+lang=EN-US style='font-family:"Times New Roman"'>4</span>个</span>字节，即每个页表含有</span><span
+lang=EN-US>1024</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个表项，每个页的大小也为</span><span lang=EN-US>4KB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，因此这</span><span lang=EN-US>768</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个目录项所映射的虚拟空间为</span><span lang=EN-US>768</span><span
+lang=EN-US style='font-family:Symbol;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-char-type:symbol;mso-symbol-font-family:
+Symbol'><span style='mso-char-type:symbol;mso-symbol-font-family:Symbol'>&acute;</span></span><span
+lang=EN-US>1024</span><span lang=EN-US style='font-family:Symbol;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-char-type:symbol;
+mso-symbol-font-family:Symbol'><span style='mso-char-type:symbol;mso-symbol-font-family:
+Symbol'>&acute;</span></span><span lang=EN-US>4K</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>＝</span><st1:chmetcnv
+UnitName="g" SourceValue="3" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>3G</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，也就是</span><span lang=EN-US>swapper_pg_dir</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>表中的前</span><span lang=EN-US>768</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个目录项映射的是用户空间。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>最后，在第</span><span
+lang=EN-US>768</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>和</span><span lang=EN-US>769</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个目录项中又存放</span><span lang=EN-US>pg0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>pg1</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这两个页表的地址和属性，而把第</span><span
+lang=EN-US>770</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>～</span><span lang=EN-US>1023</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>共</span><span lang=EN-US>254</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个<span
+class=GramE>目录项置</span></span><span lang=EN-US>0</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。这</span><span
+lang=EN-US>256</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个目录项所映射的虚拟地址空间为</span><span
+lang=EN-US>256</span><span lang=EN-US style='font-family:Symbol;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-char-type:symbol;
+mso-symbol-font-family:Symbol'><span style='mso-char-type:symbol;mso-symbol-font-family:
+Symbol'>&acute;</span></span><span lang=EN-US>1024</span><span lang=EN-US
+style='font-family:Symbol;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-char-type:symbol;mso-symbol-font-family:Symbol'><span
+style='mso-char-type:symbol;mso-symbol-font-family:Symbol'>&acute;</span></span><span
+lang=EN-US>4K</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>＝</span><st1:chmetcnv UnitName="g"
+SourceValue="1" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on"><span lang=EN-US>1G</span></st1:chmetcnv><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，也就是</span><span
+lang=EN-US>swapper_pg_dir</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>表中的后</span><span
+lang=EN-US>256</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个目录项映射的是内核空间。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><o:wrapblock><v:shapetype
+  id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+  path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" style='position:absolute;
+  left:0;text-align:left;margin-left:36.75pt;margin-top:0;width:388.85pt;
+  height:237pt;z-index:1' o:allowincell="f">
+  <v:imagedata src="6.2.1.files/image001.png" o:title="图6－6页目录表映射图"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0>
+  <tr>
+   <td width=49 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=518 height=316 src="6.2.1.files/image002.gif" v:shapes="_x0000_s1026"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>由此可以看出，在初始的页目录</span><span lang=EN-US>swapper_pg_dir</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中，用户空间和内核空间都只映射了开头的两个目录项，即</span><span lang=EN-US>8MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的空间，而且有着相同的映射，如图</span><span lang=EN-US>6.6</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>所示。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US>6.6 </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>初始页目录</span><span lang=EN-US>swapper_pg_dir</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的映射图</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>读者会问，内核开始运行后运行在内核空间，那么，为什么把用户空间的低区（</span><st1:chmetcnv
+UnitName="m" SourceValue="8" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>8M</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）也进行映射，而且与内核空间低区的映射相同？简而言之，是为了从实模式到保护模式的平稳过渡。具体地说，当</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>进入内核代码的起点</span><span lang=EN-US>startup_32</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>后，是以物理地址来取指令的。在这种情况下，如果页目录只映射内核空间，而<span class=GramE>不</span>映射用户空间的低区，则一旦开启页映射机制以后就不能继续执行了，这是因为，此时</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中的指令寄存器</span><span lang=EN-US>EIP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>仍<span class=GramE>指向低</span>区，仍会以物理地址取指令，直到以某个符号地址为目标作绝对转移或调用子程序为止。所以，</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核就采取了上述的解决办法。</span><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>但是，在</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>转入内核空间以后，应该把用户空间低区的映射清除掉。后面读者将会看到，页目录</span><span
+lang=EN-US>swapper_pg_dir</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>经扩充后就成为所有内核线程的页目录。在内核线程的正常运行中，处于内核态的</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>是不应该通过用户空间的虚拟地址访问内存的。清除了低区的映射以后，如果发生</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在内核中通过用户空间的虚拟地址访问内存，就可以因为产生页面异常而捕获这个错误。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US>3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>．物理内存的初始分布</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>经过这个阶段的初始化，初始化阶段页目录及几个页表在物理空间中的位置如图</span><span
+lang=EN-US>6.7</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>所示：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><o:wrapblock><v:shape id="_x0000_s1027"
+  type="#_x0000_t75" style='position:absolute;left:0;text-align:left;
+  margin-left:162.75pt;margin-top:0;width:150.6pt;height:171pt;z-index:2'
+  o:allowincell="f">
+  <v:imagedata src="6.2.1.files/image003.png" o:title="图6－7页表在物理空间中的位置"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=217 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=201 height=228 src="6.2.1.files/image004.gif" v:shapes="_x0000_s1027"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+</p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US>6.7 </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>初始化阶段页目录及几个页表在物理空间中的位置</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>其中</span><span
+lang=EN-US>empty_zero_page</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中存放的是在操作系统的引导过程中所收集的一些数据，叫做引导参数。因为这个页面开始的内容全为</span><span
+lang=EN-US>0</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，所以叫做“零页”，代码中常常通过宏定义</span><span
+lang=EN-US>ZERO_PAGE</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来引用这个页面。不过，这个页面要到初始化完成，系统转入正常运行时才会用到。为了后面内容介绍的方便，我们看一下复制到这个页面中的命令行参数和引导参数。这里假定这些参数已被复制到“零页”，在</span><span
+lang=EN-US>setup.c</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中定义了引用这些参数的宏：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span>/*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>* This is set up by the setup-routine at
+boot-time</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span lang=PT-BR
+style='mso-ansi-language:PT-BR'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=PT-BR
+style='mso-ansi-language:PT-BR'>#define PARAM<span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>((unsigned char *)empty_zero_page)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+SCREEN_INFO (*(struct screen_info *) (PARAM+0))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define EXT_MEM_K
+(*(unsigned short *) (PARAM+2))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+ALT_MEM_K (*(unsigned long *) (PARAM+0x1e0))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=PT-BR
+style='mso-ansi-language:PT-BR'>#define E820_MAP_NR (*(char*) (PARAM+E820NR))<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+E820_MAP<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>((struct
+e820entry *) (PARAM+E820MAP))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+APM_BIOS_INFO (*(struct apm_bios_info *) (PARAM+0x40))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+DRIVE_INFO (*(struct drive_info_struct *) (PARAM+0x80))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+SYS_DESC_TABLE (*(struct sys_desc_table_struct*<span class=GramE>)(</span>PARAM+0xa0))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+MOUNT_ROOT_RDONLY (*(unsigned short *) (PARAM+0x<st1:chmetcnv UnitName="F"
+SourceValue="1" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">1F</st1:chmetcnv>2))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+RAMDISK_FLAGS (*(unsigned short *) (PARAM+0x<st1:chmetcnv UnitName="F"
+SourceValue="1" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">1F</st1:chmetcnv>8))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+ORIG_ROOT_DEV (*(unsigned short *) (PARAM+0x1FC))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+AUX_DEVICE_INFO (*(unsigned char *) (PARAM+0x1FF))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+LOADER_TYPE (*(unsigned char *) (PARAM+0x210))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+KERNEL_START (*(unsigned long *) (PARAM+0x214))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+INITRD_START (*(unsigned long *) (PARAM+0x218))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+INITRD_SIZE (*(unsigned long *) (PARAM+0x<st1:chmetcnv UnitName="C"
+SourceValue="21" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">21c</st1:chmetcnv>))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+COMMAND_LINE ((char *) (PARAM+2048))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+COMMAND_LINE_SIZE 256</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>其中宏</span><span
+lang=EN-US>PARAM</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>就是</span><span lang=EN-US>empty_zero_page</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的起始位置，随着代码的阅读，读者会逐渐理解这些参数的用途。这里要特别对宏</span><span lang=EN-US>E820_MAP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进行说明。</span><span lang=EN-US>E820_MAP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是个</span><span lang=EN-US>struct e820entry</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>数据结构的指针，存放在参数块中位移为</span><span lang=EN-US>0x2d0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的地方。这个数据结构定义在</span><span lang=EN-US>include/i386/e820.h</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span class=GramE><span
+lang=EN-US>struct</span></span><span lang=EN-US> e820map {</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>int</span>
+nr_map;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=GramE>struct</span>
+e820entry {</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long long addr;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span>/* start of memory segment */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long long size;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+size of memory segment */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long type;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* type of memory segment */</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR style='mso-ansi-language:PT-BR'>} map[E820MAX];<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=PT-BR
+style='mso-ansi-language:PT-BR'>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=PT-BR
+style='mso-ansi-language:PT-BR'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=PT-BR
+style='mso-ansi-language:PT-BR'>extern struct e820map e820;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>其中，</span><span lang=EN-US>E820MAX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>被定义为</span><span lang=EN-US>32</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。从这个数据结构的定义可以看出，每个</span><span
+lang=EN-US>e820entry</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>都是对一个物理区间的描述，并且一个物理区间必须是同一类型。如果有一片地址连续的物理内存空间，其一部分是</span><span
+lang=EN-US>RAM</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，而另一部分是</span><span lang=EN-US>ROM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，那就要分成两个区间。即使同属</span><span lang=EN-US>RAM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，如果其中一部分要保留用于特殊目的，那也属于不同的一个分区。在</span><span lang=EN-US>e820.h</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>文件中定义了</span><span lang=EN-US>4</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>种不同的类型：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='mso-ansi-language:PT-BR'>#define
+E820_RAM<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='mso-ansi-language:PT-BR'>#define
+E820_RESERVED<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>2<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>#define E820_ACPI<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>3 /*
+usable as RAM once ACPI tables have been read */</span></p>
+
+<p class=MsoNormal><span lang=EN-US>#define E820_NVS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>4</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>#<span class=GramE>define</span>
+HIGH_MEMORY<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(1024*1024)</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>其中</span><span lang=EN-US>E820_NVS</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>表示“</span><span lang=EN-US>Non-Volatile Storage”,</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>即“不挥发”存储器，包括</span><span lang=EN-US>ROM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>EPROM</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>Flash</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>存储器等。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span><span
+lang=EN-US>PC</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中，对于最初</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>存储空间的使用是特殊的。开头</span><span lang=EN-US>640KB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>（</span><span lang=EN-US>0x0~0x9FFFF</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为</span><span lang=EN-US>RAM</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，从</span><span
+lang=EN-US>0xA0000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>开始的空间则用于</span><span
+lang=EN-US>CGA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>、</span><span lang=EN-US>EGA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>VGA</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>等图形卡。现在已经很少使用这些图形卡，但是不管是什么图形卡，开机时总是工作于</span><span
+lang=EN-US>EGA</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>或</span><span lang=EN-US>VGA</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>模式。从</span><span lang=EN-US>0xF0000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>开始到</span><span lang=EN-US>0xFFFFF</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，即最高的</span><span lang=EN-US>4KB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，就是在</span><span lang=EN-US>EPROM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>或</span><span lang=EN-US>Flash</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>存储器中的</span><span
+lang=EN-US>BIOS</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>。所以，只要有</span><span lang=EN-US>BIOS</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>存在，就至少有两个区间，如果</span><span lang=EN-US>nr_map</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>小于</span><span lang=EN-US>2</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，那就一定出错了。由于</span><span
+lang=EN-US>BIOS</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的存在，本来连续的</span><span lang=EN-US>RAM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>空间就不连续了。当然，现在已经不存在这样的存储结构了。</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的边界早已被突破，但因为历史的原因，把</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>以上的空间定义为“</span><span lang=EN-US>HIGH&shy;&shy;_MEMORY</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>”，这个称呼一直沿用到现在，于是代码中的常数</span><span lang=EN-US>HIGH&shy;&shy;_MEMORY</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>就定义为“</span><span lang=EN-US>1024</span><span lang=EN-US
+style='font-family:Symbol;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-char-type:symbol;mso-symbol-font-family:Symbol'><span
+style='mso-char-type:symbol;mso-symbol-font-family:Symbol'>&acute;</span></span><span
+lang=EN-US>1024”</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>。现在，配备了</span><span lang=EN-US>128MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的内存已经是很普遍了。但是，为了保持兼容，就得留出最初</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的空间。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这个阶段初始化后，物理内存中内核映像的分布如图</span><span
+lang=EN-US>6.8</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>所示：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><o:wrapblock><v:shape
+  id="_x0000_s1028" type="#_x0000_t75" style='position:absolute;left:0;
+  text-align:left;margin-left:84pt;margin-top:0;width:193.8pt;height:202.8pt;
+  z-index:3' o:allowincell="f">
+  <v:imagedata src="6.2.1.files/image005.png" o:title="图6－8内核映象在物理内存中的分布"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0>
+  <tr>
+   <td width=112 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=258 height=270 src="6.2.1.files/image006.gif" v:shapes="_x0000_s1028"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US>6.8<span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核<span
+class=GramE>映象</span>在物理内存中的分布</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>符号</span><span
+lang=EN-US>_text</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>对应物理地址</span><span lang=EN-US>0x00100000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，表示内核代码的第一个字节的地址。内核代码的结束位置用另一个类似的符号</span><span lang=EN-US>_etext</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>表示。内核数据被分为两组：初始化过的数据和未初始化过的数据。初始化过的数据在</span><span
+lang=EN-US>_etext</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>后开始，在</span><span lang=EN-US>_edata</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>处结束，紧接着是未初始化过的数据，其结束符号为</span><span lang=EN-US>_end</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，这也是整个内核映像的结束符号。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>图中出现的符号是由编译程序在编译内核时产生的。你可以在</span><span
+lang=EN-US>System.map</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件中找到这些符号的线性地址（或叫虚拟地址），</span><span
+lang=EN-US>System.map</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是编译内核以后所创建的。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.2.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:36 GMT -->
+</html>

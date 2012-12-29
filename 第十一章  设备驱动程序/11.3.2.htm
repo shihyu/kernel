@@ -1,0 +1,1349 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:37 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="11.3.2.files/filelist.xml">
+<link rel=Edit-Time-Data href="11.3.2.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>块设备基于缓冲区的数据交换</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-17T03:58:00Z</o:Created>
+  <o:LastSaved>2007-08-17T03:58:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1228</o:Words>
+  <o:Characters>7002</o:Characters>
+  <o:Lines>58</o:Lines>
+  <o:Paragraphs>16</o:Paragraphs>
+  <o:CharactersWithSpaces>8214</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.25pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	color:black;
+	mso-font-kerning:1.0pt;}
+p.MsoDate, li.MsoDate, div.MsoDate
+	{mso-style-next:正文;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US
+ style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+ font-weight:normal'>11.3.2</span></st1:chsdate><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'> </span><span class=GramE><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>块设备</span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>基于缓冲区的数据交换<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>关于块缓冲区的管理在第八章虚拟文件系统中已有所描述，在这里我们从交换数据的角度来看一下基于缓冲区的数据交换的实现。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'>1</span><span style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>．<span
+class=GramE>扇区及块缓冲区</span><span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.35pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>块设备</span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>的每次数据传送操作<span
+class=GramE>都作用</span>于一组相邻字节，我们称之为扇区。在大部分磁盘设备中，扇区的大小是<span lang=EN-US>512</span>字节，但是现在新出现的一些设备使用更大的扇区（<span
+lang=EN-US>1024</span>和<span lang=EN-US>2014</span>字节）。注意，应该把扇区作为数据传送的基本单元：不允许传送少于一个扇区的数据，而大部分磁盘设备都可以同时传送几个相邻的扇区。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>所谓块就是块设备驱动程序在一次单独操作中所传送的一大块相邻字节。注意不要混淆块（<span
+lang=EN-US>block</span>）和扇区（<span lang=EN-US>sector</span>）：扇区是硬件设备传送数据的基本单元，<span
+class=GramE>而块只是</span>硬件设备请求一次<span lang=EN-US>I/O</span>操作所涉及的一组相邻字节。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>在<span lang=EN-US>Linux</span>中，块大小必须是<span
+lang=EN-US>2</span>的<span class=GramE>幂</span>，而且不能超过一个页面。此外，它必须是扇区大小的整数<span
+class=GramE>倍</span>，因为每个块必须包含整数<span class=GramE>个</span>扇区。因此，在<span
+lang=EN-US>PC</span>体系结构中，允许块的大小为<span lang=EN-US>512</span>、<span lang=EN-US>1024</span>、<span
+lang=EN-US>2048</span>和<span lang=EN-US>4096</span>字节。同一个块设备驱动程序可以作用于多个块大小，因为它必须处理共享同一主设备号的一组设备文件，而每个<span
+class=GramE>块设备</span>文件都有自己预定义的块大小。例如，一个块设备驱动程序可能会处理有两个分区的硬盘，一个分区包含<span
+lang=EN-US>Ext2</span>文件系统，另一个分区包含交换分区。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>内核在一个名为<span lang=EN-US>blksize_size</span>的表中存放块的大小；表中每个元素的索引就是相应<span
+class=GramE>块设备</span>文件的主设备号和<span class=GramE>次设备号</span>。如果<span lang=EN-US>blksize_size[M]</span>为<span
+lang=EN-US>NULL</span>，那么共享主设备号<span lang=EN-US>M</span>的所有<span class=GramE>块设备</span>都使用标准的块大小，即<span
+lang=EN-US>1024</span>字节。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>每个块都需要自己的缓冲区，它是内核用来存放块内容的<span
+lang=EN-US>RAM</span>内存区。当设备驱动程序从磁盘读出一个块时，就用从硬件设备中所获得的值来填充相应的缓冲区；同样，当设备驱动程序向磁盘中写入一个块时，就<span
+class=GramE>用相关</span>缓冲区的实际值来更新硬件设备上相应的一组相邻字节。缓冲区的大小一定要与块的大小相匹配。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>2</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>．块驱动程序的体系结构<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>下面我们说明通用块驱动程序的体系结构，以及在为缓冲区<span
+lang=EN-US>I/O</span>操作时所涉及的主要成分。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.35pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>块设备驱动程序通常分为两部分，即高级驱动程序和低级驱动程序，<span
+class=GramE>前者处理</span><span lang=EN-US>VFS</span>层，<span class=GramE>后者处理</span>硬件设备，如图<span
+lang=EN-US>11.7</span>所示：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><!--[if gte vml 1]><o:wrapblock><v:group id="_x0000_s1027"
+  style='position:absolute;margin-left:10.6pt;margin-top:0;width:398.4pt;
+  height:227.5pt;z-index:2' coordorigin="1176,1420" coordsize="7968,4550"
+  o:allowincell="f">
+  <v:roundrect id="_x0000_s1028" style='position:absolute;left:4120;top:1420;
+   width:1624;height:546' arcsize="10923f">
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoDate><span class=GramE>块设备</span>文件</p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:roundrect><v:shapetype id="_x0000_t202" coordsize="21600,21600" o:spt="202"
+   path="m,l,21600r21600,l21600,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path gradientshapeok="t" o:connecttype="rect"/>
+  </v:shapetype><v:shape id="_x0000_s1029" type="#_x0000_t202" style='position:absolute;
+   left:4900;top:2145;width:1044;height:546' stroked="f">
+   <v:fill opacity=".5"/>
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoDate><span lang=EN-US>VFS</span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:rect id="_x0000_s1030" style='position:absolute;left:3888;top:2876;
+   width:1856;height:910'>
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+      </span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+      font-weight:normal'>高级块设备<span lang=EN-US><o:p></o:p></span></span></p>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>处理程序<span
+      lang=EN-US><o:p></o:p></span></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:rect><v:line id="_x0000_s1031" style='position:absolute' from="4944,1966"
+   to="4945,2876">
+   <v:stroke startarrow="block" endarrow="block"/>
+  </v:line><v:line id="_x0000_s1032" style='position:absolute;flip:y' from="4944,3786"
+   to="4945,4696">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1033" style='position:absolute;flip:x' from="3900,4696"
+   to="4944,5242">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1034" style='position:absolute' from="4816,4696"
+   to="5744,5242">
+   <v:stroke endarrow="block"/>
+  </v:line><v:roundrect id="_x0000_s1035" style='position:absolute;left:3036;
+   top:5242;width:1508;height:546' arcsize="10923f">
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoDate>块缓冲区</p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:roundrect><v:rect id="_x0000_s1036" style='position:absolute;left:4886;
+   top:5242;width:2358;height:546'>
+   <v:textbox style='mso-next-textbox:#_x0000_s1036'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoDate>低级<span class=GramE>块设备</span>处理程序</p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:rect><v:shapetype id="_x0000_t22" coordsize="21600,21600" o:spt="22"
+   adj="5400" path="m10800,qx0@1l0@2qy10800,21600,21600@2l21600@1qy10800,xem0@1qy10800@0,21600@1nfe">
+   <v:formulas>
+    <v:f eqn="val #0"/>
+    <v:f eqn="prod #0 1 2"/>
+    <v:f eqn="sum height 0 @1"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="custom"
+    o:connectlocs="10800,@0;10800,0;0,10800;10800,21600;21600,10800"
+    o:connectangles="270,270,180,90,0" textboxrect="0,@0,21600,@2"/>
+   <v:handles>
+    <v:h position="center,#0" yrange="0,10800"/>
+   </v:handles>
+   <o:complex v:ext="view"/>
+  </v:shapetype><v:shape id="_x0000_s1037" type="#_x0000_t22" style='position:absolute;
+   left:8100;top:5060;width:1044;height:910'>
+   <v:textbox style='mso-next-textbox:#_x0000_s1037'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoDate>磁盘</p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1038" style='position:absolute' from="7348,5424"
+   to="8044,5425">
+   <v:stroke dashstyle="1 1" startarrow="block" endarrow="block" endcap="round"/>
+  </v:line><v:line id="_x0000_s1039" style='position:absolute' from="2448,5424"
+   to="3144,5425">
+   <v:stroke dashstyle="1 1" startarrow="block" endarrow="block" endcap="round"/>
+  </v:line><v:rect id="_x0000_s1040" style='position:absolute;left:1616;top:5242;
+   width:928;height:546'>
+   <v:textbox style='mso-next-textbox:#_x0000_s1040'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US style='font-weight:normal'>RAM<o:p></o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:rect><v:shape id="_x0000_s1041" type="#_x0000_t202" style='position:absolute;
+   left:1176;top:2694;width:2668;height:2366' stroked="f">
+   <v:fill opacity=".5"/>
+   <v:textbox style='mso-next-textbox:#_x0000_s1041'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt;mso-font-kerning:0pt'>generic_file_<span class=GramE>read()</span><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt;mso-font-kerning:0pt'>generic_file_<span class=GramE>write()</span><o:p></o:p></span></p>
+      <p class=MsoNormal><span class=GramE><span lang=EN-US style='font-size:
+      10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt'>bread()</span></span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+      0pt'><o:p></o:p></span></p>
+      <p class=MsoNormal><span class=GramE><span lang=EN-US style='font-size:
+      10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt'>breada()</span></span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+      0pt'><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal><span class=GramE><span lang=EN-US style='font-size:
+      10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt'>getblk()</span></span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+      0pt'><o:p></o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal><span lang=EN-US style='mso-font-kerning:0pt'><span
+      style='mso-spacerun:yes'>&nbsp;</span></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1042" type="#_x0000_t202" style='position:absolute;
+   left:6072;top:4332;width:1972;height:546' stroked="f">
+   <v:fill opacity=".5"/>
+   <v:textbox style='mso-next-textbox:#_x0000_s1042'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt;mso-font-kerning:0pt'>ll_rw_block</span><span lang=EN-US
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1043" style='position:absolute' from="2160,3604"
+   to="4944,4332">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1044" style='position:absolute' from="2156,4696"
+   to="4244,5060">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1045" style='position:absolute;flip:x' from="5252,4696"
+   to="6644,5060">
+   <v:stroke endarrow="block"/>
+  </v:line><w:wrap type="topAndBottom"/>
+ </v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0>
+  <tr>
+   <td width=14 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=536 height=309 src="11.3.2.files/image001.gif" v:shapes="_x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>图<span
+lang=EN-US>11.7 </span>块设备驱动程序的体系结构<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>假设进程对一个设备文件发出<span
+lang=EN-US>read( )</span>或<span lang=EN-US>write( )</span>系统调用。<span
+lang=EN-US>VFS</span>执行对应文件对象的<span lang=EN-US>read</span>或<span lang=EN-US>write</span>方法，由此就调用高级<span
+class=GramE>块设备</span>处理程序中的一个过程。这个过程执行的所有操作都与对这个硬件设备的具体读写请求有关。内核提供两个名为<span
+lang=EN-US>generic_file_read ( )</span>和<span lang=EN-US>generic_file_write ( )</span>通用函数来留意所有事件的发生。因此，在大部分情况下，高级硬件设备驱动程序不必做什么，而设备文件的<span
+lang=EN-US>read</span>和<span lang=EN-US>write</span>方法分别指向<span lang=EN-US>generic_file_read
+( )</span>和<span lang=EN-US>generic_file_write ( )</span>方法。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>但是，有些<span class=GramE>块设备</span>的处理程序需要自己专用的高级设备驱动程序。典型的例子是软驱的设备驱动程序：它必须检查从上次访问磁盘以来，用户有没有改变驱动器中的磁盘；如果已插入一张新磁盘，那么设备驱动程序必须使缓冲区中所包含的旧数据无效。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>即使高级设备驱动程序有自己的<span lang=EN-US>read</span>和<span
+lang=EN-US>write</span>方法，但是这两个方法通常最终还会调用<span lang=EN-US>generic_file_read ( )</span>和<span
+lang=EN-US>generic_file_write ( )</span>函数。这些函数把对<span lang=EN-US>I/O</span>设备文件的访问请求转换成对相应硬件设备的块请求。所请求的块可能已在主存，因此<span
+lang=EN-US>generic_file_read ( )</span>和<span lang=EN-US>generic_file_write ( )</span>函数调用<span
+lang=EN-US>getblk( )</span>函数来检查缓冲区中是否已经预取了块，还是从上次访问以来缓冲区一直都没有改变。如果块不在缓冲区中，<span
+lang=EN-US>getblk( )</span>就必须调用<span lang=EN-US>ll_rw_block( )</span>继续从磁盘中读取这个块，后面这个函数激活操纵设备控制器的低级驱动程序，以执行对<span
+class=GramE>块设备</span>所请求的操作。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>在<span lang=EN-US>VFS</span>直接访问某一块设备上的特定块时，也会触发缓冲区<span
+lang=EN-US>I/O</span>操作。例如，如果内核必须从磁盘文件系统中读取一个索引节点，那么它必须从相应磁盘分区的块中传送数据 。对于特定块的直接访问是由<span
+lang=EN-US>bread( )</span>和<span lang=EN-US>breada( )</span>函数来执行的，这两个函数又会调用前面提到过的<span
+lang=EN-US>getblk( )</span>和<span lang=EN-US>ll_rw_block( )</span>函数。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>由于<span class=GramE>块设备</span>速度很慢，因此缓冲区<span
+lang=EN-US>I/O</span>数据传送通常都是异步处理的：低级设备驱动程序对<span lang=EN-US>DMAC</span>和磁盘控制器进行编程来控制其操作，然后结束。当数据传送完成时，就会产生一个中断，从而第二次激活这个低级设备驱动程序来清除这次<span
+lang=EN-US>I/O</span>操作所涉及的数据结构。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'>3</span><span style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>．<span
+class=GramE>块设备</span>请求<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>虽然块设备驱动程序可以一次传送一个单独的数据块，但是内核并不会为磁盘上每个被访问的数据块都单独执行一次<span
+lang=EN-US>I/O</span>操作：这会导致磁盘性能的下降，因为确定磁盘表面块的物理位置是相当费时的。取而代之的是，只要可能，内核就试图把几个块合并在一起，并作为一个整体来处理，这样就减少了磁头的平均移动时间。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>当进程、<span lang=EN-US>VFS</span>层或者任何其他的内核部分要读写一个磁盘块时，就真正引起一个<span
+class=GramE>块设备</span>请求。从本质上说，这个请求描述的是所请求的块以及要对它执行的操作类型（读还是写）。然而，并不是请求一发出，内核就满足它，实际上，块请求发出时<span
+lang=EN-US>I/O</span>操作仅仅被调度，稍后才会被执行。这种人为的延迟有悖于提高<span class=GramE>块设备</span>性能的关键机制。当请求传送一个新的数据块时，内核检查能否通过稍微扩大前一个一直处于等待状态的请求而满足这个新请求，也就是说，能否不用进一步的搜索操作就能满足新请求。由于磁盘的访问大都是顺序的，因此这种简单机制就<span
+class=GramE>非常</span>高效。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>延迟请求复杂化了<span class=GramE>块设备</span>的处理。例如，假设某个进程打开了一个普通文件，然后，文件系统的驱动程序就要从磁盘读取相应的索引节点。高级块设备驱动程序把这个请求加入一个等待队列，并把这个进程挂起，直到存放索引节点的块被传送为止。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>因为块设备驱动程序是中断驱动的，因此，只要高级驱动程序<span
+class=GramE>一发出块请求</span>，它就可以终止执行。在稍后的时间低级驱动程序才被激活，它会调用一个所谓的策略程序从一个队列中取得这个请求，并向磁盘控制器发出适当的命令来满足这个请求。当<span
+lang=EN-US>I/O</span>操作完成时，磁盘控制器就产生一个中断，如果需要，相应的处理程序会再次调用这个策略程序来处理队列<span
+class=GramE>中进程</span>的下一个请求。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoBodyTextIndent><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>每个块设备驱动程序都维护自己的请求队列；每个物理<span
+class=GramE>块设备</span>都应该有一个请求队列，以提高磁盘性能的方式对请求进行排序。因此策略程序就可以顺序扫描这种队列，并以最少地移动磁头而为所有的请求提供服务。</span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>每个<span class=GramE>块设备</span>请求都是由一个<span
+lang=EN-US>request</span>结构来描述的，其定义于<span lang=EN-US>include/linux/blkdev.h</span>：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span>* Ok, this is an expanded form so that
+we can use the same<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span>* <span class=GramE>request</span> for
+paging requests.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>struct</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>
+request {<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> list_head queue;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> elevator_sequence;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>volatile</span> int rq_status; /* should split this
+into a few status bits */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>#<span
+class=GramE>define</span> RQ_INACTIVE<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(-1)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>#define
+RQ_ACTIVE<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>#define
+RQ_SCSI_BUSY<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0xffff<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>#define
+RQ_SCSI_DONE<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0xfffe<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>#define
+RQ_SCSI_DISCONNECTING<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>0xffe0<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>kdev_t rq_dev;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>int</span> cmd;<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* READ or WRITE */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>int</span> errors;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long sector;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long nr_sectors;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long hard_sector, hard_nr_sectors;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> int nr_segments;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> int nr_hw_segments;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> long current_nr_sectors;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>void</span> * special;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>char</span> * buffer;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> completion * waiting;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> buffer_head * bh;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> buffer_head * bhtail;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>request_queue_t *q;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>从代码注释可以知道，在<span lang=EN-US>2.2</span>以前的版本中没有这么多域，很多域时为分页请求而增加的，我们暂且不予考虑。在此，我们只说明与块传送有关的域。为了描述方便起见，我们把<span
+lang=EN-US>struct request</span>叫做请求描述符。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>数据传送的方向存放在<span lang=EN-US>cmd</span>域中：该值可能是<span
+lang=EN-US>READ</span>（把数据从<span class=GramE>块设备</span>读到<span lang=EN-US>RAM</span>中）或者<span
+lang=EN-US>WRITE</span>（把数据从<span lang=EN-US>RAM</span>写到<span class=GramE>块设备</span>中）。<span
+lang=EN-US>rq_status</span>域用来定义请求的状态：对于大部分块设备来说，这个域的值可能为<span lang=EN-US>RQ_INACTIVE</span>（请求描述符还没有使用）或者<span
+lang=EN-US>RQ_ACTIVE</span>（有效的请求，低级设备驱动程序要对其服务或正在对其服务）。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>一次请求可能包括同一设备中的很多相邻块。<span
+lang=EN-US>rq_dev</span>域指定块设备，而<span lang=EN-US>sector</span><span
+class=GramE>域说明</span>请求中第一个块对应的第一个扇区的编号。<span lang=EN-US>nr_sector</span>和<span
+lang=EN-US>current_nr_sector</span>给出要传送数据的扇区数。<span lang=EN-US>sector</span>、<span
+lang=EN-US>nr_sector</span>和<span lang=EN-US>current_nr_sector</span><span
+class=GramE>域都可以</span>在请求得到服务的过程中而被动态修改。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:27.2pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>请求块的所有缓冲区首部都被集中在一个简单链表中。每个缓冲区首部的<span
+lang=EN-US>b_reqnext</span>域指向链表中的下一个元素，而请求描述符的<span lang=EN-US>bh</span>和<span
+lang=EN-US>bhtail</span><span class=GramE>域分别</span>指向链表的第一个元素和最后一个元素。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>请求描述符的<span lang=EN-US>buffer</span>域指向实际数据传送所使用的内存区。如果只请求一个单独的块，那么缓冲区只是缓冲区首部的<span
+lang=EN-US>b_data</span>域的一个拷贝。然而，如果请求了多个块，而这些块的缓冲区在内存中又不是连续的，那么就使用缓冲区首部的<span
+lang=EN-US>b_reqnext</span><span class=GramE>域把这些</span>缓冲区链接在一起。对于读操作来说，低级设备驱动程序可以选择先分配一个大的内存区来立即读取请求的所有扇区，然后再把这些数据拷贝到各个缓冲区。同样，对于写操作来说，低级设备驱动程序可以把很多不连续缓冲区中的数据拷贝到一个单独内存区的缓冲区中，然后再立即执行整个数据的传送。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>另外，在严重负载和磁盘操作频繁的情况下，固定数目的请求描述符就可能成为一个瓶颈。空闲描述符的缺乏可能会强制进程等待直到正在执行的数据传送结束。因此，<span
+lang=EN-US>request_queue_t </span>类型（见下面）中的<span lang=EN-US>wait_for_request</span>等待队列就用来对正在等待空闲请求描述符的进程进行排队。<span
+lang=EN-US>get_request_wait( )</span>试图获取一个空闲的请求描述符，如果没有找到，就让当前进程在等待队列中睡眠；<span
+lang=EN-US>get_request( )</span>函数与之类似，但是如果没有可用的空闲请求描述符，它只是简单地返回<span
+lang=EN-US>NULL</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>4. </span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>请求队列<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-weight:normal'>请求队列只是一个简单的链表，其元素是请求描述符。每个请求描述符中的<span lang=EN-US>next</span><span
+class=GramE>域都指向</span>请求队列的下一个元素，最后一个元素为空。这个链表的排序通常是：首先根据设备标识符，其次根据最初的扇区号。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>如前所述，对于所服务的每个硬盘，设备驱动程序通常都有一个请求队列。然而，一些设备驱动程序只有一个请求队列，其中包括了由这个驱动器处理的所有物理设备的请求。这种方法简化了驱动程序的设计，但是损失了系统的整体性能，因为不能对队列强制使用简单排序的策略。请求队列定义如下：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>struct</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>
+request_queue<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>the</span> queue request freelist, one for reads and
+one for writes<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> request_list<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>rq[2];<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Together with queue_head for cacheline sharing<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> list_head<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>queue_head;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>elevator_t</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>elevator;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>request_fn_proc<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* request_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>merge_request_fn<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>*
+back_merge_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>merge_request_fn<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>*
+front_merge_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>merge_requests_fn<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>*
+merge_requests_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>make_request_fn<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* make_request_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>plug_device_fn<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* plug_device_fn;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* The queue owner gets to use this for whatever they like.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* ll_rw_blk doesn't touch it.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>void</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* queuedata;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* This is used to remove the plug when tq_disk runs.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>struct</span> tq_struct<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>plug_tq;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Boolean that indicates whether this queue is plugged or not.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>char</span><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>plugged;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Boolean that indicates whether current_request is active or<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>not</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>char</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>head_active;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Is meant to protect the queue in the future instead of<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* io_request_lock<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>spinlock_t<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>queue_lock;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* Tasks wait here for free request<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>wait_queue_head_t<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>wait_for_request;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>typedef</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>
+struct request_queue request_queue_t;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>其中，<span lang=EN-US>request_list</span>为请求描述符组成的空闲链表，其定义如下：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span><span class=GramE>struct</span>
+request_list {<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>unsigned</span> int count;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>struct</span> list_head free;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>有两个这样的链表，一个用于读，一个用于写。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span>elevator_t </span><span style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>结构描述的是为磁盘的电梯调度算法而设的数据结构。从<span
+lang=EN-US>request_fn_proc</span>到<span lang=EN-US>plug_device_fn </span>都是一些函数指针。例如<span
+lang=EN-US>request_fn</span>是一个指针，指向类型为<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>request_fn_proc </span>的对象。而<span lang=EN-US>request_fn_proc</span>则通过<span
+lang=EN-US>#typedef</span>定义为一种函数：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>typedef</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>
+void (request_fn_proc) (request_queue_t *q)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>其余的函数也与此类似，这些指针（连同其他域）都是在相应设备初始化时设置好的。需要对一个<span
+class=GramE>块设备</span>进行操作时，就为之设置好一个数据结构<span lang=EN-US>request_queue</span>。并将其挂入相应的请求队列中。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>这里要说明的是，<span lang=EN-US>request_fn(
+)</span>域包含驱动程序的策略程序的地址，策略程序是低级块设备驱动程序的关键函数，为了开始传送队列中的一个请求所指定的数据，它与物理块设备（通常是磁盘控制器）真正打交道。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>5</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>． 块设备驱动程序描述符<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>驱动程序描述符是一个<span
+lang=EN-US>blk_dev_struct</span>类型的数据结构，其定义如下：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+class=GramE>struct</span> blk_dev_struct {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>* <span
+class=GramE>queue_proc</span> has to be atomic<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-ansi-language:
+PT-BR;font-weight:normal'>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-ansi-language:PT-BR;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>request_queue_t<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>request_queue;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-ansi-language:PT-BR;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>queue_proc<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*queue;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=PT-BR style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-ansi-language:PT-BR;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=GramE><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>void</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*data;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>};<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:19.8pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>在这个结构中，其主体是请求队列<span lang=EN-US>request_queue</span>；此外，还有一个函数指针<span
+lang=EN-US>queue</span>，当这个指针为非<span lang=EN-US>0</span>时，就调用这个函数来找到具体设备的请求队列，这是为考虑具有同一主设备号的多种同类设备而设的一个域。这个指针也在设备初始化是就设置好，另一个指针<span
+lang=EN-US>data</span>是辅助<span lang=EN-US>queue</span>函数找到特定设备的请求队列。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:19.8pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>所有<span class=GramE>块设备</span>的描述符都存放在<span
+lang=EN-US>blk_dev</span>表中：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:19.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:19.8pt'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>struct</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>
+blk_dev_struct blk_dev[MAX_BLKDEV];<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:27.2pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:26.6pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>每个<span
+class=GramE>块设备</span>都对应着数组中的一项，可以用主设备号进行检索。每当用户进程对一个块<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>设备发出一个读写请求时，首先调用<span
+class=GramE>块设备</span>所公用的函数<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span></span></span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>generic_file_read
+( )</span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:
+normal'>和<span lang=EN-US>generic_file_write ( )</span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>，如果数据存在缓冲区中或缓冲区还可以存放数据，就同缓冲区进行数据交换。否则<span lang=EN-US>,</span>系统会将相应的请求队列结构添加到其对应项的<span
+lang=EN-US> blk_dev_struct </span>中，如图<span lang=EN-US>11.8</span>所示。如果在加入请求队列结构的时候该设备没有请求的话，则马上响应该请求，否则将其追加到请求任务队列尾顺序执行。<span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:26.6pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[if gte vml 1]><o:wrapblock><v:shapetype id="_x0000_t75"
+  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+  filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" style='position:absolute;
+  left:0;text-align:left;margin-left:0;margin-top:0;width:408.15pt;height:298.45pt;
+  z-index:1;mso-position-horizontal-relative:text;
+  mso-position-vertical-relative:text' o:allowincell="f">
+  <v:imagedata src="11.3.2.files/image002.png" o:title="图11"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><img width=544 height=398
+ src="11.3.2.files/image003.gif" v:shapes="_x0000_s1026"><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>图<span lang=EN-US>11.8<span style='mso-spacerun:yes'>&nbsp;
+</span></span><span class=GramE>块设备</span>读写请求<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:25.75pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>图<span
+lang=EN-US>11.8</span>表示每个请求有指向一个或多个<span lang=EN-US> buffer_hear </span>结构的指针，每个请求读写一块数据。如果系统对<span
+lang=EN-US> buffer_head </span>结构上锁<span lang=EN-US>, </span><span class=GramE>则进程</span>会等待到对此缓冲区的块操作完成。一旦设备驱动程序完成了请求则它必须将每个<span
+lang=EN-US> buffer_heard </span>结构从<span lang=EN-US> request </span>结构中清除，将它们标记成已更新状态并对它们解锁。对<span
+lang=EN-US> buffer_head </span>的解锁将唤醒所有等待此块操作完成的睡眠进程，然后<span lang=EN-US>request
+</span>数据结构被标记成空闲以便被其它块请求使用。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:38 GMT -->
+</html>

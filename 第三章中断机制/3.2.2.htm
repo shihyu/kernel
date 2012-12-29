@@ -1,0 +1,952 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.2.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:03 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="3.2.2.files/filelist.xml">
+<link rel=Edit-Time-Data href="3.2.2.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>中断描述符表IDT的预初始化</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-14T09:07:00Z</o:Created>
+  <o:LastSaved>2007-08-14T09:07:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>432</o:Words>
+  <o:Characters>2463</o:Characters>
+  <o:Lines>20</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>2890</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:5.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1840345909;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-outline-level:1'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><b
+ style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:10.5pt;
+ mso-bidi-font-size:10.0pt'>3.2.2</span></b></st1:chsdate><b style='mso-bidi-font-weight:
+normal'><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中断描述符表</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>IDT</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的预初始化</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>当计算机运行在实模式时，</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>被初始化并由</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>BIOS</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用。然而，一旦真正进入了</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>Linux</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核，</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>就被移到内存的另一个区域，并进行进入实模式的初步初始化。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span>1</span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>．中断描述表寄存器</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDTR</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的初始化</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用汇编指令</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>LIDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>对中断向量表寄存器</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDTR</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进行初始化，其代码在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>arch/i386/boot/setup.S
+</span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.6pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span class=GramE><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>lidt</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>idt_48<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span># load idt with 0,0<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.6pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>…<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span>idt_48:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.word<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>0<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span># idt limit = 0<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.word<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>0, 0<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span># idt base = <st1:chmetcnv UnitName="l" SourceValue="0" HasSpace="False"
+Negative="False" NumberType="1" TCSC="0" w:st="on">0L</st1:chmetcnv><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp; </span>2</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．把</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>表的起始地址装入</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDTR<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用汇编指令</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>LIDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>装入</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的大小和它的地址（在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>arch/i386/kernel/head.S</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中）：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>#define IDT_ENTRIES<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>256<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>.globl SYMBOL_<span class=GramE>NAME(</span>idt)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span class=GramE><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>lidt</span></span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'> idt_descr<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>…<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt;background:#BFBFBF;mso-shading:
+white;mso-pattern:gray-25 auto'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>idt_descr:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.word IDT_ENTRIES*8-1<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span># idt contains 256 entries<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>SYMBOL_<span
+class=GramE>NAME(</span>idt):<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.long SYMBOL_<span class=GramE>NAME(</span>idt_table)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>其中</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>为一个全局变量，内核对这个变量的引用就可以获得</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>IDT</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>表的地址。表的长度为</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>256</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Symbol'>&acute;</span></span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>8</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>＝</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>2048</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>字节。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>3</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．用</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>setup_idt()</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数填充</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt_table</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>表中的</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>256</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个表项。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>我们首先要看一下</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt_table</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的定义（在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>arch/i386/kernel/traps.c</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中）：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;background:#BFBFBF;mso-shading:white;mso-pattern:gray-25 auto'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span class=GramE>struct</span>
+desc_struct idt_table[256] __attribute__((__section__(&quot;.data.idt&quot;)))
+= { {0, 0}, };</span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>desc_struct</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>结构定义为：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>struct desc_struct </span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>｛</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span class=GramE>unsigned</span>
+long a,b<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>} <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>对</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt_table</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>变量还定义了其属性（</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>__attribute__</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>），</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>__section__</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是汇编中的“节”，指定了</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt_table</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的起始地址存放在数据节的</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>变量中，如上面第</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>2</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>条所述。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在对</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>idt_table</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>表进行填充时，使用了一个空的中断处理程序</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>ignore_int()</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。因为现在处于初始化阶段，还没有任何中断处理程序，因此用这个空的中断处理程序填充每个表项。</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>ignore_int()</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是一段汇编程序（在</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>head.S</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中）：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>ignore_int:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>cld<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>＃方向标志清</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>0</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，表示串指令自动增长它们的索引寄存器（</span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt'>esi</span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>和</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>edi</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %eax<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ecx<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %edx<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %es<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> %ds<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> $(__KERNEL_DS),%eax<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %eax,%ds<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>movl</span> %eax,%es<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>pushl</span> $int_msg<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>call</span> SYMBOL_NAME(printk)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %eax<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %ds<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %es<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %edx<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>popl</span> %ecx<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>popl</span> %eax<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>iret</span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>int_msg:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>.asciz
+&quot;Unknown interrupt\n&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ALIGN<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>该中断处理程序模仿一般的中断处理程序，执行如下操作：</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.5pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在<span class=GramE>栈</span>中保存一些寄存器的值</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.5pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>调用</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>printk()</span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>函数打印“</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>Unknown interrupt”</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统信息</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.5pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>从<span class=GramE>栈</span>中恢复寄存器的内容</span><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.5pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>执行</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'>iret</span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>指令以恢复被中断的程序。</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'>实际上，<span lang=EN-US>ignore_int</span>（）处理程序应该从不执行。如果在控制台或日志文件中出现了
+“<span lang=EN-US>Unknown interrupt</span>”消息，说明要么是出现了一个硬件问题（一个<span
+lang=EN-US>I/O</span>设备正在产生没有预料到的中断），要么就是出现了一个内核问题（一个中断或异常未被恰当地处理）。</p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span></span>最后，我们来看<span lang=EN-US>setup_idt()</span>函数如何对<span lang=EN-US>IDT</span>表进行填充<span
+lang=EN-US>:</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span>/*</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>*<span
+style='mso-spacerun:yes'>&nbsp; </span>setup</span>_idt</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span>*</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>sets</span> up a idt
+with 256 entries pointing to</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>ignore</span>_int,
+interrupt gates. It doesn't actually load</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>idt</span> - that can
+be done only after paging has been enabled</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>and</span> the kernel
+moved to PAGE_OFFSET. Interrupts</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>are</span> enabled
+elsewhere, when we can be relatively</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><span
+class=GramE>*<span style='mso-spacerun:yes'>&nbsp; </span>sure</span>
+everything is ok.</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span>*/</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US>setup_idt:</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>lea ignore_int,%edx<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>/*</span>计算<span
+lang=EN-US>ignore_int</span>地址的偏移量<span lang=EN-US>,</span>并将其装入<span
+lang=EN-US>%edx*/</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> $(__KERNEL_CS &lt;&lt; 16),%eax<span
+style='mso-spacerun:yes'>&nbsp; </span>/* selector = 0x0010 = cs */</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movw</span> %dx,%ax<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movw</span> $0x8E00,%dx<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+interrupt gate - dpl=0, present */</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>lea</span> SYMBOL_NAME(idt_table),%edi</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>mov</span> $256,%ecx</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US>rp_sidt:</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> %eax,(%edi)</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>movl</span> %edx,4(%edi)</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>addl</span> $8,%edi</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>dec</span> %ecx</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>jne</span> rp_sidt</span></p>
+
+<p class=MsoPlainText style='background:#BFBFBF;mso-shading:white;mso-pattern:
+gray-25 auto'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>ret</span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span>这段程序的理解要对照门描述符的格式。<span
+lang=EN-US>8</span>个字节的门描述符放在两个<span lang=EN-US>32</span>位寄存器<span lang=EN-US>eax</span>和<span
+lang=EN-US>edx</span>，如图<span lang=EN-US>3.5</span>所示，从<span lang=EN-US>rp_sidt</span>开始的那段程序是循环填充<span
+lang=EN-US>256</span>个表项。<span lang=EN-US style='mso-no-proof:yes'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;mso-outline-level:1'><!--[if gte vml 1]><v:group
+ id="_x0000_s1026" style='position:absolute;left:0;text-align:left;
+ margin-left:55pt;margin-top:0;width:273pt;height:63.95pt;z-index:1'
+ coordorigin="2119,10716" coordsize="5460,1279">
+ <v:group id="_x0000_s1027" style='position:absolute;left:2749;top:10716;
+  width:4830;height:468' coordorigin="2698,1752" coordsize="4620,468"
+  wrapcoords="-70 0 -70 21600 21670 21600 21670 0 -70 0" o:allowincell="f">
+  <v:shapetype id="_x0000_t202" coordsize="21600,21600" o:spt="202" path="m,l,21600r21600,l21600,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path gradientshapeok="t" o:connecttype="rect"/>
+  </v:shapetype><v:shape id="_x0000_s1028" type="#_x0000_t202" style='position:absolute;
+   left:2698;top:1752;width:4620;height:468;mso-wrap-edited:f' wrapcoords="-70 0 -70 21600 21670 21600 21670 0 -70 0">
+   <v:textbox style='mso-next-textbox:#_x0000_s1028'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+      style='mso-spacerun:yes'>&nbsp;</span></span><span class=GramE><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>段选择符</span></span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+      style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>(0x0010)<span
+      style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>偏移量的低</span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>16</span><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>位</span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1029" style='position:absolute' from="5008,1752"
+   to="5008,2220"/>
+ </v:group><v:group id="_x0000_s1030" style='position:absolute;left:2749;top:11527;
+  width:4830;height:468' coordorigin="2698,1752" coordsize="4620,468"
+  wrapcoords="-70 0 -70 21600 21670 21600 21670 0 -70 0" o:allowincell="f">
+  <v:shape id="_x0000_s1031" type="#_x0000_t202" style='position:absolute;
+   left:2698;top:1752;width:4620;height:468;mso-wrap-edited:f' wrapcoords="-70 0 -70 21600 21670 21600 21670 0 -70 0">
+   <v:textbox style='mso-next-textbox:#_x0000_s1031'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+      10.0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>偏移量的高</span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>16</span><span
+      style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+      mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>位</span><span
+      lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+      style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+      style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span
+      style='mso-spacerun:yes'>&nbsp;</span>00 <span
+      style='mso-spacerun:yes'>&nbsp;</span><span
+      style='mso-spacerun:yes'>&nbsp;</span>110<span
+      style='mso-spacerun:yes'>&nbsp; </span>00000000<o:p></o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1032" style='position:absolute' from="5008,1752"
+   to="5008,2220"/>
+ </v:group><v:line id="_x0000_s1033" style='position:absolute' from="6319,11524"
+  to="6319,11992" o:allowincell="f"/>
+ <v:line id="_x0000_s1034" style='position:absolute' from="5269,11524" to="5269,11992"
+  o:allowincell="f"/>
+ <v:line id="_x0000_s1035" style='position:absolute' from="5584,11524" to="5584,11992"
+  o:allowincell="f"/>
+ <v:line id="_x0000_s1036" style='position:absolute' from="5794,11524" to="5794,11992"
+  o:allowincell="f"/>
+ <v:shape id="_x0000_s1037" type="#_x0000_t202" style='position:absolute;
+  left:2119;top:11527;width:735;height:468' o:allowincell="f" stroked="f">
+  <v:fill opacity=".5"/>
+  <v:textbox style='mso-next-textbox:#_x0000_s1037'>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span class=GramE><span lang=EN-US>edx</span></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:shape></v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout;
+position:relative;z-index:1'><span style='left:0px;position:absolute;
+left:73px;top:-1px;width:369px;height:91px'><img width=369 height=91
+src="3.2.2.files/image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037"></span></span><![endif]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-tab-count:1'> </span>32<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>16 15<span style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>eax</span> <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;mso-outline-level:1'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:23.15pt;mso-para-margin-left:1.93gd;
+text-indent:61.4pt;mso-char-indent-count:5.85;mso-outline-level:1'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>图</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>3.4 </span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>门描述符存放在两个</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'>32</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>位的寄存器</span><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗笁绔犱腑鏂満鍒�/3.2.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:04 GMT -->
+</html>

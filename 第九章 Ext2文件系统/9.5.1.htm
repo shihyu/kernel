@@ -1,0 +1,447 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗節绔�%20Ext2鏂囦欢绯荤粺/9.5.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:24 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="9.5.1.files/filelist.html">
+<title> 数据块寻址</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-16T10:12:00Z</o:Created>
+  <o:LastSaved>2007-08-16T10:12:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>239</o:Words>
+  <o:Characters>1367</o:Characters>
+  <o:Lines>11</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1603</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:598484118;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l1
+	{mso-list-id:1354526830;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US
+ style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+ mso-font-kerning:0pt'>9.5.1</span></st1:chsdate><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>数据块寻址<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span class=GramE><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>每个非</span></span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>空的普通文件都是由一组数据块组成。这些<span
+class=GramE>块或者</span>由文件内的相对位置（文件块号）来表示，或者由磁盘分区内的位置（它们的逻辑块号）来表示。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span></span>从文件内的偏移量<span lang=EN-US>f</span>导出相应数据块的逻辑<span
+class=GramE>块号需要</span>两个步骤：</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l0 level1 lfo1;tab-stops:list 21.25pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>从偏移量<span lang=EN-US>f</span>导出文件的块号，即偏移量<span
+lang=EN-US>f</span>处的字符所在的块索引。</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l0 level1 lfo1;tab-stops:list 21.25pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>把文件<span class=GramE>的块号转化</span>为相应的逻辑块号。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>因为<span lang=EN-US>Linux</span>文件不包含任何控制字符，因此，导出文件的第<span
+lang=EN-US>f</span><span class=GramE>个</span>字符所在的<span class=GramE>文件块号是</span>相当容易的：只是用<span
+lang=EN-US>f</span>除以文件系统块的大小，并取整即可。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>例如，让我们假定块的大小为<span
+lang=EN-US>4KB</span>。如果<span lang=EN-US>f</span>小于<span lang=EN-US>4096</span>，那么这个字符就在文件的第一个数据块中，其文件<span
+class=GramE>的块号为</span><span lang=EN-US>0</span>。如果<span lang=EN-US>f</span>等于或大于<span
+lang=EN-US>4096</span>而小于<span lang=EN-US>8192</span>，则这个字符就在<span class=GramE>文件块号为</span><span
+lang=EN-US>1</span>的数据块中等等。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>只用关心文件<span class=GramE>的块号确实</span>不错。但是，由于<span
+lang=EN-US>Ext2</span>文件的数据块在磁盘上并不是相邻的，因此把文件<span class=GramE>的块号转化</span>为相应的<span
+class=GramE>逻辑块号可不是</span>那么<span class=GramE>直接了当</span>。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>因此，<span lang=EN-US>Ext2</span>文件系统必须提供一种方法，用这种方法可以在磁盘上建立每个<span
+class=GramE>文件块号与</span>相应<span class=GramE>逻辑块号之间</span>的关系。在索引节点内部部分实现了这种映射，这种映射也包括一些专门的数据块，可以把这些数据块看成是用来处理大型文件的索引节点的扩展。</p>
+
+<p class=MsoPlainText style='text-indent:21.25pt'>磁盘索引节点的<span lang=EN-US>i_block</span>域是一个有<span
+lang=EN-US>EXT2_N_BLOCKS</span><span class=GramE>个</span>元素且包含<span
+class=GramE>逻辑块号的</span>数组。在下面的讨论中，我们假定<span lang=EN-US>EXT2_N_BLOCKS</span>的默认值为<span
+lang=EN-US>15</span>，如图<span lang=EN-US>9.4</span>所示，这个数组表示一个大型数据结构的初始化部分。正如你从图中所看到的，数组的<span
+lang=EN-US>15</span>个元素有<span lang=EN-US>4</span>种不同的类型：</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l1 level1 lfo2;tab-stops:list 21.25pt 42.0pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>最初的<span lang=EN-US>12</span>个元素产生的<span
+class=GramE>逻辑块号与</span>文件最初的<span lang=EN-US>12</span>个块对应，即对应的<span
+class=GramE>文件块号从</span><span lang=EN-US>0</span>到<span lang=EN-US>11</span>。</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l1 level1 lfo2;tab-stops:list 21.25pt 42.0pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>索引<span lang=EN-US>12</span>中的元素包含一个块的逻辑块号，这个<span
+class=GramE>块代表逻辑块号</span>的一个二级数组。这个数组对应的<span class=GramE>文件块号从</span><span
+lang=EN-US>12</span>到<span lang=EN-US>b/4+11</span>，这里<span lang=EN-US>b</span>是文件系统的块大小（每个逻辑<span
+class=GramE>块号占</span><span lang=EN-US>4</span>个字节，因此我们在式子中用<span lang=EN-US>4</span>做除数）。因此，内核必须先用指向一个块的指针访问这个元素，然后，用另一个指向包含文件<span
+class=GramE>最终内容</span>的块的指针访问那个块。</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l1 level1 lfo2;tab-stops:list 21.25pt 42.0pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>索引<span lang=EN-US>13</span>中的元素包含一个块的逻辑块号，而这个块包含<span
+class=GramE>逻辑块号的</span>一个二级数组；这个二级数组的数组项依次指向三级数组，这个三级数组存放的才是<span class=GramE>逻辑块号对应</span>的文件块号，范围从<span
+lang=EN-US>b/4+12 </span>到<span lang=EN-US>(b/4)<sup>2</sup>+(b/4)+11</span>。</p>
+
+<p class=MsoPlainText style='margin-left:21.25pt;text-indent:-21.25pt;
+mso-list:l1 level1 lfo2;tab-stops:list 21.25pt 42.0pt'><![if !supportLists]><span
+lang=EN-US style='mso-hansi-font-family:Wingdings;mso-bidi-font-family:宋体'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>最后，索引<span lang=EN-US>14</span>中的元素利用了三级间接索引：第四级数组中存放的才是<span
+class=GramE>逻辑块号对应</span>的文件块号，范围从<span lang=EN-US>(b/4)<sup>2</sup>+(b/4)+12 </span>到<span
+lang=EN-US>(b/4)<sup>3</sup>+(b/4)<sup>2</sup>+(b/4)+11</span>。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>注意这种机制是如何支持小文件的。如果文件需要的数据块小于<span
+lang=EN-US>12</span>，那么两次访问磁盘就可以检索到任何数据：一次是读磁盘索引节点<span lang=EN-US>i_block</span>数组的一个元素，另一次是读所需要的数据块。对于大文件来说，可能需要<span
+lang=EN-US>3-4</span>次的磁盘访问才能找到需要的块。实际上，这是一种最坏的估计，因为目录项、<span class=GramE>缓冲区及页高速缓存</span>都有助于极大地减少<span
+class=GramE>实际访问</span>磁盘的次数。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>也要注意文件系统的块大小是如何影响寻址机制的，因为大的块大小允许<span
+lang=EN-US>Ext2</span>把更多的<span class=GramE>逻辑块号存放</span>在一个单独的块中。表<span
+lang=EN-US>9.2</span>显示了对每种块大小和每种寻址方式所存放文件大小的上限。例如，如果块的大小是<span lang=EN-US>1024</span>字节，并且文件包含的数据最多为<span
+lang=EN-US>268KB</span>，那么，通过直接映射可以访问文件最初的<span lang=EN-US>12KB</span>数据，通过简单的间接映射可以访问剩余的<span
+lang=EN-US>13KB</span>到<span lang=EN-US>268KB</span>的数据。对于<span lang=EN-US>4096</span>字节的块，两次间接就完全满足了对<span
+lang=EN-US>2GB</span>文件的寻址（<span lang=EN-US>2GB</span>是<span lang=EN-US>32</span>位体系结构上的<span
+lang=EN-US>Ext2</span>文件系统所允许的最大值）。</p>
+
+<p class=MsoPlainText>表<span lang=EN-US>9.2</span>可寻址的文件数据块大小的界限</p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:.5pt solid windowtext;
+ mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>块大小</p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>直接</p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>一次间接</p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>二次间接</p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>三次间接</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>1024</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>12 KB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>268 KB<span style='mso-tab-count:1'>&nbsp; </span></span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>63.55 MB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>2 GB</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>2048</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>24 KB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>1.02 MB<span style='mso-tab-count:
+  1'> </span></span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>513.02 MB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>2 GB</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=116 valign=top style='width:69.8pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>4096</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>48 KB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>4.04 MB<span style='mso-tab-count:
+  1'> </span></span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText><span lang=EN-US>2 GB</span></p>
+  </td>
+  <td width=116 valign=top style='width:69.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoPlainText>－</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoPlainText><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗節绔�%20Ext2鏂囦欢绯荤粺/9.5.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:25 GMT -->
+</html>

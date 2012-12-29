@@ -1,0 +1,558 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.5.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:54 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="12.5.5.files/filelist.xml">
+<title>  支持函数 </title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-17T14:37:00Z</o:Created>
+  <o:LastSaved>2007-08-17T14:37:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>543</o:Words>
+  <o:Characters>3096</o:Characters>
+  <o:Lines>25</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>3632</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:521.65pt 26.0cm;
+	margin:63.8pt 48.2pt 50.75pt 48.2pt;
+	mso-header-margin:46.8pt;
+	mso-footer-margin:49.6pt;
+	mso-header:url("12.5.5.files/header.htm") h1;
+	mso-footer:url("12.5.5.files/header.htm") f1;
+	mso-paper-source:0;
+	layout-grid:15.6pt 0pt;
+	mso-layout-grid-char-alt:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt 0pt;mso-layout-grid-char-alt:
+0'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><b style='mso-bidi-font-weight:
+ normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+ color:black;mso-font-kerning:0pt'>12.5.5</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span></span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>支持函数</span></b><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> <o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>每个网络驱动程序都提供了一系列非常实用的函数，这些函数都是底层的基本的函数；
+每个设备还包含了一组标准的例程，协议层可以将这些例程当作设备链路层的部分而调用。关于这些函数和例程，下面我们详细介绍。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>1</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>．初始化设置（<span lang=EN-US>init)<o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>init</span></b><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>函数在设备初始化和注册时被调用，它执行的是底层的确认和检查工作。在<span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>初始化程序里你可以完成对硬件资源的配置。如果设备没有就绪或设备不能注册或其他任何原因而导致初始化工<span
+class=GramE>作不能</span>正常进行，该函数就返回出错信息。一旦初始化函数返回出错信息，<b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>register_netdev</span>（）</b>也返回出错信息，这样该设备就不能安装。<span
+lang=EN-US> <o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>2</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>．打开<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span></span>（<span lang=EN-US> open</span>）<span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span></b><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span><b
+style='mso-bidi-font-weight:normal'>open</b> </span><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>这个函数在网络设备驱动程序里是网络设备被激活的时候被调用<span
+lang=EN-US>(</span>即设备状<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+class=GramE>态由</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US>down--&gt;up</span></b><span
+lang=EN-US>)</span>。所以实际上很多在<b style='mso-bidi-font-weight:normal'><span
+lang=EN-US> init</span></b><span lang=EN-US> </span>中的工作可以放到这里来做。比如资源的申请，硬件的激活。如果<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>dev-&gt;open</span></b><span
+class=GramE>返回非零</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US>(error)</span></b>，则硬件的状态还是<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>down</span></b>。<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> open</span></b>函数另一个作用是如果驱动程序<span
+class=GramE>做为</span>一个模块被装入，则要防止模块卸载时设备处于打开状态。<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span></span>在<b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>open</span></b>方法里要调用<span lang=EN-US>MOD_INC_USE_COUNT</span>宏。<span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>3</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>． <b style='mso-bidi-font-weight:normal'>关闭<span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span></span>（<span
+lang=EN-US> stop</span>）</b><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp; </span><b
+style='mso-bidi-font-weight:normal'>close </b></span><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>函数做和
+<b style='mso-bidi-font-weight:normal'><span lang=EN-US>open </span></b>函数相反的工作。可以释放某些资源以减少系统负担。<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>close</span></b>是在设备状态由<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>up</span></b>转为<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>down</span></b>时被调用的。另外如果是<span
+class=GramE>做为</span>模块装入的驱动程序，<b style='mso-bidi-font-weight:normal'><span
+lang=EN-US>close</span></b>里应调用<span lang=EN-US>MOD_DEC_USE_COUNT</span>， 减少设备被引用的次数
+， 以使驱动程序可以被卸载。<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>另外<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>close</span></b>方法必须返回成功<span
+lang=EN-US>(0==success)</span>。<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>4</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>．数据帧传输例程<span lang=EN-US> <o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>所有的设备驱动程序都必须提供传输例程，如果一个设备不能传输，也就没有存在的必要性。事实上，设备的所谓的传输仅仅是释放传送给它的缓冲区，而真正实现传输功能是虚拟设备。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span><b
+style='mso-bidi-font-weight:normal'>dev-&gt;hard_start_xmit</b></span><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>（）</span></b><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>：<b style='mso-bidi-font-weight:normal'> </b>该函数的功能是将网络缓冲区，也就是<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>sk_buff</span></b><span
+lang=EN-US> </span>发送到硬件设备。如果设备不能接受缓冲区，它就会返回<span lang=EN-US>1</span>，并置 <b
+style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span>dev-&gt;tbusy</span></b><span lang=EN-US>
+</span><span class=GramE>为非零值</span>。这样缓冲区就排成队列，等待着<b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>dev-&gt;tbusy</span></b><span class=GramE>置零以后</span>会再次发送。如果协议层决定释放<span
+class=GramE>被设备</span>抛弃的缓冲区，那么缓冲区就不会再被送回设备；如果设备知道缓冲区短时间内不被能传送，例如设备严重堵塞，那么它就调用<span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><b style='mso-bidi-font-weight:
+normal'>dev_kfree_skb</b></span><b style='mso-bidi-font-weight:normal'>（）</b>函数丢掉缓冲区，该函数返回零值标明缓冲区已经被处理完毕。<span
+lang=EN-US> <o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>当缓冲区被传送到硬件以后，硬件应答信号标识传输已经完毕，<span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span></span>驱动程序必须调用<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>dev_kfree_skb(skb,
+FREE_WRITE)</span></b>函数释放缓冲区，一旦该调用结束，缓冲区就会很自然地消失，这样，驱动程序就不能<span class=GramE>再涉及</span>缓冲区了。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>该函数传送下来的<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>sk_buff</span></b>中的数据已经包含硬件需要的帧头。所以在发送方法里不需要再填充硬件帧头，数据可以直接提交给硬件发送。<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>sk_buff</span></b>是被锁住的<span
+lang=EN-US>(<b style='mso-bidi-font-weight:normal'>locked</b>)</span>，确保其他程序不会存取它。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>5</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>．<b style='mso-bidi-font-weight:normal'>硬件帧头<span
+lang=EN-US> <o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>前面我们讲过，数据帧在传送之前先要排成对列，在加入队列之前，还要在每个数据帧的开始添加硬件帧头，这项工作对于数据传送非常必要。网络设备驱动程序提供了一个<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>dev-&gt;hard_header( )</span></b><span
+lang=EN-US> </span>例程，来完成添加<span class=GramE>硬件帧头的</span>工作。协议层在发送数据之前会在缓冲区的开始留下至少<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> dev-&gt;hard_header_len </span></b>长度字节的空闲空间。这样<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>dev-&gt;hard_header( )</span></b><span
+lang=EN-US> </span>程序只要调用<b style='mso-bidi-font-weight:normal'><span
+lang=EN-US> skb_push</span>（）</b>，然后正确填入<span class=GramE>硬件帧头就</span>可以了。<span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>调用这个例程需要给出和缓冲区相关的信息：设备指针、协议类型、指向源地址和目标地址（指硬件地址）的指针、数据包的长度。因为这个例程是在协议层发送函数触发之前被调用，所以一个非常重要参数值得我们注意：在这个例程中用的是<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> length </span></b>参数，而不是用缓冲区的长度做参数，因为调用<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>dev-&gt;hard_header( )</span></b><span
+class=GramE>时数据</span>可能还没完<span class=GramE>全组织</span>好。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>源地址可以为“<span
+lang=EN-US>NULL</span></span><span lang=EN-US style='mso-ascii-font-family:
+宋体;color:black;mso-font-kerning:0pt'>”</span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>，这意味着“使用默认地址”；目标地址也可以为“<span
+lang=EN-US>NULL</span></span><span lang=EN-US style='mso-ascii-font-family:
+宋体;color:black;mso-font-kerning:0pt'>”</span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>，这意味着“目标未知”。
+如果目标地址“未知”，数据帧头的操作就不能完成，本来为<span class=GramE>硬件帧头预留</span>的空间全部被其他信息占用，那么函数就返回填充硬件<span
+class=GramE>帧头空间</span>的字节数的相反数（一定为负数）。当<span class=GramE>硬件帧头完全</span>建立以后，函数返回所添加的数据帧头的字节数。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>如果一个<span
+class=GramE>硬件帧头不</span>能够完全建立，协议层必须试图解决地址问题，因为硬件地址对于数据的发送是必需的。一旦这种情况发生，<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> dev-&gt;rebuild_header( )
+</span></b><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span></span>函数就会被调用，通常是利用<span
+lang=EN-US>ARP</span>（地址解析协议）来完成。如果<span class=GramE>硬件帧头还</span>不能被解决，该函数就返回零，并且会再次尝试，协议<span
+class=GramE>层总是</span>相信<span class=GramE>硬件帧头的</span>解决是可能的。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>6</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>．数据接收　</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:red;mso-font-kerning:0pt'>　<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>网络设备驱动程序没有关于接收的处理，当数据到来时，总是驱动程序通知系统。对一个典型的网络设备，当它收到数据后都会产生一个中断，中断处理程序调用
+<b style='mso-bidi-font-weight:normal'><span lang=EN-US>dev_alloc_skb</span>（）</b>，申请一个大小合适的缓冲区（<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>sk_buff</span></b>），把从硬件传来的数据放入缓冲区。接着，设备驱动程序分析数据包的类型，把<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US> skb-&gt;dev</span></b>设置为接收数据的设备类型<b
+style='mso-bidi-font-weight:normal'> </b>，把<b style='mso-bidi-font-weight:normal'><span
+lang=EN-US> skb-&gt;protocol</span></b><span lang=EN-US> </span>设置为数据帧描述的协议类型，这样，数据帧就可以被发送到正确的协议层。<span
+class=GramE>硬件帧头指针</span>保存在 <b style='mso-bidi-font-weight:normal'><span
+lang=EN-US>skb-&gt;mac.raw</span></b>中，并且<span class=GramE>硬件帧头通过</span>调用<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>skb_pull</span>（）</b>被去掉，因此网络协议就不涉及硬件的信息。最后</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>还要设置<b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>skb-&gt;pkt_type</span></b>，标明链路层数据类型，设备驱动程序必须按以下类型设置 <b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>skb-&gt;pkt_type </span>：<span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>PACKET_BROADCAST<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>链接层广播地址　　<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>PACKET_MULTICAST<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>链接层多路地址　　</span><span class=GramE><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:red;mso-font-kerning:0pt'>　</span></span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:red;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+tab-stops:138.3pt;mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>PACKET_SELF<span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>发给自己的数据帧　　<span class=GramE>　</span><span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>PACKET_OTHERHOST<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>发向另一个主机的数据帧 （监听模式时会有到）</span><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:red;mso-font-kerning:0pt'>　<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>最后，设备驱动程序调用</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'> </span><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>netif_rx( )</span></b><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>（见图<st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US>12.4.1</span></st1:chsdate>）把缓冲区向上传递<span class=GramE>给协议层</span>。</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>缓冲区首先排成一个队列，然后发出中断请求，中断请求响应后，缓冲区队列才<span
+class=GramE>被协议层</span>进行处理。这种处理机制，延长了缓冲区等待处理的时间，但是减少了请求中断的次数，从而整体上提高了数据传输效率。一旦<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>netif_rx( )</span></b>被调用，缓冲区就<span
+class=GramE>不在属</span>设备驱动程序所有，它不能被修改，而且设备驱动程序也不能<span class=GramE>再涉及</span>它了。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>在协议层，接收数据包的流程控制分两个层次：</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:red;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>首先，<b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>netif_rx</span>（）</b>函数限制了从物理层到协议层的数据帧的数量。第二，每一个套接字都有一个队列，限制从协议层到<span
+class=GramE>套接字层的</span>数据帧的数量。在传输方面，驱动程序的 <b style='mso-bidi-font-weight:normal'><span
+lang=EN-US>dev-&gt;tx_queue_len </span></b>参数用来限制队列的长度。队列的长度通常是<span
+lang=EN-US>100</span>帧，在进行大量数据传输的高速连接中，它足以容纳下所有等待传输的缓冲区，不会出现大量缓冲区阻塞的情况。在低速连接中，例如<span
+lang=EN-US>Slip </span>连接，队列的长度长设为<span lang=EN-US>10</span>帧左右，因为传输<span
+lang=EN-US>10</span>帧的数据就要花费数秒的时间排列数据。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>12.6<span
+style='mso-spacerun:yes'>&nbsp; </span></span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>本章小结<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>本章的主要目的是介绍<span
+lang=EN-US>Linux</span>操作系统网络部分的基本工作原理。因为<span lang=EN-US>Linux</span>支持多种协议类型和多种网络设备，加上网络部分本身就比较复杂，所以本章所涉及的内容十分有限。为了便于说明，采用了以点带面的方法，着重介绍了网络部分的四个核心对象。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>本章首先介绍了<span
+lang=EN-US>Linux</span>网络部分源代码的面向对象设计思想，指出了四个核心对象：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>·网络协议<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>·套接字<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>·套接字缓冲区<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>·网络设备接口<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>随后，用面向对象的分析方法，分别介绍了这四个核心对象的相关内容和它们之间的关系，这对于理解<span
+lang=EN-US>Linux</span>网络的工作原理有很大帮助。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>关于内容，本章尽可能详细具体，贴近实际应用，对于和实际应用有关系的地方都做了深入介绍。如果读者要做网络编程，请参考<span
+lang=EN-US>12.2</span>网络协议，<span lang=EN-US>12.3</span>套接字，<span lang=EN-US>12.<span
+class=GramE>4<span lang=EN-US><span lang=EN-US>套接字缓冲区</span></span></span></span>三节；如果要编写网络驱动程序，请参考<span
+lang=EN-US>12.<span class=GramE>4<span lang=EN-US><span lang=EN-US>套接字缓冲区</span></span></span></span>和<span
+lang=EN-US>12.5</span>网络设备接口两节。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.5.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:55 GMT -->
+</html>

@@ -1,0 +1,685 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.6.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:48 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.6.1.files/filelist.html">
+<title>交换的基本原理</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T08:12:00Z</o:Created>
+  <o:LastSaved>2007-08-15T08:12:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>618</o:Words>
+  <o:Characters>3523</o:Characters>
+  <o:Lines>29</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>4133</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoDate, li.MsoDate, div.MsoDate
+	{mso-style-next:正文;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1609894201;
+	mso-list-type:simple;
+	mso-list-template-ids:235207812;}
+@list l0:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:36.6pt;
+	mso-level-number-position:left;
+	margin-left:36.6pt;
+	text-indent:-25.8pt;}
+@list l1
+	{mso-list-id:1695184711;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l2
+	{mso-list-id:1873806251;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l3
+	{mso-list-id:2063600884;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l4
+	{mso-list-id:2089962674;
+	mso-list-type:simple;
+	mso-list-template-ids:465489790;}
+@list l4:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:44.4pt;
+	mso-level-number-position:left;
+	margin-left:44.4pt;
+	text-indent:-23.4pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoDate style='mso-outline-level:1'><st1:chsdate Year="1899" Month="12"
+Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US>6.6.1</span></st1:chsdate><span
+lang=EN-US> </span>交换的基本原理</p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如前所述，每个进程的可以使用的虚存空间很大（</span><span
+lang=EN-US>3GB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>），但实际使用的空间并不大，一般不会超过几</span><span
+lang=EN-US>MB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，大多数情况下只有几十</span><span lang=EN-US>K</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>或几百</span><span lang=EN-US>K</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。可是，当系统的进程数达到几百甚至上千<span
+class=GramE>个</span>时，对存储空间的总需求就很大，在这种情况下，一般的物理内存量就很难满足要求。因此，在计算机技术的发展史上很早就有了把内存的内容与一个专用的磁盘空间交换的技术，在</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中，我们把用作交换的磁盘空间叫做<b style='mso-bidi-font-weight:
+normal'>交换文件或交换区</b>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>交换技术已经使用了很多年。第一个</span><span lang=EN-US style='color:black'>Unix</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>系统内核就监控空闲内存的数量。当空闲内存数量小于一个固定的极限值时，就执行换出操作。换出操作包括<span
+class=GramE>把进程</span>的整个地址空间拷贝到磁盘上。反之，当调度算法选择出一个进程运行时，整个进程又被从磁盘中交换进来</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>现代的</span><span lang=EN-US style='color:black'>Unix</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>（包括</span><span lang=EN-US style='color:black'>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>）内核已经摒弃了这种方法，主要是因为当进行换入换出时，上下文切换的代价相当高。在</span><span
+lang=EN-US style='color:black'>Linux</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>中，交换的单位是页面而不是进程。尽管交换的单位是页面，但交换还是要付出一定的代价，尤其是时间的代价。实际上，在操作系统中，时间和空间是一对矛盾，常常需要在二者之间<span
+class=GramE>作出</span>平衡，有时需要以空间换时间，有时需要以时间换空间，页面交换就是典型的以时间换空间。这里要说明的是，页面交换是不得已而为之，例如在时间要求比较紧急的实时系统中，是不宜采用页面交换机制的，因为它使程序的执行在时间上有了较大的不确定性。因此，</span><span
+lang=EN-US style='color:black'>Linux</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>给用户提供了一种选择，可以通过命令或系统调用开启或关闭交换机制。</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>在页面交换中，页面置换算法是影响交换性能的关键性指标，其复杂性主要与换出有关。具体说来，必须考虑四个主要问题：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l3 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>哪种页面要换出</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l3 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>如何在交换区中存放页面</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l3 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>如何选择被交换出的页面</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l3 level1 lfo1;tab-stops:list 21.25pt 42.5pt'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>何时执行页面换出操作</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:list 42.5pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>请注意，我们在这里所提到的页或页面指的是其中存放的数据，因此，所谓页面的换入换出实际上是指页面中数据的换入换出。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1;tab-stops:list 42.5pt'><span
+lang=EN-US style='color:black'>1</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>．哪种页面被换出</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:15.6pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>实际上，交换的最终目的是页面的回收。并非内存中的所有页面都是可以交换出去的。事实上，只有与用户空间建立了映射关系的物理页面才会被换出去，而内核空间中内核所占的页面则常驻内存。我们下面对用户空间中的页面和内核空间中的页面给出进一步的分类讨论。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:5.4pt'><span lang=EN-US style='color:
+black'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>可以把用户空间中的页面按其内容和性质分为以下几种：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo2;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>（1）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>进程映像所占的页面，包括进程的代码段、数据段、堆栈段以及动态分配的“存储堆”（参见图</span><span
+lang=EN-US style='color:black'>6.13</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>）。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo2;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>（2）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>通过系统调用</span><span
+lang=EN-US style='color:black'>mmap()</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>把文件的内容映射到用户空间</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo2;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>（3）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>进程间共享内存区</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>对于第</span><span lang=EN-US style='color:black'>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>种情况，进程的代码段数据段所占的内存页面可以被换入换出，但堆栈所占的页面一般不被换出，因为这样可以简化内核的设计。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>对于第</span><span lang=EN-US style='color:black'>2</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>种情况，这些页面所使用的交换区就是被映射的文件本身。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>对于第</span><span lang=EN-US style='color:black'>3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>种情况，其页面的换入换出比较复杂。</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>与此相对照，映射到内核空间中的页面都不会被换出。具体来说，内核代码和内核中的全局量所占的内存页面既不需要分配（启动时被装入），也不会被释放，这部分空间是静态的。（相比之下，进程的代码段和全局量都在用户空间，所占的内存页面都是动态的，使用前要经过分配，最后都会被释放，中途可能被换出而回收后另行分配）</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>除此之外，内核在执行过程中使用的页面要经过动态分配，但永驻内存，此类页面根据其内容和性质可以分为两类：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:44.4pt;text-indent:-23.4pt;mso-list:l4 level1 lfo3;
+tab-stops:list 44.4pt'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>（1）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>内核调用</span><span
+lang=EN-US style='color:black'>kmalloc()</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>或</span><span lang=EN-US style='color:black'>vmalloc()</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>为内核中临时使用的数据结构而分配的<span class=GramE>页于是</span>立即释放。但是，由于一个页面中存放有多个同种类型的数据结构，所以要到整个页面都空闲时才把该页面释放。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:44.4pt;text-indent:-23.4pt;mso-list:l4 level1 lfo3;
+tab-stops:list 44.4pt'><![if !supportLists]><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>（2）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>内核中通过调用</span><span
+lang=EN-US style='color:black'>alloc_pages()</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>，为某些临时使用和管理目的而分配的页面，例如，每个进程的内核<span class=GramE>栈</span>所占的两个页面、从内核空间复制参数时所使用的页面等等。这些页面也是一旦使用完毕便无保存价值，所以立即释放。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>在内核中还有一种页面，虽然使用完毕，但其内容仍有保存价值，因此，并不立即释放。这类页面“释放”之后进入一个</span><span
+lang=EN-US style='color:black'>LRU</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>队列，经过一段时间的缓冲让其“老化”。如果在此期间又要用到其内容了，就又将其投入使用，否则便继续让其老化，直到条件不再允许时才加以回收。这种用途的内核页面大致有以下这些：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l2 level1 lfo4;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>文件系统中用来缓冲存储一些文件目录结构</span><span
+lang=EN-US style='color:black'>dentry</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>的空间</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l2 level1 lfo4;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>文件系统中用来缓冲存储一些索引节点</span><span
+lang=EN-US style='color:black'>inode</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>的空间</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:42.25pt;text-indent:-21.25pt;mso-list:
+l2 level1 lfo4;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>用于文件系统读／写操作的缓冲区</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US
+style='color:black'>2.</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>如何在交换区中存放页面</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>我们知道物理内存被划分为若干页面，每个页面的大小为</span><span lang=EN-US style='color:
+black'>4KB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";color:black'>。实际上，交换区也被划分为块，每个块的大小正好等于一页，我们把交换区中的一块叫做一个<b
+style='mso-bidi-font-weight:normal'>页插槽</b>（</span><span lang=EN-US
+style='color:black'>page slot</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>），意思是说，把一个物理页面插入到一个插槽中。当进行换出时，内核尽可能把换出的页放在相邻的插槽中，从而减少在访问交换区时磁盘的寻道时间。这是高效的页面置换算法的物质基础。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.25pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>如果系统使用了多个交换区，事情就变得更加复杂了。快速交换区（也就是存放在快速磁盘中的交换区）可以获得比较高的优先级。当查找一个空闲插槽时，要从优先级最高的交换区中开始搜索。如果优先级最高的交换区不止一个，为了避免超负荷地使用其中一个，应该循环选择相同优先级的交换区。如果在优先级最高的交换区中没有找到空闲插槽，就在优先级次高的交换区中继续进行搜索，依此类推。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1;tab-stops:list 42.5pt'><span
+lang=EN-US style='color:black'>3</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>．如何选择被交换出的页面</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>页面交换是非常复杂的，其主要内容之一就是如何选择要换出的页面，我们以循序渐进的方式来讨论页面交换策略的选择。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>策略<span class=GramE>一</span>，需要时才交换。每当缺页异常发生时，就给它分配一个物理页面。如果发现没有空闲的页面可供分配，就设法将一个或多个内存页面换出到磁盘上，从而腾出一些内存页面来。这种交换策略确实简单，但有一个明显的缺点，这是一种被动的交换策略，需要时才交换，系统势必要付出相当多的时间进行换入换出。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>策略二，系统空闲时交换。与策略<span class=GramE>一</span>相比较，这是一种积极的交换策略，也就是，在系统空闲时，预先换出一些页面而腾出一些内存页面，从而在内存中维持一定的空闲页面供应量，使得在缺页中断发生时总有空闲页面可供使用。至于换出页面的选择，一般都采用</span><span
+lang=EN-US style='color:black'>LRU</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>（最近最少使用）算法。但是这种策略实施起来也有困难，因为并没有哪种方法能准确地预测对页面的访问，所以，完全可能发生这样的情况，即一个好久没有受到访问的页面刚刚被换出去，却又要访问它了，于是又把它换进来。在最坏的情况下，有可能整个系统的处理能力都被这样的换入／换出所影响，而根本不能进行有效的计算和操作。这种现象被称为页面的“抖动”。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>策略三，换出但并不立即释放。当系统挑选出若干页面进行换出时，将相应的页面写入磁盘交换区中，并修改相应页表中页表项的内容（把</span><span
+lang=EN-US style='color:black'>present</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>标志位置为</span><span lang=EN-US style='color:black'>0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>），但是并不立即释放，而是将其</span><span lang=EN-US
+style='color:black'>page</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>结构留在一个缓冲（</span><span
+lang=EN-US style='color:black'>cache</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>）队列中，使其从活跃（</span><span lang=EN-US style='color:black'>active</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>）状态转为不活跃（</span><span lang=EN-US
+style='color:black'>Inactive</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>）状态。至于这些页面的最后释放，要推迟到必要时才进行。这样，如果一个页面在释放后又立即受到访问，就可以从物理页面的缓冲队列中找到相应的页面，再次为之建立映射。由于此页面尚未释放，还保留着原来的内容，就不需要磁盘读入了。经过一段时间以后，一个不活跃的内存页面一直没有受到访问，那这个页面就需要真正被释放了。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>策略四，把页面换出推迟到不能再推迟为止。实际上，策略<span class=GramE>三还有</span>值得改进的地方。首先在换出页面时不一定要把它的内容写入磁盘。如果一个页面自从最近一次换入后并没有被写过（如代码），那么这个页面是“干净的”，就没有必要把它写入磁盘。其次，即使“脏”页面，也没有必要立即写出去，可以采用策略三。至于“干净”页面，可以一直缓冲到必要时才加以回收，因为回收一个“干净”页面花费的代价很小。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>下面对物理页面的换入换出给出一个概要描述，这里涉及到前面介绍的</span><span lang=EN-US
+style='color:black'>page</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>结构和</span><span
+lang=EN-US style='color:black'>free_area</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>结构：</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>释放页面。如果一个页面变为空闲可用，就把该页面的</span><span
+lang=EN-US style='color:black'>page</span><span class=GramE><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>结构链入某个</span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>页面管理区</span><span lang=EN-US style='color:black'>(zone)</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>的空闲队列</span><span lang=EN-US style='color:black'>free_area</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>，同时页面的使用计数</span><span lang=EN-US
+style='color:black'>count</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>减</span><span
+lang=EN-US style='color:black'>1</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>分配页面。调用</span><span
+lang=EN-US style='color:black'>__alloc_pages()</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>或</span><span lang=EN-US style='color:black'>__get_free_page()</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>从某个空闲队列分配内存页面，并将其页面的使用计数</span><span lang=EN-US
+style='color:black'>count</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>置为</span><span
+lang=EN-US style='color:black'>1</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>活跃状态。已分配的页面处于活跃状态，该页面的数据结构</span><span
+lang=EN-US style='color:black'>page</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>通过其队列<span class=GramE>头结构<span lang=EN-US style='font-family:
+"Times New Roman"'>lru</span>链入活跃</span>页面队列</span><span lang=EN-US
+style='color:black'>active_list</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>，并且在进程地址空间中至少有一个页与该页面之间建立了映射关系。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>不活跃“脏”状态。处于该状态的页面其</span><span
+lang=EN-US style='color:black'>page</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>结构通过其队列<span class=GramE>头结构<span lang=EN-US style='font-family:
+"Times New Roman"'>lru</span>链入</span>不活跃“脏”页面队列</span><span lang=EN-US
+style='color:black'>inactive_dirty_list</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>，并且原则是任何进程的页面表<span class=GramE>项不再</span>指向该页面，也就是说，断开页面的映射，同时把页面的使用计数</span><span
+lang=EN-US style='color:black'>count</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>减</span><span lang=EN-US style='color:black'>1</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>将不活跃“脏”页面的内容写入交换区，并将该页面的</span><span
+lang=EN-US style='color:black'>page</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>结构从不活跃“脏”页面队列</span><span lang=EN-US style='color:black'>inactive_dirty_list</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>转移到不活跃“干净”页面队列，准备被回收。</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>不活跃“干净”状态。页面</span><span
+lang=EN-US style='color:black'>page</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>结构通过其队列<span class=GramE>头结构<span lang=EN-US style='font-family:
+"Times New Roman"'>lru</span>链入</span>某个不活跃“干净”页面队列，每个页面管理区都有个不活跃“干净”页面队列</span><span
+lang=EN-US style='color:black'>inactive_clean_list</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>如果在转入不活跃状态以后的一段时间内，页面又受到访问，则又转入活跃状态并恢复映射。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt'><![if !supportLists]><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:Wingdings;mso-bidi-font-family:
+宋体;color:black'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>当需要时，就从“干净”页面队列中回收页面，也就是说或者把页面链入到空闲队列，或者直接进行分配。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>以上是页面换入／换出及回收的基本思想，实际的实现代码还要更复杂一些。</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><span lang=EN-US
+style='color:black'>4</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:black'>．何时执行页面换出操作</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>为了避免在</span><span lang=EN-US style='color:black'>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>忙碌的时候，也就是在缺页异常发生时，临时搜索可供换出的内存页面并加以换出，</span><span
+lang=EN-US style='color:black'>Linux</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>内核定期地检查系统内的空闲页面数是否小于预定义的极限，一旦发现空闲页面数太少，就预先将若干页面换出，以减轻缺页异常发生时系统所承受的负担。当然，由于无法确切地预测页面的使用，即使这样做了也还可能出现缺页异常发生时内存依然没有足够的空闲页面。但是，预换出毕竟能减少空闲页面不够用的概率。并且通过选择适当的参数（如每隔多久换出一次，每次换出多少页），可以使临时寻找要换出页面的情况很少发生。为此，</span><span
+lang=EN-US style='color:black'>Linux</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+color:black'>内核设置了一个专伺定期将页面换出的守护进程</span><span lang=EN-US style='color:black'>kswapd</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:black'>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.6.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:48 GMT -->
+</html>

@@ -1,0 +1,569 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:34 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="1.3.2.files/filelist.html">
+<title>Linux内核版本的变化</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-14T01:47:00Z</o:Created>
+  <o:LastSaved>2007-08-14T01:47:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>565</o:Words>
+  <o:Characters>3225</o:Characters>
+  <o:Lines>26</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>3783</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+ mso-font-kerning:0pt'>1.3.2</span></st1:chsdate><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'> Linux</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt'>内核版本的变化</span><span lang=EN-US style='font-size:12.0pt;
+font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>自从<st1:chsdate Year="1991" Month="9" Day="17" IsLunarDate="False"
+IsROCDate="False" w:st="on"><span lang=EN-US>1991</span>年<span lang=EN-US>9</span>月<span
+ lang=EN-US>17</span>日</st1:chsdate>，<span lang=EN-US>Linus Torvals</span>正式宣布了<span
+lang=EN-US> Linux</span>的第一个正式版本—<span lang=EN-US>0.02</span>版本，到现在，<span
+lang=EN-US>Linux</span>的内核版本发生了一系列的变化，新旧版本之间的时间间隔是几个月甚至几个星期，关于这一变化的非常详细的资料请看站点：<span
+lang=EN-US>http://ps.cus.umist.ac.uk/~rhw/kernel.versions.html</span>的内容。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>我们把内核版本之间内容较大的变化分为三个阶段，第一阶段为<span lang=EN-US>0.02</span>～<span lang=EN-US>0.99.15j</span>，第二阶段为<span
+lang=EN-US>1.0</span>～<span lang=EN-US>1.2.x</span>，第三阶段为<span lang=EN-US>1.2.x</span>～<span
+lang=EN-US>2.x.x </span>。一般来说，一个软件要到理论上已经完备或者已经没有毛病时才给予<span lang=EN-US>1.0</span>版本的版本号，而<span
+lang=EN-US>Linux2.0</span>以后的版本比起<span lang=EN-US>1.2.x</span>版本有了较大幅度的变化，请看站点<span
+lang=EN-US>http://www.linuxhq.com/</span>的内容。</span><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>从<span lang=EN-US>Linux</span>诞生开始，<span lang=EN-US>Linux</span>内核就从来没有停止过升级，从<span
+lang=EN-US>Linus</span>第一次发布的<span lang=EN-US>0.02</span>版本到<span lang=EN-US>1999</span>年具有里程碑意义的<span
+lang=EN-US>2.2</span>版本，一直到我们现在看到的<span lang=EN-US>2.4</span>版本，都凝聚了<span
+lang=EN-US>Linux</span>内核开发人员大量辛苦的劳动。目前<span lang=EN-US>Linux</span>在各种工作平台上，包括企业服务器和个人电脑上的广泛应用，使得<span
+lang=EN-US>Linux</span>成为了<span lang=EN-US>Windows</span>的强劲对手。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>本书所分析的<span lang=EN-US>Linux</span>内核版本是<span lang=EN-US>2.4</span>版的<st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US>2.4.16</span></st1:chsdate>版。那么<span lang=EN-US>Linux2.4</span>版具有什么样的特点呢，我们可以用四个字来概括，那就是“广、新、快、小”。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:16.2pt;text-align:left;text-indent:-16.2pt;mso-pagination:
+widow-orphan'><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>1</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>．广泛的支持<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>处理器芯片的广泛支持</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'> ：<span lang=EN-US>Linux 2.4 </span>提供了大量的处理器芯片的支持。原先的<span
+lang=EN-US>Linux</span>就可以支持多种处理器体系结构，如<span lang=EN-US>Intel x86</span>、<span
+lang=EN-US>Motorola/IBM PowerPC</span>、<span lang=EN-US>Compaq(DEC)Alpha</span>等等，现在还增加了对<span
+lang=EN-US>IA 64</span>、<span lang=EN-US>S/390</span>、<span lang=EN-US>SuperH</span>这<span
+lang=EN-US>3</span>种体系结构的处理器的支持。对<span lang=EN-US>Intel</span>的<span
+lang=EN-US>x86</span>系列来说，<span lang=EN-US>AMD</span>和<span lang=EN-US>Cyrix</span>公司的系列处理器产品也是使用<span
+lang=EN-US>x86</span>指令的，同样也能获得很好的支持。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对<span lang=EN-US>ISA </span>即插即用设备的支持</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>： 过去在<span lang=EN-US>Linux</span>核心开发小组里面存在有两种不同的观点，一种是支持对<span
+lang=EN-US>ISA</span>即插即用，另外一种持反对意见，认为对即插即用的支持简直是多余的。因此过去在<span lang=EN-US>Linux</span>里对即插即用设置的通用做法只能是利用用户级的工具（如<span
+lang=EN-US>isapnp tools</span>），手动配置即插即用设备。现在的内核则有所不同了，在<span class=GramE>内核级实现</span>了对即插即用的管理。我们可以看到系统会在启动的时候自动完成对即插即用设备的检测和自动配置，比如说，我们可以从一个即插即用的<span
+lang=EN-US>IDE</span>控制器上启动系统。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>广泛的文件系统支持：</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>很少有一个操作系统能支持这么多种文件系统。<span lang=EN-US>Linux</span>使用的是<span
+lang=EN-US>VFS</span>（虚拟文件系统）的技术，提供了对多种文件系统的支持。从<span lang=EN-US>Linux 1.x</span>到<span
+lang=EN-US>Linux 2.2</span>，<span lang=EN-US>Linux</span>已经可以支持多种文件系统了。如<span
+lang=EN-US>Windows 9x</span>的<span lang=EN-US>VFAT</span>、<span lang=EN-US>DOS</span>的<span
+lang=EN-US>FAT</span>、<span lang=EN-US>Mac OS</span>的<span lang=EN-US>HFS</span>、<span
+lang=EN-US>OS/2</span>的<span lang=EN-US>HPFS</span>、<span lang=EN-US>Windows NT</span>的<span
+lang=EN-US>NTFS</span>（<span lang=EN-US>NTFS</span>的支持还处于测试阶段）等等；当然还包括<span
+lang=EN-US>Linux</span>自己使用的高性能的<span lang=EN-US>Ext2</span>文件系统。新版本的<span
+lang=EN-US>Linux</span>新增支持现在的<span lang=EN-US>DVD</span>使用的<span lang=EN-US>UDF</span>文件系统和<span
+lang=EN-US>SGI</span>的<span lang=EN-US>IRIX</span>系统上的<span lang=EN-US>XFS</span>文件系统。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:26.4pt;text-align:left;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>在<span lang=EN-US>Windows</span>里面使用<span lang=EN-US>SMB</span>协议来实现“网上邻居”的共享访问，<span
+lang=EN-US>Linux 2.4</span>的内核里会让您自己选择是否从<span lang=EN-US>Windows 98/NT</span>下装载驱动器，还可以自动检测远端的系统类型，使得您的<span
+lang=EN-US>Linux</span>在<span lang=EN-US>Windows</span>环境的局域网里工作得更好。 <span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:26.4pt;text-align:left;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>对<span lang=EN-US>NFS</span>（网络文件系统）来说，<span lang=EN-US>Linux
+2.4</span>版本支持最近发布的<span lang=EN-US>NFS v3</span>版本的网络文件系统。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE><b><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>对软猫的</span></b></span><b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>支持：</span></b><span class=GramE><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:
+0pt'>软猫实际上</span></span><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>被人称为<span
+lang=EN-US>WinModem</span>，就是因为现有的<span class=GramE>这种软猫的</span>驱动都是由为<span
+lang=EN-US>Windows</span>开发的软件来完成的。这种<span lang=EN-US>Modem</span>和一般<span
+lang=EN-US>Modem</span>的处理方法不同，它的<span lang=EN-US>DSP</span>处理并不是在硬件层次上做的，而是使用软件通过<span
+lang=EN-US>CPU</span>实现的，因此无法在现有的<span lang=EN-US>Linux</span>中配置这种<span
+lang=EN-US>Modem</span>上网。现在的<span lang=EN-US>Linux</span>内核里已经开始了这方面的支持。 <span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:16.2pt;text-align:left;text-indent:-16.2pt;mso-pagination:
+widow-orphan'><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>2</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>．新思路<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>新型的设备管理方法</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>：<span lang=EN-US>Linux 2.4 </span>引入了<span lang=EN-US>I2O</span>（<span
+lang=EN-US>Intelligent Input/Output</span>）的设备驱动管理方法。它的做法是，将驱动程序分成了两个部分：一个是在操作系统模块的部分，另外一个是在硬件模块的部分。操作系统模块的部分是独立的，硬件模块的部分是依赖于硬件结构的。这种新型的管理方法使得<span
+lang=EN-US>Linux 2.4</span>可以更好地支持大部分的<span lang=EN-US>ISA</span>和<span
+lang=EN-US>PCI</span>设备。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对<span lang=EN-US>USB</span>总线的支持</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>：近年来，<span lang=EN-US>USB</span>（通用串口总线）的技术是计算机界振奋人心的事情之一，现在已经出现了大量的使用这种接口的设备，如键盘、鼠标、音箱、<span
+lang=EN-US>Modem</span>等等。使用<span lang=EN-US>USB</span>接口使得计算机外设的安装和使用变得更为简单，自然成为了一种潮流。现在的<span
+lang=EN-US>Linux </span>也可以很好地支持这种总线接口的设备。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>新型的二进制执行代码类型<span lang=EN-US>(Binary
+Types)</span>： </span></b><span lang=EN-US style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>Linux</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>是第一个在<span class=GramE>内核级提供</span>内建<span lang=EN-US>Java</span>解释器的支持，从而进行<span
+lang=EN-US>Java</span>代码的执行的操作系统之一。这在<span lang=EN-US>Linux 2.2</span>版本里已经实现了。<span
+lang=EN-US>Linux 2.4</span>版本又做了改进，将这种支持的方法改为对“<span lang=EN-US>Misc”</span>二进制类型的支持。通过使用这种类型的二进制代码类型，用户甚至可以利用<span
+lang=EN-US>DOSEMU</span>（<span lang=EN-US>MS DOS</span>模拟器）或者<span lang=EN-US>WINE</span>（<span
+lang=EN-US>MS Windows</span>模拟器）来运行在<span lang=EN-US>DOS/Windows</span>下的<span
+lang=EN-US>.exe</span>或<span lang=EN-US>.com</span>的程序。同样用户也可以自己配置出<span
+lang=EN-US>Java</span>字节<span class=GramE>码运行</span>类型。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE><b><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>内核级</span></b></span><b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>的<span lang=EN-US>Web</span>服务器：</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>这种<span lang=EN-US>Web</span>服务器和我们所谓的<span lang=EN-US>Apache</span>用户层上的<span
+lang=EN-US>Web</span>服务器并不冲突。对<span lang=EN-US>HTTP</span>请求首先由<span
+class=GramE>内核级</span>的<span lang=EN-US>Web</span>服务器进行处理，如果不能处理就将请求提交给<span
+lang=EN-US>Apache</span>用户级<span lang=EN-US>Web</span>服务器来处理。像这样的构思和实现在网络操作系统中实属一绝。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>3</span><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>．高性能<span
+lang=EN-US>&nbsp; <o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对虚拟文件系统（<span lang=EN-US>VFS</span>）的修改：</span></b><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'>Linux 2.4</span><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:
+0pt'>版本的文件系统修改了<span lang=EN-US>VFS</span>中的错误，尤其是在文件的缓存管理上。过去的文件系统的高速缓存管理是建立在复杂的双缓冲池（<span
+lang=EN-US>dual-buffer pool</span>） 上的，这种方法导致<span class=GramE>连开发</span>人员都不知道什么时候将双缓冲池进行同步。这种处理方法并没有给文件处理带来好处，反而增加了内存的使用。因为要处理双缓冲系统
+的同步，使得系统的处理速度降低。现在开发人员修改这段代码，使用了简单有效的单缓冲系统，提高了文件系统的处理效率。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对高端服务器的支持：</span></b><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'>Linux 2.4</span><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:
+0pt'>版本的内核可以支持在<span lang=EN-US>SMP</span>（对称多处理器系统）下的多个<span lang=EN-US>IO-APIC</span>（输入输出的高级可编程中断控制器），提高了对高端服务器的支持效率。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:21.25pt;mso-pagination:widow-orphan'><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'>Linux 2.4</span><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:
+0pt'>版本可以支持多达<span lang=EN-US>10</span>个<span lang=EN-US>IDE</span>控制器。过去的<span
+lang=EN-US>Linux</span>版本只能支持最多<span lang=EN-US>4</span>个<span lang=EN-US>ID&nbsp;&nbsp;&nbsp;
+</span>控制器。一些强大的企业级<span lang=EN-US>Web</span>服务器正需要这样的硬件支持。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;mso-pagination:widow-orphan'><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'>Linux 2.4</span><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:
+0pt'>版本可以支持<span lang=EN-US>Intel P6</span>以上芯片的<span lang=EN-US>MTRR</span>（内存类型范围寄存器），对非<span
+lang=EN-US>Intel</span>的如<span lang=EN-US>Cyrix 6x86</span>、<span lang=EN-US>6x86MX</span>、<span
+lang=EN-US>MII</span>的<span lang=EN-US>ARR(</span>地址范围寄存器<span lang=EN-US>)</span>也能有很好的支持，这使一些高带宽的设备的运行性能得到提高。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>现在的内核可以支持多达<span lang=EN-US>42</span>亿个用户。在<span
+lang=EN-US>Intel</span>架构上可以支持到多达<span lang=EN-US>4GB</span>的内存。并且现在的内核还可以支持多达<span
+lang=EN-US>16</span>块以太网卡，同时支持最大容量为<span lang=EN-US>2GB</span>的文件。 <span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>这些性能都使得<span lang=EN-US>Linux</span>对高端设备的支持能力得到提高。 <span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对高速网的支持：</span></b><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>Linux 2.4</span><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>版本支持<span
+lang=EN-US>ATM</span>网络适配器等高速网络设备，为进一步的网络发展做好了准备。对低端用户来说，<span lang=EN-US>Linux</span>提供的<span
+lang=EN-US>PPP</span>层和<span lang=EN-US>ISDN</span>层的结合，提供了在并口线上的<span
+lang=EN-US>PPP</span>和在以太网上的<span lang=EN-US>PPP</span>支持。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>4</span><span style='font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>．小内核<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>内核本来就很小：</span></b><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>Linux</span><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:windowtext;mso-font-kerning:0pt'>的整个内核源代码大概需要占用<span
+lang=EN-US>20</span>多<span lang=EN-US>MB</span>的硬盘空间，但是编译出来的二进制代码只占用<span
+lang=EN-US>600KB</span>左右的空间，完全可以放在一张软盘上，随时可以使用这张软盘将系统启动。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;margin-left:21.25pt;text-align:left;text-indent:-21.25pt;mso-pagination:
+widow-orphan'><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>·</span><span lang=EN-US
+style='font-size:7.0pt;color:windowtext;mso-font-kerning:0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:windowtext;mso-font-kerning:0pt'>对内存的需求很小：</span></b><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>大家比较关心的一个问题是<span lang=EN-US>Linux</span>现在需要多少内存才能正常工作。因为我们知道，大部分的操作系统在升级的同时，对硬件的需求也在不断提高，尤其是对内存的需求方面，很大层次上影响了系统的性能。不过<span
+lang=EN-US>Linux</span>和其他操作系统不同，<span lang=EN-US>Linux</span>可以进行个性化的定制，用户完全可以根据自己的系统配置来生成自己需要的操作系统内核，也可以根据需要启动或关闭一些系统服务，这样可以减少系统对资源的占用，提高系统的运行效率。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:windowtext;
+mso-font-kerning:0pt'>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt'>Linux</span><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt'>内核发展到现在已经相当庞大，要想在一段时间内搞清所有的内容几乎不可能，因此，本书对内核的分析也集中在几个主要部分的主要内容上，其运行的平台也只选择了<span
+lang=EN-US>i386</span>的单<span lang=EN-US>CPU,</span>在一些特殊情况下<span lang=EN-US>,</span>我们也会讨论<span
+lang=EN-US>SMP(</span>对称多处理机<span lang=EN-US>)</span>的情况。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;text-indent:24.0pt;mso-pagination:widow-orphan'><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt'>走进<span lang=EN-US>Linux</span>不是一件容易的事，但走出来同样不容易。阅读<span lang=EN-US>Linux</span>源代码如同你阅读一篇优美的作品，她会深深地吸引着你，既可以满足你好奇的愿望，也可以检验你挑战困难的勇气。</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:windowtext;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:35 GMT -->
+</html>

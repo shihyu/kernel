@@ -1,0 +1,299 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.2.8.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:36 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="11.2.8.files/filelist.html">
+<title>设备驱动程序框架</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-17T03:56:00Z</o:Created>
+  <o:LastSaved>2007-08-17T03:56:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>143</o:Words>
+  <o:Characters>816</o:Characters>
+  <o:Lines>6</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>958</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoDate, li.MsoDate, div.MsoDate
+	{mso-style-next:正文;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:630750169;
+	mso-list-type:simple;
+	mso-list-template-ids:389477574;}
+@list l0:level1
+	{mso-level-text:（%1）;
+	mso-level-tab-stop:36.6pt;
+	mso-level-number-position:left;
+	margin-left:36.6pt;
+	text-indent:-25.8pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoDate><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US>11.2.8</span></st1:chsdate><span
+lang=EN-US> </span>设备驱动程序框架</p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>由于设备种类繁多，相应的设备驱动程序也非常之多。尽管设备驱动程序是内核的一部分，但设备驱动程序的开发往往由很多人来完成，如业余编程高手、设备厂商等。为了让设备驱动程序的开发建立在规范的基础上，就必须在驱动程序和内核之间有一个严格定义和管理的接口，例如<span
+lang=EN-US>SVR4</span>提出了<span lang=EN-US>DDI/DDK</span>规范，其含义就是设备与驱动程序接口／设备驱动程序与内核接口（<span
+lang=EN-US>Device-Driver Interface</span>／<span lang=EN-US>Driver-Kernel
+Interface</span>）。通过这个规范，可以规范设备驱动程序与内核之间的接口。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>Linux</span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>的设备驱动程序与外接的接口与<span
+lang=EN-US>DDI/DKI</span>规范相似，可以分为三部分：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo1;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:宋体;font-weight:normal'><span
+style='mso-list:Ignore'>（1）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>驱动程序与内核的接口，这是通过数据结构<span lang=EN-US>file_operations</span>来完成的。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo1;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:宋体;font-weight:normal'><span
+style='mso-list:Ignore'>（2）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>驱动程序与系统引导的接口，这部分利用驱动程序对设备进行初始化。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:36.6pt;text-indent:-25.8pt;mso-list:l0 level1 lfo1;
+tab-stops:list 36.6pt'><![if !supportLists]><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:宋体;font-weight:normal'><span
+style='mso-list:Ignore'>（3）<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;font-weight:normal'>驱动程序与设备的接口，这部分描述了驱动程序如何与设备进行交互，这与具体设备密切相关。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>根据功能，驱动程序的代码可以分为如下几个部分：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>（<span lang=EN-US>1</span>）驱动程序的注册和注销<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>（<span lang=EN-US>2</span>）设备的打开与释放<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>（<span lang=EN-US>3</span>）设备的读和写操作<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>（<span lang=EN-US>4</span>） 设备的控制操作<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:10.8pt'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'>（<span lang=EN-US>5</span>） 设备的中断和查询处理<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>前三点我们已经给予简单说明，后面我们还会结合具体程序给出进一步的说明。关于设备的控制操作可以通过驱动程序中的<span
+lang=EN-US>ioctl()</span>来完成，例如，对光驱的控制可以使用<span lang=EN-US>cdrom_ ioctl()</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>与读写操作不同，<span
+lang=EN-US>ioctl()</span>的用法与具体设备密切相关，例如，对于软驱的控制可以使用<span lang=EN-US>floppy_ioctl(),</span>其调用形式为：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+class=GramE><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-weight:normal'>static</span></span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;font-weight:normal'> int floppy_ioctl(struct inode
+*inode, struct file *filp,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>unsigned</span> int cmd, unsigned long param)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>其中<span
+lang=EN-US>cmd</span>的取值及含义与软驱有关，例如，<span lang=EN-US>FDEJECT</span>表示弹出软盘。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>除了<span
+lang=EN-US>ioctl()</span>，设备驱动程序还可能有其他控制函数，如<span lang=EN-US>lseek</span>（）等。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>对于不支持中断的设备，读写时需要轮流查询设备的状态，以便决定是否继续进行数据传输，例如，打印机驱动程序在缺省时轮流查询打印机的状态。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;tab-stops:list 42.5pt'><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;font-weight:normal'>如果设备支持中断，则可按中断方式进行。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.2.8.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:36 GMT -->
+</html>

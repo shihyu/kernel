@@ -1,0 +1,491 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.4.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:40 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="11.4.1.files/filelist.html">
+<title>简单字符设备驱动程序</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-17T04:02:00Z</o:Created>
+  <o:LastSaved>2007-08-17T04:02:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>299</o:Words>
+  <o:Characters>1705</o:Characters>
+  <o:Lines>14</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>2001</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US
+ style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+ font-weight:normal'>11.4.1</span></st1:chsdate><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'> </span><span style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'>简单字符设备驱动程序<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>我们来看一个最简单的字符设备，即“空设备”<span
+lang=EN-US>/dev/null</span>。大家知道，应用程序在运行的过程中，一般都要通过其预先打开的标准输出通道或标准出错通道在终端显示屏上输出一些信息，但是有时候（特别是在批处理中）不宜在显示屏上显示信息，又不宜将这些信息重定向到一个磁盘文件中，而要求直接使这些信息流入“下水道”而消失，这时候就可以用／<span
+lang=EN-US>dev/null</span>来起这个“下水道”的作用，这个设备的主设备号为<span lang=EN-US>1</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>如前所述，主设备号为<span
+lang=EN-US>1</span>的设备其实不是“设备”，而都是与内存有关，或是在内存中（不必通过外设）就可以提供的功能，所以其主设备号标识符为<span
+lang=EN-US>MEM_MAJOR</span>，其定义于<span lang=EN-US>include/linux/major.h</span>中：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>#define MEM_MAJOR<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>1<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>其<span
+lang=EN-US>file_operatins</span>结构为<span lang=EN-US>memory_fops</span>，定义于<span
+lang=EN-US>dreivers/char/mem.c</span>中：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'>static</span></span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>
+struct file_operations memory_fops = {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>open</span>:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>memory_open,<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>/*
+just a selector for the real open */<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>};<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>因为主设备号为<span
+lang=EN-US>1</span>的字符设备并不能唯一的确定具体的设备驱动程序，因此需要根据<span class=GramE>次设备号</span>来进行进一步的区分，所以<span
+lang=EN-US>memory_fops</span>还不是最终的<span lang=EN-US>file_operations</span>结构，还需要由<span
+lang=EN-US>memory_open</span>（）进一步加以确定和设置，其代码在同一文件中：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'>static</span></span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'> int
+memory_open(struct inode * inode, struct file * filp)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>switch</span> (MINOR(inode-&gt;i_rdev)) {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>case</span> 1:<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>filp</span>-&gt;f_op = &amp;mem_fops;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>break</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>case</span> 2:<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>filp</span>-&gt;f_op = &amp;kmem_fops;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>break</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>case</span> 3:<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>filp</span>-&gt;f_op = &amp;null_fops;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>break</span>;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;
+font-family:"Times New Roman";mso-ascii-font-family:宋体;mso-font-kerning:0pt;
+font-weight:normal'>…</span><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>if</span> (filp-&gt;f_op &amp;&amp; filp-&gt;f_op-&gt;open)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;&nbsp;</span><span class=GramE>return</span>
+filp-&gt;f_op-&gt;open(inode,filp);<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>因为<span lang=EN-US>/dev/null</span>的<span class=GramE>次设备号</span>为<span
+lang=EN-US>3</span>，所以其<span lang=EN-US>file_operations</span>结构为<span
+lang=EN-US>null_fops</span>：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>static</span> struct file_operations null_fops = {<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>llseek</span>:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>null_lseek,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>read</span>:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>read_null,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>write</span>:<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>write_null,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp; </span>};<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>由于这个结构中函数指针<span lang=EN-US>open</span>为<span lang=EN-US>NULL</span>，因此在打开这个文件时没有任何附加操作。当通过<span
+lang=EN-US>write()</span>系统调用写这个文件时，相应的驱动函数为<span lang=EN-US>write_null(),</span>其代码为：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'>static</span></span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>
+ssize_t write_null(struct file * file, const char * buf,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>size_t</span> count, loff_t *ppos)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> count;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span style='mso-spacerun:yes'>&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>从中可以看出，这个函数什么也没做，仅仅返回<span
+lang=EN-US>count</span>，假装要求写入的字节已经写好了，而实际把写的内容丢弃了。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>再来看一下读操作又做了些什么，<span
+lang=EN-US>read_null</span>（）的代码为：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:
+0pt;font-weight:normal'>static</span></span><span lang=EN-US style='font-size:
+10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>
+ssize_t read_null(struct file * file, char * buf,<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>size_t</span> count, loff_t *ppos)<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> 0;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:19.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-size:10.5pt;
+mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;font-weight:normal'>返回<span
+lang=EN-US>0</span>表示从这个文件读了<span lang=EN-US>0</span>个字节，但是并没有到达（永远也不会到达）文件的末尾。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+10.0pt;mso-font-kerning:0pt;font-weight:normal'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:10.5pt;mso-bidi-font-size:10.0pt;mso-font-kerning:0pt;
+font-weight:normal'>当然，字符设备的驱动程序不会都这么简单，但是总的框架是一样的。<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄涓�绔�%20%20璁惧椹卞姩绋嬪簭/11.4.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:40 GMT -->
+</html>

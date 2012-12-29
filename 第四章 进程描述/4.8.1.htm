@@ -1,0 +1,256 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.8.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:21 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="4.8.1.files/filelist.html">
+<title>信号量</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-15T03:08:00Z</o:Created>
+  <o:LastSaved>2007-08-15T03:08:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>105</o:Words>
+  <o:Characters>605</o:Characters>
+  <o:Lines>5</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>709</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	color:black;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:429395514;
+	mso-list-type:simple;
+	mso-list-template-ids:172247812;}
+@list l0:level1
+	{mso-level-start-at:4;
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoPlainText style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l0 level1 lfo1;tab-stops:list 18.0pt'><![if !supportLists]><span lang=EN-US
+style='mso-bidi-font-family:宋体;mso-font-kerning:0pt'><span style='mso-list:
+Ignore'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-font-kerning:0pt'>8.1</span><span style='mso-font-kerning:
+0pt'>信号量<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='mso-font-kerning:
+0pt'>进程间对共享资源的互斥访问是通过“信号量”机制来实现的。信号量机制是操作系统教材中比较重要的内容之一。<span lang=EN-US>Linux</span>内核中提供了两个函数<span
+lang=EN-US>down()</span>和<span lang=EN-US>up</span>（），分别对应于操作系统教材中的<span
+lang=EN-US>P</span>、<span lang=EN-US>V</span>操作。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>信号量在内核中定义为<span lang=EN-US>semaphore</span>数据结构，其位于<span lang=EN-US>include/i386/semaphore.h</span>：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span class=GramE><span
+lang=EN-US style='mso-font-kerning:0pt'>struct</span></span><span lang=EN-US
+style='mso-font-kerning:0pt'> semaphore {<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span class=GramE>atomic_t</span> count;<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+class=GramE>int</span> sleepers;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>wait_queue_head_t</span> wait;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span>#if
+WAITQUEUE_DEBUG<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>long</span> __magic;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span>#endif<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span>};<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>其中的<span lang=EN-US>count</span><span class=GramE>域就是</span>“信号量”中的那个“量”，它代表着可用资源的数量。如果该值大于<span
+lang=EN-US>0</span>，那么资源就是空闲的，也就是说，该资源可以使用。相反，如果<span lang=EN-US>count</span>小于<span
+lang=EN-US>0</span>，那么这个信号量就是繁忙的，也就是说，这个受保护的资源现在不能使用。在后一种情况下，<span lang=EN-US>count</span>的绝对值表示了正在等待这个资源的进程数。该值为<span
+lang=EN-US>0</span>表示有一个进程正在使用这个资源，但没有其他进程在等待这个资源。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>Wait</span><span style='mso-font-kerning:
+0pt'>域存放等待链表的地址，该链表中包含正在等待这个资源的所有睡眠的进程。当然，如果<span lang=EN-US>count</span>大于或等于<span
+lang=EN-US>0</span>，则等待队列为空。为了明确表示等待队列中正在等待的进程数，引入了计数器<span lang=EN-US>sleepers</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>down()</span><span style='mso-font-kerning:0pt'>和<span
+lang=EN-US>up()</span>函数主要应用在文件系统和驱动程序中，把要保护的临界区放在这两个函数中间，用法如下：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span class=GramE><span
+lang=EN-US style='mso-font-kerning:0pt'>down(</span></span><span lang=EN-US
+style='mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span style='mso-font-kerning:
+0pt'>临界区<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span class=GramE><span
+lang=EN-US style='mso-font-kerning:0pt'>up(</span></span><span lang=EN-US
+style='mso-font-kerning:0pt'>);<o:p></o:p></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='mso-font-kerning:
+0pt'>这两个函数是用嵌入式汇编实现的，非常麻烦，在此不予详细介绍。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.8.1.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:22 GMT -->
+</html>

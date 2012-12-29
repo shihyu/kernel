@@ -1,0 +1,647 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.5.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:48 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.5.5.files/filelist.html">
+<title>写时复制</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T08:11:00Z</o:Created>
+  <o:LastSaved>2007-08-15T08:11:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>415</o:Words>
+  <o:Characters>2372</o:Characters>
+  <o:Lines>19</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>2782</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:358851;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l1
+	{mso-list-id:1768385780;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l2
+	{mso-list-id:1942756243;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l3
+	{mso-list-id:2135634109;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+@list l4
+	{mso-list-id:2145271184;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-outline-level:1;mso-layout-grid-align:none;
+text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><b style='mso-bidi-font-weight:
+ normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+ font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>6.5.5</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>写时复制</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;color:black'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>写时复制技术最初产生于<span lang=EN-US>Unix</span>系统，用于实现一种傻瓜式的进程创建：当发出<span
+lang=EN-US>fork(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>系统调用时，内核原样复制父进程的整个地址空间并把复制的那一份分配给子进程。这种行为是非常耗时的，因为它需要：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l4 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>为子进程的页表分配页面</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo2;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>为子进程的<span
+class=GramE>页分配</span>页面</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l3 level1 lfo3;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>初始化子进程的页表</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l2 level1 lfo4;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+class=GramE><span style='font-family:宋体;mso-hansi-font-family:Wingdings;
+color:black'>把父进程</span></span><span style='font-family:宋体;mso-hansi-font-family:
+Wingdings;color:black'>的页复制到子进程相应的页中</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>创建一个地址空间的这种方法涉及许多内存访问，消耗许多<span lang=EN-US>CPU</span>周期，并且完全破坏了高速缓存中的内容。在大多数情况下，这样<span
+class=GramE>做常常</span>是毫无意义的，因为许多子进程通过装入一个新的程序开始它们的执行，这样就完全丢弃了所继承的地址空间。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>现在的<span lang=EN-US>Unix</span>内核（包括<span lang=EN-US>Linux</span>），采用一种更为有效的方法称之为写时复制（或<span
+lang=EN-US>COW</span>）。这种思想相当简单：父进程和子进程共享页面而不是复制页面。然而，只要页面被共享，它们就不能被修改。无论父进程和子进程何时试图写一个共享的页面，就产生一个错误，这时内核就把这个页复制到一个新的页面中并标记为可写。原来的页面仍然是写保护的：当其它进程试图写入时，内核检查<span
+class=GramE>写进程</span>是否是这个页面的唯一属主；如果是，它把这个页面标记为对这个进程是可写的。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'>Page</span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'>结构的<span lang=EN-US>count</span><span
+class=GramE>域用于</span>跟踪共享相应页面的进程数目。只要进程释放一个页面或者在它上面执行写时复制，它的<span lang=EN-US>count</span>域就递减；只有当<span
+lang=EN-US>count</span>变为<span lang=EN-US>NULL</span>时，这个页面才被释放。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>现在我们讲述<span lang=EN-US>Linux</span>怎样实现写时复制（<span lang=EN-US>COW</span>）。当<span
+lang=EN-US>handle_pte_fault(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>确定“缺页”错误是由请求写一个页面所引起的时（这个页面存在于内存中且是写保护的），它执行以下语句：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>if</span></span><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'> (pte_present(pte)) { <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>entry</span> = pte_mkyoung(entry); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>set_<span
+class=GramE>pte(</span>pte, entry); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>flush_tlb_<span class=GramE>page(</span>vma, address); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>if</span> (write_access) { <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>if</span> (!pte_write(entry)) <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=GramE>return</span> do_wp_page(tsk, vma, address, pte); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>entry</span> = pte_mkdirty(entry); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>set_<span
+class=GramE>pte(</span>pte, entry); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;&nbsp;</span>flush_tlb_<span
+class=GramE>page(</span>vma, address); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>} <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>return</span> 1; <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>} </span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>首先，调用<span lang=EN-US>pte_mkyoung(<span
+style='mso-spacerun:yes'>&nbsp; </span>) </span>和<span lang=EN-US>
+set_pte(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>函数来设置引起错误<span
+class=GramE>的页所对应</span>页表项的访问位。这个<span class=GramE>设置使页“年轻”</span>并减少它被交换到磁盘上的机会。如果错误由违背写保护而引起的，<span
+lang=EN-US>handle_pte_fault(<span style='mso-spacerun:yes'>&nbsp; </span>) </span>返回由<span
+lang=EN-US>do_wp_page(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>函数产生的值；否则，则已检测到某一错误情况（例如，用户态地址空间中的页，其<span
+lang=EN-US>User/Supervisor</span>标志为<span lang=EN-US>0</span>），且函数返回<span
+lang=EN-US>1</span>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'>do_wp_page(<span style='mso-spacerun:yes'>&nbsp;
+</span>)</span><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>函数首先把<span lang=EN-US>page_table</span>参数所引用的页表<span class=GramE>表</span>项装入局部变量<span
+lang=EN-US>pte</span>，然后再获得一个新页面：</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>pte</span></span><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'> = *page_table; <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>new_page = __get_free_<span class=GramE>page(</span>GFP_USER); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>由于页面的分配可能阻塞进程，因此，一旦获得页面，这个函数就在页表<span class=GramE>表</span>项上执行下面的一致性检查：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>当进程等待一个空闲的页面时，这个<span
+class=GramE>页是否</span>已经被交换出去（<span lang=EN-US>pte </span>和<span lang=EN-US>
+*page_table</span>的值不相同）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:宋体;mso-ascii-font-family:Wingdings;mso-hansi-font-family:
+Wingdings;color:black'>这个</span><span class=GramE><span style='font-family:
+宋体;mso-hansi-font-family:Wingdings;color:black'>页是否</span></span><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>已不在物理内存中（页表<span
+class=GramE>表</span>项中页的</span><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'>Present</span><span
+style='font-family:宋体;mso-hansi-font-family:Wingdings;color:black'>标志为<span
+lang=EN-US>0</span>）</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l1 level1 lfo5;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+class=GramE><span style='font-family:宋体;mso-hansi-font-family:Wingdings;
+color:black'>页现在</span></span><span style='font-family:宋体;mso-hansi-font-family:
+Wingdings;color:black'>是否可写（<span class=GramE>页项中页</span>的</span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>Read/Write</span><span style='font-family:宋体;mso-hansi-font-family:
+Wingdings;color:black'>标志为<span lang=EN-US>1</span>）</span><span lang=EN-US
+style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;</span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>如果这些情况中的任意一个发生，<span
+lang=EN-US>do_wp_page(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>释放以前所获得的页面，并返回<span
+lang=EN-US>1</span>。</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>现在，函数更新次级缺页的数目，并把引起错误的页的页描述符指针保存到<span lang=EN-US>page_map</span>局部变量中。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>tsk</span></span><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'>-&gt;min_flt++; <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>page_map = mem_map + MAP_<span class=GramE>NR(</span>old_page); </span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>接下来，函数必须确定是否必须真的把这个页复制一份。如果仅有一个进程使用这个页，就无须应用写时复制技术，而且进程应该能够自由地写这个页。因此，这个页面被标记为可写，这样当试图写入的时候就不会再次引起“缺页”错误，以前分配的新的页面也被释放，函数结束并返回<span
+lang=EN-US>1</span>。这种检查是通过读取<span lang=EN-US>page</span>结构的<span lang=EN-US>count</span>域而进行的：</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>if</span></span><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'> (page_map-&gt;count == 1) { <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>set_<span
+class=GramE>pte(</span>page_table, pte_mkdirty(pte_mkwrite(pte))); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>flush_tlb_<span class=GramE>page(</span>vma, address); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>if</span> (new_page) <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>free_<span class=GramE>page(</span>new_page); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>return</span> 1; <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>} </span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>相反，如果这个页面由两个或多个进程所共享，函数把旧页面<span lang=EN-US>(old_page)</span>的内容复制到新分配的页面<span
+lang=EN-US>(new_page)</span>中：</span><span lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>if</span></span><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black'> (old_page == ZERO_PAGE) <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>memset(</span>(void *) new_page, 0, PAGE_SIZE); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>else</span></span><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>memcpy(</span>(void *) new_page, (void *) old_page, PAGE_SIZE); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>set_<span class=GramE>pte(</span>page_table,
+pte_mkwrite(pte_mkdirty( <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mk_<span
+class=GramE>pte(</span>new_page, vma-&gt;vm_page_prot)))); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>flush_tlb_<span class=GramE>page(</span>vma, address); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>__free_<span class=GramE>page(</span>page_map); <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+class=GramE><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>return</span></span><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black'> 1; <o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>如果旧页面是零页面，就使用<span lang=EN-US>memset</span>宏把新的页面填充为<span
+lang=EN-US>0</span>。否则，使用<span lang=EN-US>memcpy</span>宏复制页面的内容。不要求一定要对零页作特殊的处理，但是特殊处理确实能够提高系统的性能，因为它使用很少的地址而保护了微处理器的硬件高速缓存。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black'>然后，用新页面的物理地址更新页表的表项，并把新页面标记为可写和<span class=GramE>脏。</span>最后，函数调用<span
+lang=EN-US>__free_pages(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>减小对旧页面的引用计数。</span><span
+lang=EN-US style='color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+ color:black;mso-font-kerning:0pt'>6.5.6</span></st1:chsdate><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>对本节的几点说明<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>1. </span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>通过<span
+lang=EN-US>fork</span>（）建立进程，开始时只有一个页目录和一页左右的可执行页 ，于是缺页<span class=GramE>异常会</span>频繁发生。<span
+lang=EN-US> <o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>2. </span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>虚拟地址映射到物理地址，只有<span
+class=GramE>在请页时</span>才完成，这时要建立页表和更新页表（页表是动态建立的）。页表不可被换出，不记年龄，它们被内核中保留，只有在<span
+lang=EN-US>exit</span>时清除。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none;vertical-align:middle'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>3. </span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>在处理页故障的过程中，因为要涉及到磁盘访问等耗时操作，因此操作系统会选择另外一个进程进入执行状态，即进行新一轮调度。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.5.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:48 GMT -->
+</html>

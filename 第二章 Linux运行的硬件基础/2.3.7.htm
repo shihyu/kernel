@@ -1,0 +1,525 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗簩绔�%20Linux杩愯鐨勭‖浠跺熀纭�/2.3.7.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:51 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="2.3.7.files/filelist.html">
+<title> Linux中的段</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-14T07:13:00Z</o:Created>
+  <o:LastSaved>2007-08-14T07:13:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>436</o:Words>
+  <o:Characters>2489</o:Characters>
+  <o:Lines>20</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>2920</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:5.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1512256659;
+	mso-list-type:simple;
+	mso-list-template-ids:1937021516;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:·;
+	mso-level-tab-stop:21.25pt;
+	mso-level-number-position:left;
+	margin-left:21.25pt;
+	text-indent:-21.25pt;
+	font-family:宋体;
+	mso-hansi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><st1:chsdate
+Year="1899" Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><b
+ style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+ mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>2.3.7</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>
+Linux</span></b><b style='mso-bidi-font-weight:normal'><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>中的段<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>Intel</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>微处理器的<span class=GramE>段机制</span>是从<span lang=EN-US>8086</span>开始提出的，
+那时引入的<span class=GramE>段机制</span>解决了从<span lang=EN-US>CPU</span>内部<span
+lang=EN-US>16</span>位地址到<span lang=EN-US>20</span>位实地址的转换。为了保持这种兼容性，<span
+lang=EN-US>386</span>仍然使用段机制，但比以前复杂得多。因此，<span lang=EN-US>Linux</span>内核的设计并没有全部采用<span
+lang=EN-US>Intel</span>所提供的段方案，仅仅有限度地使用了一下分段机制。这不仅简化了<span lang=EN-US>Linux</span>内核的设计，而且为把<span
+lang=EN-US>Linux</span>移植到其他平台创造了条件，因为很多<span lang=EN-US>RISC</span>处理器并不支持段机制。但是，对<span
+class=GramE>段机制</span>相关知识的了解是进入<span lang=EN-US>Linux</span>内核的必经之路。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>从<span lang=EN-US>2.2</span>版开始，<span
+lang=EN-US>Linux</span>让所有的进程（或叫任务）都使用相同的逻辑地址空间，因此就没有必要使用局部描述符表<span
+lang=EN-US>LDT</span>。但内核中也用到<span lang=EN-US>LDT</span>，那只是在<span lang=EN-US>VM86</span>模式中运行<span
+lang=EN-US>Wine</span>，因为就是说在<span lang=EN-US>Linux</span>上模拟运行<span
+lang=EN-US>Winodws</span>软件或<span lang=EN-US>DOS</span>软件的程序时才使用。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>Linux</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>在启动的过程中设置了段寄存器的值和全局描述符表<span lang=EN-US>GDT</span>的内容，段的定义在<span
+lang=EN-US>include/asm-i386/segment.h</span>中：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>#define __KERNEL_CS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>0x10<span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>／＊内核代码段，<span
+lang=EN-US>index=2,TI=0,RPL=0</span>＊／<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>#define __KERNEL_DS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>0x18<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>／＊内核数据段<span lang=EN-US>, index=3,TI=0,RPL=0</span>＊／<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span style='mso-spacerun:yes'>&nbsp;</span>#define __USER_CS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0x23<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>／＊用户代码段<span lang=EN-US>, index=4,TI=0,RPL=3</span>＊／<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>#define __USER_DS<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0x2B<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>／＊用户数据段<span lang=EN-US>, index=5,TI=0,RPL=3</span>＊／<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>从定义看出，没有定义堆栈段，实际上，<span lang=EN-US>Linux</span>内核不区分数据段和堆栈段，这也体现了<span
+lang=EN-US>Linux</span>内核尽量减少段的使用。因为没有使用<span lang=EN-US>LDT</span>，因此，<span
+lang=EN-US>TI=0,</span>并把这<span lang=EN-US>4</span>个段都放在<span lang=EN-US>GDT</span>中<span
+lang=EN-US>, index</span>就是某个段在<span lang=EN-US>GDT</span>表中的下标。内核代码段和数据段具有最高特权，因此其<span
+lang=EN-US>RPL</span>为<span lang=EN-US>0</span>，而用户代码段和数据段具有最低特权，因此其<span
+lang=EN-US>RPL</span>为<span lang=EN-US>3</span>。可以看出，<span lang=EN-US>Linux</span>内核再次简化了<span
+class=GramE>特权级</span>的使用，使用了两个<span class=GramE>特权级</span>而不是<span lang=EN-US>4</span>个。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>全局描述符表的定义在<span lang=EN-US>arch/i386/kernel/head.S</span>中：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span class=GramE><span lang=EN-US style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>ENTRY(</span></span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>gdt_table)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x0000000000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+NULL descriptor */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x0000000000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+not used */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.quad
+0x00cf<st1:chmetcnv UnitName="a" SourceValue="9" HasSpace="False"
+Negative="False" NumberType="1" TCSC="0" w:st="on">9a</st1:chmetcnv>000000ffff<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x10 kernel 4GB code at 0x00000000 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x00cf92000000ffff<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/* 0x18
+kernel 4GB data at 0x00000000 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x00cffa000000ffff<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x23 user<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>4GB code at
+0x00000000 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x00cff2000000ffff<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x2b user<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>4GB data at
+0x00000000 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x0000000000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+not used */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.quad
+0x0000000000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+not used */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* The APM segments have byte granularity and their bases<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>* <span class=GramE>and</span> limits are set at run time.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>*/<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x0040920000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x40 APM set up for bad BIOS's */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=PT-BR style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt;mso-ansi-language:PT-BR'>.quad 0x<st1:chmetcnv
+UnitName="a" SourceValue="409" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">00409a</st1:chmetcnv>0000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x48 APM CS<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>code */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=PT-BR style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt;mso-ansi-language:PT-BR'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>.quad 0x<st1:chmetcnv UnitName="a"
+SourceValue="9" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on">00009a</st1:chmetcnv>0000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x50 APM CS 16 code (16 bit) */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.quad 0x0040920000000000<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+0x58 APM DS<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>data */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>.fill NR_CPUS*4<span class=GramE>,8,0</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* space for TSS's and LDT's */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>从代码可以看出，<span lang=EN-US>GDT</span>放在数组变量<span
+lang=EN-US>gdt_table</span>中。按<span lang=EN-US>Intel</span>规定，<span lang=EN-US>GDT</span>中的第一项为空，这是为了防止加电后段寄存器未经初始化就进入保护模式而使用<span
+lang=EN-US>GDT</span>的。第二项也没用。从下标<span lang=EN-US>2</span>到<span lang=EN-US>5</span>共<span
+lang=EN-US>4</span>项对应于前面的<span lang=EN-US>4</span>种段描述符值。对照图<span lang=EN-US>2.10</span>，从描述符的数值可以得出：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>段的基地址全部为<span lang=EN-US>0x00000000<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>段的上限全部为<span lang=EN-US>0xffff<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>段的粒度<span lang=EN-US>G</span>为<span
+lang=EN-US>1</span>，即段长单位为<span lang=EN-US>4KB<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>段的<span lang=EN-US>D</span>位为<span
+lang=EN-US>1</span>，即对这四个段的访问都为<span lang=EN-US>32</span>位指令<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-left:21.25pt;text-indent:-21.25pt;mso-list:
+l0 level1 lfo1;tab-stops:list 21.25pt;mso-layout-grid-align:none;text-autospace:
+none'><![if !supportLists]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+Wingdings;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>段的<span lang=EN-US>P</span>位为<span
+lang=EN-US>1</span>，即四个段都在内存。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>由此可以得出，每个段的逻辑地址空间范围为<span lang=EN-US>0</span>～<span
+lang=EN-US>4GB</span>。读者可能对此不太理解，但只要对照图<span lang=EN-US>2.9</span>就可以发现，这种设置既简单又巧妙。因为每个段的基地址为<span
+lang=EN-US>0</span>，因此，逻辑地址到线性地址映射保持不变，也就是说，偏移量就是线性地址，我们以后所提到的逻辑地址（或虚拟地址）和线性地址指的也就是同一地址。看来，<span
+lang=EN-US>Linux</span>巧妙地<span class=GramE>把段机制给绕</span>过去了，而完全利用了分页机制。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>从逻辑上说，<span lang=EN-US>Linux</span>巧妙地绕过了逻辑地址到线性地址的映射，但实质上还得应付<span
+lang=EN-US>Intel</span>所提供的段机制。只不过，<span lang=EN-US>Linux</span><span
+class=GramE>把段机制</span>变得相当简单，它<span class=GramE>只把段分为</span>两种：用户态（<span
+lang=EN-US>RPL</span>＝<span lang=EN-US>3</span>）的段和内核态（<span lang=EN-US>RPL=0</span>）的段，因此，描述符投影寄存器的内容很少发生变化，只在进程从用户态切换到内核<span
+class=GramE>态或者</span>反之时才发生变化。另外，用户段和内核段的区别也仅仅在其<span lang=EN-US>RPL</span>不同，因此内核根本无需访问描述符投影寄存器，当然也无需访问<span
+lang=EN-US>GDT</span>，而仅从段寄存器的最低两位就可以获取<span lang=EN-US>RPL</span>的信息。<span
+lang=EN-US>Linux</span>这样设计所带来的好处是显而易见的，<span lang=EN-US>Intel</span>的分段部件对<span
+lang=EN-US>Linux</span>性能造成的影响可以忽略不计。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在上面描述的</span><span lang=EN-US>GDT</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>表中，紧接着那四个段描述的两个描述符被保留，然后是四个高级电源管理（</span><span lang=EN-US>APM</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）特征描述符，对此不进行详细讨论。</span></p>
+
+<p class=MsoNormal style='text-indent:22.8pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>按</span><span lang=EN-US>Intel</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的规定，每个进程有一个任务状态段（</span><span lang=EN-US>TSS</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）和局部描述符表</span><span lang=EN-US>LDT</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，但</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>也没有完全遵循</span><span lang=EN-US>Intel</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的设计思路。如前所述，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的进程没有使用</span><span lang=EN-US>LDT</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，而对</span><span lang=EN-US>TSS</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的使用也非常有限，每个</span><span
+lang=EN-US>CPU</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>仅使用一个</span><span lang=EN-US>TSS</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>通过上面的介绍可以看出，</span><span lang=EN-US>Intel</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的设计可谓周全细致，但</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的设计者并没有完全陷入这种沼泽，而是选择了简洁而有效的途径，以完成所需功能并达到较好的性能为目</span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗簩绔�%20Linux杩愯鐨勭‖浠跺熀纭�/2.3.7.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:51 GMT -->
+</html>

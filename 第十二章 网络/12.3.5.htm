@@ -1,0 +1,579 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.3.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:48 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="12.3.5.files/filelist.html">
+<title>socket为用户提供的系统调用</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2007-08-17T08:19:00Z</o:Created>
+  <o:LastSaved>2007-08-17T08:19:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>76</o:Words>
+  <o:Characters>435</o:Characters>
+  <o:Lines>3</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>510</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><b style='mso-bidi-font-weight:
+ normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+ color:black;mso-font-kerning:0pt'>12.3.5</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>
+socket</span></b><b style='mso-bidi-font-weight:normal'><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>为用户提供的系统调用<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>socket</span></b><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>系统调用是 <b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>socket </span></b>最有价值的一部分，也是用户唯一能够接触到的一部分，它是我们进行网络编程的接口。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>表<span lang=EN-US>12.5<span
+style='mso-spacerun:yes'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span>socket</span>系统调用<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;page-break-inside:avoid;
+  height:22.1pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>系统调用<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>说明<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;page-break-inside:avoid;height:29.15pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:29.15pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Accept<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:29.15pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>接收套接字上连接请求<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;page-break-inside:avoid;height:27.2pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Bind<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>在套接字绑定地址信息<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;page-break-inside:avoid;height:24.9pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Connet<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>连接两个套接字<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;page-break-inside:avoid;height:26.35pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Getpeername<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>获取已连接端套接字的地址<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;page-break-inside:avoid;height:30.0pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:30.0pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Getsockname<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:30.0pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>获取套接字的地址<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;page-break-inside:avoid;height:27.75pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:27.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Getsockopt<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>获取套接字上的设置选项<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7;page-break-inside:avoid;height:22.1pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Listen<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>监听套接字连接<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;page-break-inside:avoid;height:28.9pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:28.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Recv<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:28.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>从已连接套接字上接收消息<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;page-break-inside:avoid;height:29.15pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:29.15pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Recvfrom<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:29.15pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>从套接字上接收消息<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10;page-break-inside:avoid;height:30.3pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:30.3pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Send<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:30.3pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>向已连接的套接字发送消息<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11;page-break-inside:avoid;height:27.2pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Sendto<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>向套接字发送消息<span lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12;page-break-inside:avoid;height:26.35pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Setdomainname<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>设置系统的域名<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13;page-break-inside:avoid;height:28.3pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:28.3pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Sethostid<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:28.3pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>设置唯一的主机标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14;page-break-inside:avoid;height:31.45pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:31.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Sethostname<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>设置系统的主机名称<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15;page-break-inside:avoid;height:37.95pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:37.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Setsockopt<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:37.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>修改套接字选项<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;page-break-inside:avoid;height:29.45pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:29.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Shutdown<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:29.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>关闭套接字<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17;page-break-inside:avoid;height:31.45pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:31.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>Socket<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>建立套接字通讯的端点<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18;page-break-inside:avoid;height:44.5pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:44.5pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Socketcall<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:44.5pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>套接字调用多路复用转换器<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19;mso-yfti-lastrow:yes;page-break-inside:avoid;
+  height:37.95pt'>
+  <td width=284 valign=top style='width:170.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:37.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Socketpair<o:p></o:p></span></p>
+  </td>
+  <td width=283 valign=top style='width:169.5pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:37.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>建立两个连接套接字<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.3.5.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:49 GMT -->
+</html>

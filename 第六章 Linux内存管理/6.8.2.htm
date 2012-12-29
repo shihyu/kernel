@@ -1,0 +1,629 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.8.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:54 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.8.2.files/filelist.xml">
+<link rel=Edit-Time-Data href="6.8.2.files/editdata.html">
+<link rel=OLE-Object-Data href="6.8.2.files/oledata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>程序执行</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>2</o:TotalTime>
+  <o:Created>2007-08-15T08:26:00Z</o:Created>
+  <o:LastSaved>2007-08-15T08:26:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>589</o:Words>
+  <o:Characters>3362</o:Characters>
+  <o:Lines>28</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>3944</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:5.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+ color:black;mso-font-kerning:0pt'>6.8.2</span></st1:chsdate><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>程序执行<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>与 <span
+lang=EN-US>Unix</span>类似，<span lang=EN-US>Linux </span>中的程序和命令通常由命令解释器执行，这一命令解释器称为<span
+lang=EN-US> shell</span>。用户输入命令之后，<span lang=EN-US>shell </span>会在搜索路径（<span
+lang=EN-US>shell </span>变量<span lang=EN-US>PATH</span>中包含搜索路径）指定的目录中搜索和输入命令匹配的<span
+class=GramE>映象</span>（可执行的二进制代码）名称。如果发现匹配的<span class=GramE>映象</span>，<span
+lang=EN-US>shell </span>负责装载并执行该映像。<span lang=EN-US>shell </span>首先利用<span
+lang=EN-US> fork </span>系统调用建立子进程，然后<span class=GramE>用找到</span>的可执行<span
+class=GramE>映象</span>文件覆盖子进程正在执行的<span lang=EN-US> shell </span>二进制<span
+class=GramE>映象</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>可执行文件可以是具有不同格式的二进制文件，也可以是一个文本的脚本文件。<u>可执行<span
+class=GramE>映象</span>文件中</u>包含了可执行代码及数据，同时也包含操作系统用来将<span class=GramE>映象</span>正确装入内存并执行的信息。<span
+lang=EN-US>Linux </span>使用的最常见的可执行文件格式是<span lang=EN-US> ELF </span>和<span
+lang=EN-US> a.out</span>，但理论上讲，<span lang=EN-US>Linux </span>有足够的灵活性可以装入任何格式的可执行文件。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>1. ELF</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>可执行文件<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>ELF </span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>是“可执行可连接格式”的英文缩写，该格式由 <span
+lang=EN-US>Unix </span>系统实验室制定。它是<span lang=EN-US> Linux </span>中最经常使用的格式，和其他格式（例如<span
+lang=EN-US> a.out </span>或<span lang=EN-US> ECOFF </span>格式）比较起来，<span
+lang=EN-US>ELF </span>在装入内存时多一些系统开支，但是更为灵活。<span lang=EN-US>ELF </span>可执行文件包含了可执行代码和数据，通常也称为正文和数据。这种文件中包含一些表，根据这些表中的信息，内核可组织进程的虚拟内存。另外，文件中还包含有对内存布局的定义以及起始执行的指令位置。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1046" type="#_x0000_t75" style='position:absolute;
+ margin-left:0;margin-top:43.2pt;width:195.6pt;height:301.8pt;z-index:3;
+ visibility:visible;mso-wrap-edited:f;mso-position-horizontal:left'
+ o:allowincell="f">
+ <v:imagedata src="6.8.2.files/image001.wmz" o:title=""/>
+ <w:wrap type="square"/>
+</v:shape><![if gte mso 9]><o:OLEObject Type="Embed" ProgID="Word.Document.8"
+ ShapeID="_x0000_s1046" DrawAspect="Content" ObjectID="_1248700351">
+ <o:WordFieldCodes>\s</o:WordFieldCodes>
+</o:OLEObject>
+<![endif]><![endif]--><![if !vml]><img width=261 height=402
+src="6.8.2.files/image002.gif" align=left hspace=12 v:shapes="_x0000_s1046"><![endif]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>下面我们分析一个简单程序在利用编译器编译并连接之后的<span lang=EN-US> ELF </span>文件格式：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>#include &lt;stdio.h&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span class=GramE><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>main</span></span><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> ()<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>printf</span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>（“<span lang=EN-US>Hello
+world!\n</span></span><span lang=EN-US style='mso-ascii-font-family:宋体;
+color:black;mso-font-kerning:0pt'>”</span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>）<span
+lang=EN-US>;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>图<span
+lang=EN-US>6_24 </span>所示，是上述源代码在编译连接后的<span lang=EN-US> ELF </span>可执行文件的格式。从图
+可以看出，<span lang=EN-US>ELF </span>可执行<span class=GramE>映象</span>文件的开头是三个字符 </span><span
+lang=EN-US style='mso-ascii-font-family:宋体;color:black;mso-font-kerning:0pt'>‘</span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>E</span><span lang=EN-US style='mso-ascii-font-family:
+宋体;color:black;mso-font-kerning:0pt'>’</span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>、‘<span
+lang=EN-US>L</span></span><span lang=EN-US style='mso-ascii-font-family:宋体;
+color:black;mso-font-kerning:0pt'>’</span><span lang=EN-US style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'> </span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>和 </span><span lang=EN-US style='mso-ascii-font-family:
+宋体;color:black;mso-font-kerning:0pt'>‘</span><span lang=EN-US style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>F</span><span
+lang=EN-US style='mso-ascii-font-family:宋体;color:black;mso-font-kerning:0pt'>’</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>，作为这类文件的标识符。<b style='mso-bidi-font-weight:normal'><i
+style='mso-bidi-font-style:normal'><span lang=EN-US>e_entry </span></i></b>定义了程序装入之后起始执行指令的虚拟地址。这个简单的<span
+lang=EN-US> ELF </span><span class=GramE>映象</span>利用两个“物理头”结构分别定义代码和数据，<b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><span
+lang=EN-US>e_phnum </span></i></b>是该文件中所包含的物理头信息个数，本例为<span lang=EN-US> 2</span>。<b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><span
+lang=EN-US>e_phyoff </span></i></b>是第一个物理<span class=GramE>头结构</span>在文件中的偏移量，而<b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'><span
+lang=EN-US>e_phentsize</span></i></b><span lang=EN-US> </span>则是物理<span
+class=GramE>头结构</span>的大小，这两个偏移量均从文件头开始算起。根据上述两个信息，内核可正确读取两个物理<span
+class=GramE>头结构</span>中的信息。<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-tab-count:1'> </span><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+style='mso-tab-count:1'>&nbsp;&nbsp; </span><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>物理<span
+class=GramE>头结构</span>的<b style='mso-bidi-font-weight:normal'><span lang=EN-US>
+p_flags</span></b><span lang=EN-US> </span>字段定义了对应代码或数据的访问属性。图中第一个<span
+lang=EN-US> p_flags </span>字段的值为<span lang=EN-US> FP_X </span>和<span
+lang=EN-US> FP_R</span>，表明该结构定义的是程序的代码；类似地，第二个物理头定义程序数据，并且是可读可写的。<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>p_offset </span></b>定义对应的代码或数据在物理头之后的偏移量。<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>p_vaddr</span></b><span
+lang=EN-US> </span>定义代码或数据的起始虚拟地址。<b style='mso-bidi-font-weight:normal'><span
+lang=EN-US>p</span></b><span lang=EN-US>_<b style='mso-bidi-font-weight:normal'>filesz</b>
+</span>和<b style='mso-bidi-font-weight:normal'><span lang=EN-US> p_memsz </span></b>分别定义代码或数据在文件中的大小以及在内存中的大小。对我们的简单例子，程序代码开始于两个物理头之后，而程序数据则开始于物理头之后的第<span
+lang=EN-US> 0x68533 </span>字节处，显然，程序数据紧跟在程序代码之后。程序的代码大小为<span lang=EN-US>
+0x68532</span>，显得比较大，这是因为连接程序将<span lang=EN-US> C </span>函数<span lang=EN-US>
+printf </span>的代码连接到了<span lang=EN-US> ELF </span>文件的原因。程序代码的文件大小和内存大小是一样的，而程序数据的文件大小和内存大小不一样，这是因为内存数据中，起始的<span
+lang=EN-US> 2200 </span>字节是预先初始化的数据，初始化<span class=GramE>值来自</span><span
+lang=EN-US> ELF </span><span class=GramE>映象</span>，而其后的<span lang=EN-US> 2048 </span>字节则由执行代码初始化。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>如前面所描述的，<span
+lang=EN-US>Linux </span>利用<span class=GramE>请页技术</span>装入程序<span class=GramE>映象</span>。当<span
+lang=EN-US> shell </span>进程利用<span lang=EN-US> fork ()</span>系统调用建立了子进程之后，子进程会调用<span
+lang=EN-US> exec ()</span>系统调用（实际有多种<span lang=EN-US> exec </span>调用<span
+lang=EN-US>)</span>，<span lang=EN-US>exec() </span>系统调用将利用<span lang=EN-US> ELF
+</span>二进制格式装载器装载<span lang=EN-US> ELF </span><span class=GramE>映象</span>，当装载器检验<span
+class=GramE>映象</span>是有效的<span lang=EN-US> ELF </span>文件之后，就会将当前进程（实际就是父进程或旧进程）的可执行<span
+class=GramE>映象</span>从虚拟内存中清除，同时清除任何信号处理程序并关闭所有打开的文件（把相应<span lang=EN-US> file </span>结构中的<span
+lang=EN-US> f_count </span>引用计数减<span lang=EN-US> 1</span>，如果这一计数为<span
+lang=EN-US> 0</span>，内核负责释放这一文件对象），然后<span class=GramE>重置进程</span>页表。完成上述过程之后，只需根据<span
+lang=EN-US> ELF </span>文件中的信息将<span class=GramE>映象</span>代码和数据的起始和终止地址分配并设置相应的虚拟地址区域，修改进程页表。这时，当前进程就可以开始执行对应的<span
+lang=EN-US> ELF </span><span class=GramE>映象</span>中的指令了。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'>2</span><span style='color:black;mso-font-kerning:0pt'>．</span><b
+style='mso-bidi-font-weight:normal'>命令行参数和<span lang=EN-US>shell</span>环境</b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+</span></span>当用户敲入一个命令时，从<span lang=EN-US>shell</span>可以接受一些命令行参数。例如，当用户敲入命令：</p>
+
+<p class=MsoPlainText style='text-indent:21.25pt'><span lang=EN-US>$ <span
+class=GramE>ls</span> -l /usr/bin</span></p>
+
+<p class=MsoPlainText>以获得在<span lang=EN-US>/usr/bin</span>目录下的全部文件列表时，<span
+lang=EN-US>shell</span>进程创建一个新进程执行这个命令。这个新进程装入<span lang=EN-US>/bin/ls</span>可执行文件。在这样做的过程中，从<span
+lang=EN-US>shell</span>继承的大多数执行上下文被丢弃，但三个单独的参数<span lang=EN-US>ls</span>、<span
+lang=EN-US>-l</span>和<span lang=EN-US> /usr/</span>依然被保持。一般情况下，新进程可以接受任意<span
+class=GramE>个</span>参数。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>传递命令行参数的约定依赖于所用的高级语言。在<span
+lang=EN-US>C</span>语言中，程序的<span lang=EN-US>main(<span
+style='mso-spacerun:yes'>&nbsp; </span>)</span>函数把传递给程序的参数个数和指向字符串指针数组的地址作为参数。下面是<span
+lang=EN-US>main()</span>的原型：</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int</span> main(int argc, char *argv[])</span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span></span>再回到前面的例子，当<span lang=EN-US>/bin/ls</span>程序被调用时，<span
+lang=EN-US>argc</span>的值为<span lang=EN-US>3</span>，<span lang=EN-US>argv[0]</span>指向<span
+lang=EN-US>ls</span>字符串，<span lang=EN-US>argv[1]</span>指向<span lang=EN-US>-l</span>字符串，而<span
+lang=EN-US>argv[2]</span>指向<span lang=EN-US> /usr/bin</span>字符串。<span
+lang=EN-US>argv</span>数组的末尾处总以空指针来标记，因此，<span lang=EN-US>argv[3]</span>为<span
+lang=EN-US>NULL</span>。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>在<span lang=EN-US>C</span>语言中传递给<span
+lang=EN-US>main()</span>函数的第三个可选参数是包含环境变量的参数。当进程用到它时，<span lang=EN-US>main(<span
+style='mso-spacerun:yes'>&nbsp; </span>)</span>的声明如下：</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>int</span> main(int argc, char *argv[], char *envp[]) </span></p>
+
+<p class=MsoPlainText><span lang=EN-US>envp</span>参数指向环境串的指针数组，形式如下：</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>VAR_NAME=something</span></p>
+
+<p class=MsoPlainText>在这里，<span lang=EN-US>VAR_NAME</span>表示一个环境变量的名字，而“<span
+lang=EN-US>=</span>”后面的<span class=GramE>子串表示赋</span>给变量的实际值。<span lang=EN-US>envp</span>数组的结尾用一个空指针标记，就像<span
+lang=EN-US>argv</span>数组。环境变量是用来定制进程的执行上下文、为用户或其它进程提供一般的信息、或允许进程交叉调用<span
+lang=EN-US>execve(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>系统调用保存一些信息。</p>
+
+<p class=MsoPlainText><!--[if gte vml 1]><v:shapetype id="_x0000_t202"
+ coordsize="21600,21600" o:spt="202" path="m,l,21600r21600,l21600,xe">
+ <v:stroke joinstyle="miter"/>
+ <v:path gradientshapeok="t" o:connecttype="rect"/>
+</v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t202" style='position:absolute;
+ left:0;text-align:left;margin-left:228.9pt;margin-top:31.25pt;width:94.5pt;
+ height:239.85pt;z-index:1' filled="f" stroked="f"/><![endif]--><![if !vml]><span
+style='mso-ignore:vglayout;position:absolute;z-index:1;left:0px;margin-left:
+305px;margin-top:42px;width:130px;height:324px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=130 height=324 style='vertical-align:top'><![endif]><![if !mso]><span
+  style='position:absolute;mso-ignore:vglayout;left:0pt;z-index:1'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1026" style='padding:3.6pt 7.2pt 3.6pt 7.2pt'
+    class=shape>
+    <p class=MsoNormal><span lang=EN-US>PAGE_OFFSET</span></p>
+    <p class=MsoNormal><span lang=EN-US>env_end</span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US>env_start</span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US>arg_sart</span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US>&amp;<span class=GramE>envp[</span>0]</span></p>
+    <p class=MsoNormal><span lang=EN-US>&amp;<span class=GramE>argv[</span>0]</span></p>
+    <p class=MsoNormal><span lang=EN-US>start_stack</span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+</table>
+
+</span><![endif]><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span>命令行参数和<span class=GramE>环境串都放在</span>用户态堆栈。图<span lang=EN-US>6.25</span>显示了用户态堆栈<span
+class=GramE>底部所</span>包含的内容。注意环境变量位于<span class=GramE>栈底附近</span>正好在一个<span
+lang=EN-US>null</span>的长整数之后。</p>
+
+<p class=MsoPlainText align=center style='text-align:center'><!--[if gte vml 1]><o:wrapblock><v:group
+  id="_x0000_s1027" style='position:absolute;left:0;text-align:left;
+  margin-left:68.25pt;margin-top:0;width:141.75pt;height:202.95pt;z-index:2'
+  coordorigin="3236,1220" coordsize="2835,4059" o:allowincell="f">
+  <v:shape id="_x0000_s1028" type="#_x0000_t202" style='position:absolute;
+   left:3866;top:1220;width:2205;height:4059' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1028'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      lang=EN-US>NULL</span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman"'>环境字符串</span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman"'>命令行参数</span></p>
+      <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal style='text-indent:10.5pt;mso-char-indent-count:1.0'><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman"'>程序解释器的表</span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      class=GramE><span lang=EN-US>envp[]</span></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      class=GramE><span lang=EN-US>argv[]</span></span><span lang=EN-US><span
+      style='mso-spacerun:yes'>&nbsp; </span><span
+      style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+      style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span
+      style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      class=GramE><span lang=EN-US>argc</span></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+      "Times New Roman"'>返回地址</span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      lang=EN-US><o:p>&nbsp;</o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1029" style='position:absolute' from="3866,1589"
+   to="6071,1589"/>
+  <v:line id="_x0000_s1030" style='position:absolute' from="3866,2327" to="6071,2327"/>
+  <v:line id="_x0000_s1031" style='position:absolute' from="3866,3065" to="6071,3065"/>
+  <v:line id="_x0000_s1032" style='position:absolute' from="3866,3434" to="6071,3434"/>
+  <v:line id="_x0000_s1033" style='position:absolute' from="3866,3803" to="6071,3803"/>
+  <v:line id="_x0000_s1034" style='position:absolute' from="3866,4172" to="6071,4172"/>
+  <v:line id="_x0000_s1035" style='position:absolute' from="3866,4541" to="6071,4541"/>
+  <v:line id="_x0000_s1036" style='position:absolute' from="3866,1220" to="3866,5279"/>
+  <v:line id="_x0000_s1037" style='position:absolute' from="3866,1220" to="6071,1220"/>
+  <v:line id="_x0000_s1038" style='position:absolute' from="6071,1220" to="6071,5279"/>
+  <v:line id="_x0000_s1039" style='position:absolute;flip:x' from="3446,4172"
+   to="3971,4172"/>
+  <v:line id="_x0000_s1040" style='position:absolute;flip:y' from="3446,2696"
+   to="3446,4172"/>
+  <v:line id="_x0000_s1041" style='position:absolute' from="3446,2696" to="3866,2696">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1042" style='position:absolute;flip:x' from="3236,3803"
+   to="3971,3803"/>
+  <v:line id="_x0000_s1043" style='position:absolute;flip:y' from="3236,1958"
+   to="3236,3803"/>
+  <v:line id="_x0000_s1044" style='position:absolute' from="3236,1958" to="3866,1958">
+   <v:stroke endarrow="block"/>
+  </v:line><v:line id="_x0000_s1045" style='position:absolute' from="3866,4910"
+   to="6071,4910"/>
+  <w:wrap type="topAndBottom"/>
+ </v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=90 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=192 height=275 src="6.8.2.files/image003.gif" v:shapes="_x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+</p>
+
+<p class=MsoPlainText align=center style='text-align:center;mso-outline-level:
+1'>图<span lang=EN-US>6.25<span style='mso-spacerun:yes'>&nbsp; </span></span>用户态堆栈<span
+class=GramE>底部所</span>包含的内容</p>
+
+<p class=MsoPlainText><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3.</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>函数库<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>每个高级语言的源代码文件都是经过几个步骤才转化为目标文件的，目标文件中包含的是汇编语言指令的机器代码，它们和相应的高级语言指令对应。目标文件并不能被执行，因为它不包含源代码文件所用的全局外部符号名的虚拟地址。这些地址的分配或解析是由链接程序完成的，链接程序把程序所有的目标文件收集起来并构造可执行文件。链接程序还分析程序所用的库函数并把它们粘合成可执行文件。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span>任何程序，甚至最小的程序都会利用<span
+lang=EN-US>C</span>库。请看下面的一行<span lang=EN-US>C</span>程序：</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span
+class=GramE>void</span> main(void) { } </span></p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span>尽管这个程序没有做任何事情，但还是需要做很多工作来建立执行环境并在程序终止时杀死这个进程。尤其是，当<span
+lang=EN-US>main(<span style='mso-spacerun:yes'>&nbsp; </span>)</span>函数终止时，<span
+lang=EN-US>C</span>编译程序就把<span lang=EN-US>exit(<span
+style='mso-spacerun:yes'>&nbsp; </span>)</span>系统调用插入到目标代码中。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span>实际上<span
+lang=EN-US>,</span>一般程序对系统调用的调用通常是通过<span lang=EN-US>C</span>库中的封装例程进行的<span
+lang=EN-US>,</span>也就是说，<span lang=EN-US>C</span>语言函数库中的函数先调用系统调用<span
+lang=EN-US>,</span>而我们的应用程序再调用库函数。除了<span lang=EN-US>C</span>库，<span
+lang=EN-US>Unix</span>系统中还包含很多其它的函数库。一般的<span lang=EN-US>Linux</span>系统可能轻而易举地就有<span
+lang=EN-US>50</span>个不同的库。这里仅仅列举其中的两个：数学库<span lang=EN-US>libm</span>包含浮点操作的基本函数，而<span
+lang=EN-US>X11</span>库<span lang=EN-US>libX11</span>收集了所有<span lang=EN-US>X11</span>窗口系统图形接口的基本底层函数。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>传统<span lang=EN-US>Unix</span>系统中的所有可执行文件都是基于静态库的。这就意味着链接程序所产生的可执行文件不仅包括原程序的代码，还包括程序所引用的库函数的代码。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>静态库的一大缺点是：它们占用大量的磁盘空间。的确，每个静态链接的可执行文件都复制库代码的一部分。因此，现代<span
+lang=EN-US>Unix</span>系统利用了共享库。可执行文件不用再包含库的目标代码，而仅仅指向库名。当程序被装入内存执行时，一个叫做程序解释器的程序就专注于分析可执行文件中的库名，确定所需库在系统目录树中的位置，并使执行进程可以使用所请求的代码。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span class=GramE>共享库对提供</span>文件内存映射的系统尤为方便，因为它们减少了执行一个程序所需的主内存量。当程序解释器必须把某一共享库链接到进程时，并不拷贝目标代码，而是仅仅执行一个内存映射，<span
+class=GramE>把库文件</span>的相关部分映射<span class=GramE>到进程</span>的地址空间中。这就允许共享库机器代码所在的页面由使用相同代码的所有进程进行共享。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span>共享库也有一些缺点。动态链接的程序启动时间通常比静态链接的长。此外，动态链接的程序的可移植性也不如静态链接的好，因为当系统中所包含的库版本发生变化时，动态链接的程序可能就不能适当地执行。</p>
+
+<p class=MsoPlainText><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span>用户可以让一个程序静态地链接。例如，<span
+lang=EN-US>GCC</span>编译器提供<span lang=EN-US>-static</span>选项，即告诉链接程序使用静态库而不是共享库。</p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>和静态连接库不同，动态连接<span
+class=GramE>库只有</span>在运行时才被连接<span class=GramE>到进程</span>的虚拟地址中。对于使用同一动态连接库的多个进程，只需在内存中保留一份共享<span
+class=GramE>库信息</span>即可，这样就节省了内存空间。当共享<span class=GramE>库需要</span>在运行时连接<span
+class=GramE>到进程</span>虚拟地址时，<span lang=EN-US>Linux </span>的动态连接器利用<span
+lang=EN-US> ELF </span>共享库中的符号<span class=GramE>表完成</span>连接工作，符号表中定义了<span
+lang=EN-US> ELF </span><span class=GramE>映象</span>引用的全部动态库例程。<span lang=EN-US>Linux
+</span>的动态连接器一般包含在<span lang=EN-US> /lib </span>目录中，通常为<span lang=EN-US>
+ld.so.1</span>、<span lang=EN-US>llibc.so.1 </span>和<span lang=EN-US>ld-linux.so.1</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.8.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:55 GMT -->
+</html>

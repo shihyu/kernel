@@ -1,74 +1,1778 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Kernel : " />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<!-- Mirrored from www.kerneltravel.net/kernel-book/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81.html by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:58:27 GMT -->
+<head>
 
-    <title>Kernel</title>
-  </head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="%e6%b7%b1%e5%85%a5%e5%88%86%e6%9e%90Linux%e5%86%85%e6%a0%b8%e6%ba%90%e7%a0%81.files/filelist.xml">
+<link rel=Edit-Time-Data href="%e6%b7%b1%e5%85%a5%e5%88%86%e6%9e%90Linux%e5%86%85%e6%a0%b8%e6%ba%90%e7%a0%81.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>深入分析Linux内核源码</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>user</o:LastAuthor>
+  <o:Revision>4</o:Revision>
+  <o:TotalTime>289</o:TotalTime>
+  <o:Created>2007-08-27T05:53:00Z</o:Created>
+  <o:LastSaved>2007-08-27T14:21:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>184</o:Words>
+  <o:Characters>1053</o:Characters>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1235</o:CharactersWithSpaces>
+  <o:Version>11.6360</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>9.85 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	color:black;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-columns:2 even 21.0pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
 
-  <body>
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/shihyu/kernel">View on GitHub</a>
+<div class=Section1 style='layout-grid:15.6pt'>
 
-          <h1 id="project_title">Kernel</h1>
-          <h2 id="project_tagline"></h2>
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:26.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>深入分析</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:26.0pt'>Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:26.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核源码</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:26.0pt'><o:p></o:p></span></b></p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/shihyu/kernel/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/shihyu/kernel/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+<p class=MsoNormal style='text-indent:21.65pt;mso-char-indent-count:.98'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:22.0pt'><a
+href="%e5%89%8d%e8%a8%80.htm"><span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>前言</span></span></a><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>第一章</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt'> </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>走进</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:14.0pt'>linux<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.1.htm">1.1 GNU<span lang=EN-US
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'><span lang=EN-US>与</span></span>Linux<span lang=EN-US
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'><span lang=EN-US>的成长</span></span></a></span></b><span
+class=MsoHyperlink><span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.2.htm">1.2
+Linux<span lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>的开发模式<span
+lang=EN-US>和运作机制</span></span></span></a></span></b></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>1.3</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>走进</span><span lang=EN-US>Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核</span><span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span lang=EN-US><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.3.1.htm">1.3.1 Linux<span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>内核的特征</span></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span><span style='mso-tab-count:1'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><a href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.3.2.htm"><span
+style='mso-spacerun:yes'>&nbsp;</span>1.3.2 Linux<span lang=EN-US
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'><span lang=EN-US>内核版本的变化</span></span></a></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US>1.4 </span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分析</span><span lang=EN-US>Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核的意义</span><span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US><a href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.4.1.htm">1.4.1 <span lang=EN-US
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'><span lang=EN-US>开发适合自己的操作系统</span></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.4.2.htm">1.4.2 <span lang=EN-US style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>开发高水平软件</span></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.4.3.htm"><span style='mso-spacerun:yes'>&nbsp;</span>1.4.3 <span
+lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>有助于计算机科学的教学和科研</span></span></a></span></p>
+
+<p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>1.5 Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核结构</span><span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.5.1.htm"><span style='mso-spacerun:yes'>&nbsp;</span><span
+style='font-weight:normal'>1.5.1<span style='mso-spacerun:yes'>&nbsp;
+</span>Linux</span><span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";font-weight:normal'><span
+lang=EN-US>内核在整个操系统中的位置</span></span></a></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.5.2.htm">1.5.2 Linux<span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>内核的作用</span></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.5.3.htm">1.5.3 Linux<span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>内核的抽象结构</span></span></a></span></p>
+
+<p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>1.6 Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核源代码</span><span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US><a href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.6.1.htm"><span
+style='mso-spacerun:yes'>&nbsp;</span>1.6.1 <span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>多版本的内核源代码</span></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.6.2.htm"><span
+style='mso-spacerun:yes'>&nbsp;</span>1.6.2<span
+style='mso-spacerun:yes'>&nbsp; </span>Linux<span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>内核源代码的结构</span></span></a> </span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.6.3.htm"><span style='mso-spacerun:yes'>&nbsp;</span>1.6.3 <span
+lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>从何处开始阅读源代码</span></span></a></span></p>
+
+<p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>1.7 Linux</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核源代码分析工具</span><span
+lang=EN-US><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.7.1.htm">1.7.1 Linux<span lang=EN-US style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+lang=EN-US>超文本交叉代码检索工具</span></span></a> </span></p>
+
+<p class=MsoNormal style='margin-left:68.25pt;text-indent:-68.25pt;mso-char-indent-count:
+-6.5'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+href="%e7%ac%ac%e4%b8%80%e7%ab%a0%e8%b5%b0%e8%bf%9blinux/1.7.2.htm"><span style='mso-spacerun:yes'>&nbsp;</span>1.7.2
+Windows<span lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>平台下的源代码阅读工具</span></span>Source
+Insight</a></span></p>
+
+
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第二章</span></b><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US style='font-size:16.0pt'> Linux</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>运行的硬件基础</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.htm">2.1<span style='mso-spacerun:yes'>&nbsp;
+    </span>i386<span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>的寄存器</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.1.htm">2.1.1<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>通用寄存器</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.2.htm">2.1.2<span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>段寄存器</span></span></a><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+    <p class=MsoNormal><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.3.htm">2.1.3<span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>状态和控制寄存器</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.4.htm">2.1.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统地址寄存器</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.1.5.htm">2.1.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>调试寄存器和测试寄存器</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.2.htm">2.2 <span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>内存地址</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>2.3 </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>段机制和描述符</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.1.htm">2.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>段机制</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.2.htm">2.3.2<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>描述符的概念</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.3.htm">2.3.3<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统段描述符</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.4.htm">2.3.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>描述符表</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.5.htm">2.3.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>选择符与描述符表寄存器</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.6.htm">2.3.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>描述符投影寄存器</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.3.7.htm">2.3.7 Linux<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>中的段</span></span></a></span></p>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp; </span><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.4.htm">2.4 <span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>分页机制</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.4.1.htm">2.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>分页机构</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:3.43'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.4.2.htm">2.4.2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>页面高速缓存</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.5.htm">2.5 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中的分页机制</span></span></a><span
+    style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.5.1.htm">2.5.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>与页相关的数据结构及宏的定义</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.5.2.htm">2.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>对页目录及页表的处理</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>2.6 Linux</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的汇编语言</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.6.1.htm">2.6.1 AT&amp;T<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>与</span></span>Intel<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>汇编语言的比较</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.6.2.htm">2.6.2 AT&amp;T<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>汇编语言的相关知识</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.6.3.htm">2.6.3 Gcc<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>嵌入式汇编</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%8c%e7%ab%a0%20Linux%e8%bf%90%e8%a1%8c%e7%9a%84%e7%a1%ac%e4%bb%b6%e5%9f%ba%e7%a1%80/2.6.4.htm">2.6.4 Intel386<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>汇编指令摘要</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+ 
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第三章中断机制</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:20.65pt;mso-char-indent-count:1.96'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>3.1 </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>中断基本知识</span><st1:chsdate
+    IsROCDate="False" IsLunarDate="False" Day="30" Month="12" Year="1899"
+    w:st="on"></st1:chsdate><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.1.1.htm">3.1.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断<span lang=EN-US>向量</span></span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:41.15pt;mso-char-indent-count:3.92'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.1.2.htm">3.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>外设可屏蔽中断</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:20.3pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.1.3.htm">3.1.3<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>异常及非屏蔽中断</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:20.3pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.1.4.htm">3.1.4<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断描述符表</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:20.3pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.1.5.htm">3.1.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>相关汇编指令</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:20.3pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>3.2</span></b><b style='mso-bidi-font-weight:normal'><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>中断描述符表的初始化</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.2.1.htm">3.2. 1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>外部中断向量的设置</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:42.0pt'><span lang=EN-US><a
+    href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.2.2.htm">3.2.2<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>中断描述符表</span></span>IDT<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>的预初始化</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.2.3.htm">3.2.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断向量表的最终初始化</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.3.htm">3.3<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>异常处理</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.3.1.htm">3.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>在内核栈中保存寄存器的值</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.3.2.htm">3.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断请求队列的初始化</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.3.3.htm">3.3.3<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断请求队列的数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>3.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>中断处理</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.4.1.htm">3.4.1<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断和异常处理的硬件处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.4.2.htm">3.4.2 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>对异常和中断的处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.4.3.htm">3.4.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>与堆栈有关的常量、数据结构及宏</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.4.4.htm">3.4.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断处理程序的执行</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.4.5.htm">3.4.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>从中断返回</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>3.5</span></b><b style='mso-bidi-font-weight:normal'><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>中断的后半部分处理机制</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.1.htm">3.5.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>为什么把中断分为两部分来处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.2.htm">3.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>实现机制</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.3.htm">3.5.3<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>数据结构的定义</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.4.htm">3.5.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>软中断、</span></span>bh<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>及</span></span>tasklet<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的初始化</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.5.htm">3.5.5<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>后半部分的执行</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%ad%e6%96%ad%e6%9c%ba%e5%88%b6/3.5.6.htm">3.5.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>把</span></span>bh<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>移植到</span></span>tasklet</a></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第四章</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt'> </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程描述</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.1.htm">4.1 <span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>进程和程序（</span></span>Process and Program<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>）</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.2.htm">4.2 Linux<span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>中的进程<span lang=EN-US>概述</span></span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.3.htm">4.3 task_struct<span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>结构描述</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>4.4 task_struct</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>结构在内存中的存放</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.4.1.htm">4.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程内核栈</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.4.2.htm">4.4.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>当前进程（</span></span>current<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>宏）</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>4.5 </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程组织的方式</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.5.1.htm">4.5.1<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>哈希表</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.5.2.htm">4.5.2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>双向循环链表</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.5.3.htm">4.5.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>运行队列</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.5.4.htm">4.5.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>等待队列</span></span></a></span><span
+    class=MsoHyperlink><span lang=EN-US><o:p></o:p></span></span></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.6.htm">4.6 <span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>内核线程</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.7.htm">4.7 <span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>进程的权能</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US>4.8 </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核同步</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.8.1.htm">4.8.1<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>信号量</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.8.2.htm">4.8.2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>原子操作</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.8.3.htm">4.8.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>自旋锁、读写自旋锁和大读者自旋锁</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:15.5pt;mso-char-indent-count:1.47'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%9b%9b%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e6%8f%8f%e8%bf%b0/4.9.htm">4.9 <span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>本章小节</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+    style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第五章进程调度</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.1.htm">5.1 Linux<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>时间系统</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.1.1.htm">5.1.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>时钟硬件</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.1.2.htm">5.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>时钟运作机制</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.1.3.htm">5.1.3<span
+    style='mso-spacerun:yes'>&nbsp; </span>Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>时间基准</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.1.4.htm">5.1.4 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的时间系统</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b
+    style='mso-bidi-font-weight:normal'>5.2 </b></span><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>时钟中断</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.2.1.htm">5.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>时钟中断的产生</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.2.2.htm">5.2.2.Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>实现时钟中断的全过程</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b
+    style='mso-bidi-font-weight:normal'>5.3 Linux</b></span><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>的调度程序－</span><span
+    lang=EN-US>Schedule( )<o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.3.1.htm">5.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>基本原理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.3.2.htm">5.3.2 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程调度时机</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.3.3.htm">5.3.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程调度的依据</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.3.4.htm">5.3.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程可运行程度的衡量</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.3.5.htm">5.3.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程调度的实现</span></span></a> </span></p>
+    <p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b
+    style='mso-bidi-font-weight:normal'>5.4 </b></span><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进程切换</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.4.1.htm">5.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>硬件支持</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%ba%94%e7%ab%a0%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6/5.4.2.htm">5.4.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程切换</span></span></a></span></p>
     </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+    </td>
+   </tr>
+  </table>
+  
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第六章</span></b><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US style='font-size:16.0pt'> Linux</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>内存管理</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.1.htm">6.1 Linux<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>的内存管理概述</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.1.1.htm">6.1.1 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>虚拟内存的实现结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.1.2.htm">6.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>内核空间和用户空间</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.1.3.htm">6.1.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>虚拟内存实现机制间的关系</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>6.2 Linux</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>内存管理的初始化</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.1.htm">6.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>启用分页机制</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.2.htm">6.2.2<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>物理内存的探测</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.3.htm">6.2.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>物理内存的描述</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.4.htm">6.2.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>页面管理机制的初步建立</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.5.htm">6.2.5<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>页表的建立</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.2.6.htm">6.2.6<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>内存管理区</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.3.htm">6.3 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>内存的分配和回收</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.3.1.htm">6.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>伙伴算法</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.3.2.htm">6.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>物理页面的分配和释放</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.3.3.htm">6.3.3 Slab<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>分配机制</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.4.htm">6.4 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>地址映射机制</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.4.1.htm">6.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>描述虚拟空间的数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.4.2.htm">6.4.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程的虚拟空间</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.4.3.htm">6.4.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>内存映射</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>6.5 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>请页机制</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.5.1.htm">6.5.1<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>页故障的产生</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.5.2.htm">6.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>页错误的定位</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.5.3.htm">6.5.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程地址空间中的缺页异常处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.5.4.htm">6.5.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>请求调页</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.5.5.htm">6.5.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>写时复制</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>6.6 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>交换机制</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.6.1.htm">6.6.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>交换的基本原理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.6.2.htm">6.6.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>页面交换守护进程</span></span>kswapd</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.6.3.htm">6.6.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>交换空间的数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.6.4.htm">6.6.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>交换空间的应用</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>6.7 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>缓存和刷新机制</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.7.1.htm">6.7.1 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>使用的缓存</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.7.2.htm">6.7.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>缓冲区高速缓存</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.7.3.htm">6.7.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>翻译后援存储器</span></span>(TLB)</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.7.4.htm">6.7.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>刷新机制</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>6.8 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进程的创建和执行</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.8.1.htm">6.8.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程的创建</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.8.2.htm">6.8.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>程序执行</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ad%e7%ab%a0%20Linux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86/6.8.3.htm">6.8.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>执行函数</span></span></a></span></p>
     </div>
+    </td>
+   </tr>
+  </table>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Kernel maintained by <a href="https://github.com/shihyu">shihyu</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第七章</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt'> </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程间通信</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.1.htm">7.1 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>管道</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.1.1.htm">7.1.1 Linux<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>管道的实现机制</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.1.2.htm">7.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>管道的应用</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.1.3.htm">7.1.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>命名管道</span></span>(FIFO)</a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.htm">7.2<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>信号</span></span>(signal)</a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.1.htm">7.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>信号种类</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.2.htm">7.2.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>信号掩码</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.3.htm">7.2.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统调用</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.4.htm">7.2.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>典型系统调用的实现</span></span></a></span></p>
+	<p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.5.htm">7.2.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程与信号的关系</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.2.6.htm">7.2.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>信号举例</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.3.htm">7.3 System V <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>的</span></span>IPC<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>机制</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.3.1.htm">7.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>信号量</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.3.2.htm">7.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>消息队列</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b8%83%e7%ab%a0%20%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1/7.3.3.htm">7.3.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>共享内存</span></span></a></span></p>
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第八章</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt'> </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>虚拟文件系统</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.1.htm">8.1<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>概述</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.htm">8.2 VFS<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>中的数据结构</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.1.htm">8.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>超级块</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.2.htm">8.2.2 VFS<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的索引节点</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.3.htm">8.2.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>目录项对象</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.4.htm">8.2.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>与进程相关的<span lang=EN-US>文件结构</span></span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.5.htm">8.2.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>主要数据结构间的关系</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.2.6.htm">8.2.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>有关操作的数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>8.3 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>高速缓存</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.3.1.htm">8.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>块高速缓存</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.3.2.htm">8.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>索引节点高速缓存</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.3.3.htm">8.3.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>目录高速缓存</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>8.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>文件系统的注册、安装与拆卸</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.4.1.htm">8.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>文件系统的注册</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.4.2.htm">8.4.2<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>文件系统的安装</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.4.3.htm">8.4.3<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>文件系统的卸载</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.5.htm">8.5 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>限额机制</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.6.htm">8.6 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>具体文件系统举例</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.6.1.htm">8.6.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>管道文件系统</span></span>pipefs</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.6.2.htm">8.6.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>磁盘文件系统</span></span>BFS</a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>8.7 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>文件系统的系统调用</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.7.1.htm">8.7.1<span
+    style='mso-spacerun:yes'>&nbsp; </span>open <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统调用</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.7.2.htm">8.7.2<span
+    style='mso-spacerun:yes'>&nbsp; </span>read <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统调用</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.7.3.htm">8.7.3<span
+    style='mso-spacerun:yes'>&nbsp; </span>fcntl <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统调用</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%85%ab%e7%ab%a0%20%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/8.8.htm">8 .8<span
+    style='mso-spacerun:yes'>&nbsp; </span>Linux2.4<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>文件系统的移植问题</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><o:p>&nbsp;</o:p></span></b></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+ 
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第九章</span></b><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US style='font-size:16.0pt'> Ext2</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>文件系统</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.1.htm">9.1 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>基本概念</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>9.2 Ext2</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>的磁盘布局和数据结构</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.1.htm">9.2.1 Ext2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的磁盘布局</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.2.htm">9.2.2 Ext2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的超级块</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.3.htm">9.2.3 Ext2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的索引节点</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.4.htm">9.2.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>组描述符</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.5.htm">9.2.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>位图</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.6.htm">9.2.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>索引节点表及实例分析</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.2.7.htm">9.2.7 Ext2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的目录项及文件的定位</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.3.htm">9.3 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>文件的访问权限和安全</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.4.htm">9.4 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>链接文件</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.5.htm">9.5 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>分配策略</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.5.1.htm">9.5.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>数据块寻址</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.5.2.htm">9.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>文件的洞</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e4%b9%9d%e7%ab%a0%20Ext2%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f/9.5.3.htm">9.5.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>分配一个数据块</span></span></a></span></p>
+
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第十章</span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt'> </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>模块机制</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>10.1 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>概述</span><st1:chsdate
+    IsROCDate="False" IsLunarDate="False" Day="30" Month="12" Year="1899"
+    w:st="on"></st1:chsdate><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.1.1.htm">10.1.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>什么是模块</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.1.2.htm">10.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>为什么要使用模块</span></span>?</a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>10.2 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>实现机制</span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.2.1.htm">10.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.2.2.htm">10.2.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>实现机制的分析</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>10.3 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>模块的装入和卸载</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.3.1.htm">10.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>实现机制</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.3.2.htm">10.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>如何插入和卸载模块</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>10.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>内核版本</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.4.1.htm">10.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>内核版本与模块版本的兼容性</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:78.75pt;mso-para-margin-left:4.0gd;
+    text-indent:-36.75pt;mso-char-indent-count:-3.5'><span lang=EN-US><a
+    href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.4.2.htm">10.4.2 <span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>从版本</span></span>2.0<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>到</span></span>2.2<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>内核</span></span>API<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>的变化</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.4.3.htm">10.4.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>把内核</span></span>2.2<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>移植到内核</span></span>2.4</a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>10.5 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>编写内核模块</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.5.1.htm">10.5.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>简单内核模块的编写</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.5.2.htm">10.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>内核模块的</span></span>Makefiles<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>文件</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e7%ab%a0%20%e6%a8%a1%e5%9d%97%e6%9c%ba%e5%88%b6/10.5.3.htm">10.5.3<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>内核模块的多个文件</span></span></a></span></p>
+    <p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第十一章</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><span
+    style='mso-spacerun:yes'>&nbsp; </span></span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>设备驱动程序</span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.1.htm">11.1 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>概述</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.1.1.htm">11.1.1 I/O<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>软件</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.1.2.htm">11.1.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>设备驱动程序</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>11.2 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>设备驱动基础</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.1.htm">11.2.1 I/O<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>端口</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.2.htm">11.2.2 I/O<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>接口及设备控制器</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.3.htm">11.2.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>设备文件</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.4.htm">11.2.4 VFS<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>对设备文件的处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.5.htm">11.2.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>中断处理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.6.htm">11.2.6 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>驱动</span></span>DMA<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>工作</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.7.htm">11.2.7 I/O <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>空间的映射</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.2.8.htm">11.2.8 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>设备驱动程序框架</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>11.3 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>块设备驱动程序</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.3.1.htm">11.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>块设备驱动程序的注册</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.3.2.htm">11.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>块设备基于缓冲区的数据交换</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.3.3.htm">11.3.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>块设备驱动程序的几个函数</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.3.4.htm">11.3.4 RAM <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>盘驱动程序的实现</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.3.5.htm">11.3.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>硬盘驱动程序的实现</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>11.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>字符设备驱动程序</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.4.1.htm">11.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>简单字符设备驱动程序</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.4.2.htm">11.4.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>字符设备驱动程序的注册</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.4.3.htm">11.4.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>一个字符设备驱动程序的实例</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%20%20%e8%ae%be%e5%a4%87%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f/11.4.4.htm">11.4.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>驱动程序的编译与装载</span></span></a></span></p>
+
+</p>
+
+
+</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+
+
+<p class=MsoNormal>
+  
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第十二章</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt'> </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>网络</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.1.htm">12.1 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>概述</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>12.2 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>网络协议</span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.2.1.htm">12.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>网络参考模型</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.2.2.htm">12.2.2 TCP/IP <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>协议工作原理及数据流</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.2.3.htm">12.2.3 Internet <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>协议</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.2.4.htm">12.2.4 TCP<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>协议</span></span><span lang=EN-US><span
+    lang=EN-US> </span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>12.3 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>套接字</span><span lang=EN-US>(socket)<o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.3.1.htm">12.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字在网络中的地位和作用</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.3.2.htm">12.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字接口的种类</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.3.3.htm">12.3.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字的工作原理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.3.4.htm">12.3.4 socket <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的通信过程</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.3.5.htm">12.3.5 socket<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>为用户提供的系统调用</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>12.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>套接字缓冲区</span><span lang=EN-US>(sk_buff)<o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.4.1.htm">12.4.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字缓冲区的特点</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.4.2.htm">12.4.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字缓冲区操作基本原理</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.4.3.htm">12.4.3<span
+    style='mso-spacerun:yes'>&nbsp; </span>sk_buff<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>数据结构的核心内容</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.4.4.htm">12.4.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字缓冲区提供的函数</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.4.5.htm">12.4.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>套接字缓冲区的上层支持例程</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>12.5 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>网络设备接口</span><span lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.5.1.htm">12.5.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>基本结构</span></span></a> </span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.5.2.htm">12.5.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>命名规则</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.5.3.htm">12.5.3 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>设备注册</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.5.4.htm">12.5.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>网络设备数据结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0%20%e7%bd%91%e7%bb%9c/12.5.5.htm">12.5.5 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>支持函数</span></span></a></span></p>
     </div>
+    </td>
+   </tr>
+  </table>
+  
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div>
+    <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+    style='font-size:16.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>第十三章</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt'> </span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:16.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>启动系统</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:16.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.1.htm">13.1 <span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>初始化流程</span></span><span
+    lang=EN-US><span lang=EN-US> </span></span></a><span
+    style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.1.1.htm">13.1.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>系统加电或复位</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.1.2.htm">13.1.2 BIOS<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>启动</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.1.3.htm">13.1.3 Boot Loader</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.1.4.htm">13.1.4 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>操作系统的初始化</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>13.2 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>初始化的任务</span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.2.1.htm">13.2.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>处理器对初始化的影响</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.2.2.htm">13.2.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>其他硬件设备对处理器的影响</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>13.3 Linux </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>的</span><span lang=EN-US>Boot
+    Loarder<o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.3.1.htm">13.3.1 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>软盘的结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.3.2.htm">13.3.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>硬盘的结构</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.3.3.htm">13.3.3 Boot Loader</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.3.4.htm">13.3.4 LILO</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.3.5.htm">13.3.5 LILO<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>的运行分析</span></span></a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>13.4 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进入操作系统</span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.4.1.htm">13.4.1 Setup.S</a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.4.2.htm">13.4.2 Head.S</a></span></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.5.htm">13.5 main.c<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>中的初始化</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US>13.6 </span></b><b style='mso-bidi-font-weight:
+    normal'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>建立</span><span lang=EN-US>init</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程</span><span
+    lang=EN-US><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.6.1.htm">13.6.1 init<span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>进程的建立</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><a href="%e7%ac%ac%e5%8d%81%e4%b8%89%e7%ab%a0%20%e5%90%af%e5%8a%a8%e7%b3%bb%e7%bb%9f/13.6.2.htm">13.6.2 <span lang=EN-US
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'><span lang=EN-US>启动所需的</span></span>Shell<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>脚本文件</span></span></a></span></p>
+    <p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+    lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+ 
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div>
+    <p class=MsoNormal><span style='font-size:22.0pt;font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'>附录：</span><span
+    lang=EN-US style='font-size:22.0pt'><o:p></o:p></span></p>
+    <p class=MsoNormal style='margin-left:35.15pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US style='font-size:14.0pt'>1<span
+    style='mso-spacerun:yes'>&nbsp; </span>Linux 2.4</span></b><b
+    style='mso-bidi-font-weight:normal'><span style='font-size:14.0pt;
+    font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>内核</span></b><b style='mso-bidi-font-weight:normal'><span
+    lang=EN-US style='font-size:14.0pt'>API<o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:41.45pt;mso-char-indent-count:2.95'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:14.0pt'><span
+    style='mso-spacerun:yes'>&nbsp;</span></span><span lang=EN-US><a
+    href="1.%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8f%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%87%bd%e6%95%b0.htm">2.1<span style='font-size:14.0pt'> </span><span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>驱动程序的基本函数</span></span></a></span></b><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:14.0pt'><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.4pt;mso-char-indent-count:4.4'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="2.%e5%8f%8c%e5%90%91%e5%be%aa%e7%8e%af%e9%93%be%e8%a1%a8%e7%9a%84%e6%93%8d%e4%bd%9c.htm">2.2<span style='mso-spacerun:yes'>&nbsp; </span><span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>双向循环链表的操作</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a href="3%ef%bc%8e%e5%9f%ba%e6%9c%acC%e5%ba%93%e5%87%bd%e6%95%b0.htm">2.3<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>基本</span></span>C<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>库函数</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="4%ef%bc%8eLinux%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e4%b8%adSlab%e7%bc%93%e5%86%b2%e5%8c%ba.htm">2.4<span style='mso-spacerun:yes'>&nbsp;
+    </span>Linux<span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>内存管理中</span></span>Slab<span lang=EN-US style='font-family:宋体;
+    mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>缓冲区</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="5%ef%bc%8eLinux%e4%b8%ad%e7%9a%84VFS.htm">2.5<span style='mso-spacerun:yes'>&nbsp;
+    </span>Linux<span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>中的</span></span>VFS</a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="6%ef%bc%8eLinux%e7%9a%84%e8%bf%9e%e7%bd%91.htm">2.6<span style='mso-spacerun:yes'>&nbsp; </span>Linux<span
+    lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>的连网</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a href="7%ef%bc%8e%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e6%94%af%e6%8c%81.htm">2.7<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>网络设备支持</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a href="8%ef%bc%8e%e6%a8%a1%e5%9d%97%e6%94%af%e6%8c%81.htm">2.8<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>模块支持</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a href="9%ef%bc%8e%e7%a1%ac%e4%bb%b6%e6%8e%a5%e5%8f%a3.htm">2.9<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>硬件接口</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a href="10%20%e5%9d%97%e8%ae%be%e5%a4%87.htm">2.10
+    <span lang=EN-US style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'><span lang=EN-US>块设备</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='text-indent:46.6pt;mso-char-indent-count:4.42'><b
+    style='mso-bidi-font-weight:normal'><span lang=EN-US><a
+    href="11%ef%bc%8e%20USB%20%e8%ae%be%e5%a4%87.htm">2.11<span style='mso-spacerun:yes'>&nbsp;
+    </span>USB <span lang=EN-US style='font-family:宋体;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>设备</span></span></a><o:p></o:p></span></b></p>
+    <p class=MsoNormal style='margin-left:35.15pt'><b style='mso-bidi-font-weight:
+    normal'><span lang=EN-US style='font-size:14.0pt'><a href="%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae.htm">2<span
+    style='mso-spacerun:yes'>&nbsp; </span><span lang=EN-US style='font-family:
+    宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'><span
+    lang=EN-US>参考文献</span></span></a></span></b><span class=MsoHyperlink><span
+    lang=EN-US style='font-size:14.0pt'><o:p></o:p></span></span></p>
+    <p class=MsoNormal style='margin-left:35.15pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+</span><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
-    
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
-  </body>
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
+style='font-size:16.0pt'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+style='font-size:22.0pt'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81.html by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:33 GMT -->
 </html>

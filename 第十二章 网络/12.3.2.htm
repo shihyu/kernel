@@ -1,0 +1,546 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:46 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="12.3.2.files/filelist.html">
+<title> 套接字接口的种类</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-17T08:15:00Z</o:Created>
+  <o:LastSaved>2007-08-17T08:15:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>142</o:Words>
+  <o:Characters>811</o:Characters>
+  <o:Lines>6</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>952</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><b
+ style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+ mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>12.3.2</span></b></st1:chsdate><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'> </span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>套接字接口的种类<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>Linux </span></b><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>支持多种套接字种类，不同的套接字种类称为“地址族”，这是因为每种套接字种类拥有自己的通讯寻址方法。<span
+lang=EN-US>Linux </span>所支持的套接字地址族见表<span lang=EN-US>12.3</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>Linux</span></b><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>将上述套接字地址族抽象为统一的<span
+lang=EN-US> BSD </span>套接字接口，应用程序关心的只是<span lang=EN-US> BSD </span>套接字接口，而<span
+lang=EN-US> BSD </span>套接字由<span class=GramE>各地址族专有</span>的软件支持。一般而言，<span
+lang=EN-US>BSD </span>套接字可支持多种套接字类型，不同的套接<span class=GramE>字类型</span>提供的服务不同，<span
+lang=EN-US>Linux </span>所支持的部分<span lang=EN-US> BSD </span>套接<span class=GramE>字类型</span>见表<span
+lang=EN-US> 12.4</span>，<span class=GramE>但表</span><span lang=EN-US>12.3</span>中的套接字地址族并不一定全部支持表<span
+lang=EN-US>12.4</span>中的这些套接字类型。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>12. 3<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Linux
+</span>支持的套接字地址族<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;page-break-inside:avoid;
+  height:27.75pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>套接字地址族<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:27.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>描述<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;page-break-inside:avoid;height:24.05pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>UNIX<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>UNIX </span><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>域套接字<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;page-break-inside:avoid;height:25.2pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:25.2pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>INET<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:25.2pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>通过<span lang=EN-US> TCP/IP </span>协议支持的<span
+  lang=EN-US> Internet </span>地址族<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;page-break-inside:avoid;height:23.8pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.8pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>AX25<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:23.8pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Amater radio
+  X25<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;page-break-inside:avoid;height:24.05pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>APPLETALK<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Appletalk
+  DDP<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;page-break-inside:avoid;height:24.05pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>IPX<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>Novell IPX<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;mso-yfti-lastrow:yes;page-break-inside:avoid;
+  height:23.8pt'>
+  <td width=195 valign=top style='width:117.05pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.8pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>X25<o:p></o:p></span></p>
+  </td>
+  <td width=328 valign=top style='width:197.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:23.8pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>X25<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.95pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>表<span lang=EN-US>12.4<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Linux </span>所支持的<span
+lang=EN-US> BSD </span>套接字类型<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;page-break-inside:avoid;
+  height:22.35pt'>
+  <td width=260 valign=top style='width:156.15pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.35pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>BSD </span><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>套接<span class=GramE>字类型</span><span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>描述<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;page-break-inside:avoid;height:62.05pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  62.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>流（<span lang=EN-US>stream</span>）<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:62.05pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>这种套接<span class=GramE>字提供</span>了可靠的双向顺序数据流，可保证数据不会在传输过程中丢失、破坏或重复出现。流套接<span
+  class=GramE>字通过</span><span lang=EN-US> INET </span>地址族的<span lang=EN-US> TCP
+  </span>协议实现。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;page-break-inside:avoid;height:71.1pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  71.1pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>数据报（<span lang=EN-US>datagram</span>）<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:71.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>这种套接字也提供双向的数据传输，但是并不对数据的传输提供担保，也就是说，数据可能会以错误的顺序传递，甚至丢失或破坏。这种类型的套接<span
+  class=GramE>字通过</span><span lang=EN-US> INET </span>地址族的<span lang=EN-US> UDP
+  </span>协议实现。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;page-break-inside:avoid;height:71.1pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  71.1pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>原始（<span lang=EN-US>raw</span>）<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:71.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>利用这种类型的套接字，进程可以直接访问底层协议（因此称为原始）。例如，可在某个以太网设备上打开原始套接字，然后获取原始的<span
+  lang=EN-US> IP </span>数据传输信息。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;page-break-inside:avoid;height:39.95pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  39.95pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>可靠发送的消息<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:39.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>和数据报套接字类似，但保证数据被正确传输到目的端。<span lang=EN-US> <o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;page-break-inside:avoid;height:22.65pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  22.65pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>顺序数据包<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>和流套接字类似，但数据包大小是固定的。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6;mso-yfti-lastrow:yes;page-break-inside:avoid;
+  height:54.95pt'>
+  <td width=260 style='width:156.15pt;border:solid black 1.0pt;border-top:none;
+  mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  54.95pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>数据包（<span lang=EN-US>packet</span>）<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=394 valign=top style='width:236.15pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:54.95pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>这并不是标准的<span lang=EN-US> BSD </span>套接字类型，它是<span
+  lang=EN-US> Linux </span>专有的<span lang=EN-US> BSD </span>套接字扩展，可允许进程直接在<span
+  class=GramE>设备级访问</span>数据包。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:24.0pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>下面我们以<b
+style='mso-bidi-font-weight:normal'><span lang=EN-US>INET</span></b>套接字地址族、流套接<span
+class=GramE>字类型</span>为例，详细介绍套接字的工作原理和通信过程。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗崄浜岀珷%20缃戠粶/12.3.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:01:46 GMT -->
+</html>

@@ -1,0 +1,2323 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:15 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="4.3.files/filelist.html">
+<title>task_struct结构描述</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T02:57:00Z</o:Created>
+  <o:LastSaved>2007-08-15T02:57:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1204</o:Words>
+  <o:Characters>6864</o:Characters>
+  <o:Lines>57</o:Lines>
+  <o:Paragraphs>16</o:Paragraphs>
+  <o:CharactersWithSpaces>8052</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>4.3 task_struct</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>结构描述<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;</span>1.
+</span></b><b style='mso-bidi-font-weight:normal'><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程状态（<span
+lang=EN-US>State</span>）<span lang=EN-US> <o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程执行时，它会根据具体情况改变状态
+。进程状态是调度和对换的依据。<span lang=EN-US>Linux</span>中的进程主要有如下状态，如表<span lang=EN-US>4.1</span>所示。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>表<span lang=EN-US>4.1<span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span style='mso-tab-count:1'> </span>Linux</span>进程的状态<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:26.05pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:26.05pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>内核表示<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.05pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>含义<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:26.05pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.05pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_RUNNING<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.05pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>可运行<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:24.9pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_INTERRUPTIBLE<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.9pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>可中断的等待状态<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:23.5pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.5pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_UNINTERRUPTIBLE<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:23.5pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>不可中断的等待状态<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_ZOMBIE<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>僵死<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_STOPPED<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>暂停<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=274 valign=top style='width:164.65pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>TASK_SWAPPING<o:p></o:p></span></p>
+  </td>
+  <td width=248 valign=top style='width:148.55pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>换入<span lang=EN-US>/</span>换出<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>·可运行状态<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>处于这种状态的进程，要么正在运行、要么正准备运行。正在运行的进程就是当前进程（由<span
+lang=EN-US>current</span>所指向的进程），而准备运行的进程只要得到<span lang=EN-US>CPU</span>就可以立即投入运行，<span
+lang=EN-US>CPU</span>是这些进程唯一等待的系统资源。系统中有一个运行队列（<span lang=EN-US>run_queue</span>），用来容纳所有处于可运行状态的进程，调度程序执行时，从中选择一个进程投入运行。在后面我们讨论进程调度的时候，可以看到运行队列的作用。当前运行进程一直处于该队列中，也就是说，<span
+lang=EN-US>current</span>总是指向运行队列中的某个元素，只是具体指向谁由调度程序决定。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>·等待状态<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>处于该状态的进程正在等待某个事件（<span
+lang=EN-US>event</span>）或某个资源，它肯定位于系统中的某个等待队列（<span lang=EN-US>wait_queue</span>）中。<span
+lang=EN-US>Linux</span>中处于等待状态的进程分为两种：可中断的等待状态和不可中断的等待状态。处于可中断等待态的进程可以被信号唤醒，如果收到信号，该进程就从等待状态进入可运行状态，并且加入到运行队列中，等待被调度；而处于不可中断等待态的进程是因为硬件环境不能满足而等待，例如等待特定的系统资源，它任何情况下都不能被打断，只能用特定的方式来唤醒它，例如唤醒函数<span
+lang=EN-US>wake_up</span>（）等。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>·暂停状态<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>此时的进程暂时停止运行来接受某种特殊处理。通常当进程接收到</span><span
+lang=EN-US>SIGSTOP</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>SIGTSTP</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>SIGTTIN</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或</span><span
+lang=EN-US> SIGTTOU</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>信号</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>后就处于这种状态。例如，正接受调试的进程就处于这种状态。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>·僵死状态<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程虽然已经终止，但由于某种原因，父进程还没有执行<span
+lang=EN-US>wait()</span>系统调用，终止进程的信息也还没有回收。顾名思义，处于该状态的进程就是死进程，这种进程实际上是系统中的垃圾，必须进行相应处理以释放其占用的资源。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>2. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>进程调度信息<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>调度程序利用这部分信息决定系统中哪个进程最应该运行，并结合进程的状态信息保证系统运转的公平和高效。这一部分信息通常包括进程的类别（普通进程还是实时进程）、进程的优先级等等。如表<span
+lang=EN-US>4.2</span>所示：<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>表<span lang=EN-US>4.2<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-tab-count:1'>&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span style='mso-tab-count:
+1'> </span></span>进程调度信息<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:25.45pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:25.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>域名<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:25.45pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>含义<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>need_resched<o:p></o:p></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>调度标志<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Nice<o:p></o:p></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>静态优先级<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Counter<o:p></o:p></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>动态优先级<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Policy<o:p></o:p></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>调度策略<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=189 valign=top style='width:113.1pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>rt_priority<o:p></o:p></span></p>
+  </td>
+  <td width=189 valign=top style='width:113.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>实时优先级<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>在下一章的进程调度中我们会看到，当<span
+lang=EN-US>need_resched</span>被设置时，在“下一次的调度机会”就调用调度程序<span lang=EN-US>schedule()</span>。<span
+lang=EN-US> counter</span>代表进程剩余的时间片，是进程调度的主要依据，也可以说是进程的动态优先级，因为这个值在不断地减少；<span
+lang=EN-US>nice</span>是进程的静态优先级，同时也代表进程的时间片，用于对<span lang=EN-US>counter</span>赋值，可以用<span
+lang=EN-US>nice()</span>系统调用改变这个值；<span lang=EN-US>policy</span>是适用于该进程的调度策略，<span
+class=GramE>实时进程</span>和普通进程的调度策略是不同的；<span lang=EN-US>rt_priority</span>只对<span
+class=GramE>实时进程</span>有意义，它是实时进程调度的依据。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程的调度策略有三种，如表<span
+lang=EN-US>4.3</span>所示。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.3<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>进程调度的策略<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=201 valign=top style='width:120.45pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>名称<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=202 valign=top style='width:121.05pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=201 valign=top style='width:120.75pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>适用范围<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=201 valign=top style='width:120.45pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>SCHED_OTHER<o:p></o:p></span></p>
+  </td>
+  <td width=202 valign=top style='width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>其他调度<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=201 valign=top style='width:120.75pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>普通进程<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=201 valign=top style='width:120.45pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>SCHED_FIFO<o:p></o:p></span></p>
+  </td>
+  <td width=202 valign=top style='width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>先来先服务调度<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=201 rowspan=2 valign=top style='width:120.75pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  class=GramE><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>实时进程</span></span><span lang=EN-US style='font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:19.55pt'>
+  <td width=201 valign=top style='width:120.45pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:19.55pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>SCHED_RR<o:p></o:p></span></p>
+  </td>
+  <td width=202 valign=top style='width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:19.55pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>时间片轮转调度<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>只有<span lang=EN-US>root</span>用户能通过<span
+lang=EN-US>sched_setscheduler</span>（）系统调用来改变调度策略。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>3 .</span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>标识符（<span lang=EN-US>Identifiers</span>）<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>每个进程有进程标识符、用户标识符、组标识符，如表<span
+lang=EN-US>4.4</span>所示。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>不管对内核还是普通用户来说，怎么用一种简单的方式识别不同的进程呢？这就引入了进程标识符（<span
+lang=EN-US>PID</span>：<span lang=EN-US>process identifier</span>），每个进程都有一个唯一的标识符，内核通过这个标识符来识别不同的进程，同时，进程标识符<span
+lang=EN-US>PID</span>也是内核提供给用户程序的接口，用户程序通过<span lang=EN-US>PID</span><span
+class=GramE>对进程</span>发号施令。</span><span lang=EN-US>PID</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是</span><span lang=EN-US>32</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>位的无符号整数，它被顺序编号：新创建进程的</span><span
+lang=EN-US>PID</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>通常是前一个进程的</span><span lang=EN-US>PID</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>加</span><span lang=EN-US>1</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。然而，为了与</span><span
+lang=EN-US>16</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>位硬件平台的传统</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统保持兼容，在</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>上允许的最大</span><span lang=EN-US>PID</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号是</span><span lang=EN-US>32767</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，当内核在系统中创建第</span><span lang=EN-US>32768</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个进程时，就必须重新开始使用已闲置的</span><span lang=EN-US>PID</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.4<span style='mso-tab-count:1'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>各种标识符<span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>域名<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>含义<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Pid<o:p></o:p></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Uid</span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>、<span lang=EN-US>gid<o:p></o:p></span></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>用户标识符、组标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Euid</span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>、<span lang=EN-US>egid<o:p></o:p></span></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>有效用户标识符、有效组标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Suid</span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>、<span lang=EN-US>sgid<o:p></o:p></span></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>备份用户标识符、备份组标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=291 valign=top style='width:174.6pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Fsuid</span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>、<span lang=EN-US>fsgid<o:p></o:p></span></span></p>
+  </td>
+  <td width=332 valign=top style='width:199.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>文件系统用户标识符、文件系统组标识符<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>另外，每个进程都属于某个用户组。<span
+lang=EN-US>task_struct</span>结构中定义有用户标识符和组标识符。它们同样是简单的数字，这两种标识符用于系统的安全控制。系统通过这两种标识符控制进程对系统中文件和设备的访问，其它几个标识符将在文件系统中讨论。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>4. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>进程通信有关信息（<span lang=EN-US>IPC</span>：<span
+lang=EN-US>Inter_Process Communication</span>）<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>为了使进程能在同一项任务上协调工作，进程之间必须能进行通信即交流数据。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>Linux</span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>支持多种不同形式的通信机制。它支持典型的<span
+lang=EN-US>Unix </span>通信机制（<span lang=EN-US>IPC Mechanisms</span>）：信号（<span
+lang=EN-US>Signals</span>）、管道（<span lang=EN-US>Pipes</span>），也支持<span
+lang=EN-US>System V </span>通信机制：共享内存（<span lang=EN-US>Shared Memory</span>）、信号量和消息队列（<span
+lang=EN-US>Message Queues</span>）<span lang=EN-US>,</span>如表<span lang=EN-US>4.5</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.5<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span></span>进程通信有关信息<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>域名<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>含义<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Spinlock_t sigmask_lock<o:p></o:p></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>信号掩码的自旋锁<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.35pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Long blocked<o:p></o:p></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>信号掩码<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct signal<span style='mso-spacerun:yes'>&nbsp;
+  </span>*sig<o:p></o:p></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>信号处理函数<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct sem_undo *semundo<o:p></o:p></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>为避免死锁而在信号量上设置的取消操作<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=301 valign=top style='width:180.55pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct sem_queue *semsleeping<o:p></o:p></span></p>
+  </td>
+  <td width=330 valign=top style='width:197.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>与信号量操作相关的等待队列<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>这些域的具体含义将在进程通信一章进行讨论。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>5. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>进程链接信息（<span lang=EN-US>Links</span>）<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>程序创建的进程具有父<span
+lang=EN-US>/</span>子关系。因为一个进程能创建几个子进程，而子进程之间有兄弟关系，在<span lang=EN-US>task_struct</span>结构中有<span
+class=GramE>几个域来表示</span>这种关系。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>在<span
+lang=EN-US>Linux</span>系统中，除了初始化进程<span lang=EN-US>init</span>，其他进程都有一个父进程（<span
+lang=EN-US>parent process</span>）或称为双亲进程。可以通过<span lang=EN-US>fork</span>（）或<span
+lang=EN-US>clone()</span>系统调用来创建子进程，除了进程标识符（<span lang=EN-US>PID</span>）等必要的信息外，子进程的<span
+lang=EN-US>task_struct</span>结构中的绝大部分的信息都是从父进程中拷贝，或说“克隆”过来的。系统有必要记录这种“亲属”关系，使进程之间的协作更加方便，例如父进程给子进程发送杀死（<span
+lang=EN-US>kill</span>）信号、父子进程通信等，就可以用这种关系很方便地实现。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>每个进程的<span
+lang=EN-US>task_struct</span>结构有许多指针，通过这些指针，系统中所有进程的<span lang=EN-US>task_struct</span>结构就构成了一棵进程树，这棵进程树的根就是初始化进程<span
+lang=EN-US>init</span>的<span lang=EN-US>task_struct</span>结构（<span lang=EN-US>init</span>进程是<span
+lang=EN-US>Linux</span>内核建立起来后人为创建的一个进程，是所有进程的祖先进程）。表<span lang=EN-US>4.6</span>是进程所有的链接信息。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.6<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>进程链接信息<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>名称<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>英文解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>中文解释<span lang=EN-US> [</span>指向哪个进程<span lang=EN-US>]<o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>p_opptr<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Original parent<o:p></o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>祖先<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>p_pptr<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Parent<o:p></o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>父进程<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>p_cptr<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Child<o:p></o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>子进程<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>p_ysptr<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Younger sibling<o:p></o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  class=GramE><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>弟</span></span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>进程<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>p_osptr<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Older sibling<o:p></o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  class=GramE><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>兄进程</span></span><span lang=EN-US style='font-family:
+  宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Pidhash_next</span><span style='font-family:宋体;
+  mso-hansi-font-family:"Times New Roman";mso-font-kerning:0pt'>、<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Pidhash_pprev<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程在哈希表中的链接<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Next_task</span><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";mso-font-kerning:0pt'>、<span lang=EN-US> prev_task<o:p></o:p></span></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程在双向循环链表中的链接<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=196 valign=top style='width:117.35pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Run_list<o:p></o:p></span></p>
+  </td>
+  <td width=215 valign=top style='width:129.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=253 valign=top style='width:151.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>运行队列的链表<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>6. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>时间和定时器信息（<span lang=EN-US>Times and Timers</span>）<span
+lang=EN-US> <o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>一个进程从创建到终止叫做该进程的生存期（<span
+lang=EN-US>lifetime</span>）。进程在其生存期内使用<span lang=EN-US>CPU</span>的时间，内核都要进行记录，以便进行统计、计费等有关操作。进程耗费<span
+lang=EN-US>CPU</span>的时间由两部分组成：一是在用户模式（或称为用户态）下耗费的时间、一是在系统模式（或称为系统态）下耗费的时间。每个<b
+style='mso-bidi-font-weight:normal'>时钟滴答</b>，也就是每个时钟中断，内核都要更新当前进程耗费<span
+lang=EN-US>CPU</span>的时间信息。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>“时间”对操作系统是极其重要的
+。读者可能了解计算机时间的有关知识，例如<span lang=EN-US>8353/8254</span>这些物理器件，<span lang=EN-US>INT
+08</span>、<span lang=EN-US>INT <st1:chmetcnv UnitName="C" SourceValue="1"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on">1C</st1:chmetcnv></span>等时钟中断等，可能有过编程序时截获时钟中断的成就感，不管怎样，下一章我们将用较大的篇幅尽可能向读者解释清楚操作系统怎样建立完整的时间机制、并在这种机制的激励下进行调度等活动。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>建立了“时间”的概念，“定时”就是轻而易举的了，无非是判断系统时间是否到达某个时刻，然后执行相关的操作而已。<span
+lang=EN-US>Linux</span>提供了许多种定时方式，用户可以灵活使用这些方式来为自己的程序定时。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.7</span>是和时间有关的域，上面所说的<span lang=EN-US>counter</span>是<span
+class=GramE>指进程</span>剩余的<span lang=EN-US>CPU</span>时间片，也和时间有关，所以这里我们再次提及它。表<span
+lang=EN-US>4.8</span>是进程的所有定时器。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>表<span lang=EN-US>4.7<span
+style='mso-spacerun:yes'>&nbsp; </span><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>与时间有关的域<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=263 valign=top style='width:157.85pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>域名<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=264 valign=top style='width:158.2pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>含义<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=263 valign=top style='width:157.85pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Start_time<o:p></o:p></span></p>
+  </td>
+  <td width=264 valign=top style='width:158.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程创建时间<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=263 valign=top style='width:157.85pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Per_cpu_utime<o:p></o:p></span></p>
+  </td>
+  <td width=264 valign=top style='width:158.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程在某个<span lang=EN-US>CPU</span>上运行时在用户态下耗费的时间<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.1pt'>
+  <td width=263 valign=top style='width:157.85pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Per_cpu_stime<o:p></o:p></span></p>
+  </td>
+  <td width=264 valign=top style='width:158.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.1pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程在某个<span lang=EN-US>CPU</span>上运行时在系统态下耗费的时间<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=263 valign=top style='width:157.85pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Counter<o:p></o:p></span></p>
+  </td>
+  <td width=264 valign=top style='width:158.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程剩余的时间片<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>表<span lang=EN-US>4.8<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>进程的所有定时器<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=154 style='width:92.4pt;border:solid black 1.0pt;mso-border-top-alt:
+  1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:.5pt;mso-border-right-alt:
+  .5pt;mso-border-color-alt:black;mso-border-style-alt:solid;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>定时器类型<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=102 style='width:60.95pt;border:solid black 1.0pt;border-left:none;
+  mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 style='width:126.95pt;border:solid black 1.0pt;border-left:
+  none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:solid black .5pt;
+  mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:
+  22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>什么时候更新<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 valign=top style='width:127.0pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>用来表示此种定时器的域<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=154 rowspan=3 style='width:92.4pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>ITIMER_REAL<o:p></o:p></span></p>
+  </td>
+  <td width=102 rowspan=3 style='width:60.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>实时定时器<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 rowspan=3 style='width:126.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>实时更新，即不论该进程是否运行<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_real_value<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_real_incr<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:24.65pt'>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:24.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>real_timer<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=154 rowspan=2 style='width:92.4pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>ITIMER_VIRTUAL<o:p></o:p></span></p>
+  </td>
+  <td width=102 rowspan=2 style='width:60.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>虚拟定时器<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 rowspan=2 style='width:126.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>只在进程运行于用户态时更新<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_virt_value<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_virt_incr<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=154 rowspan=2 style='width:92.4pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>ITIMER_PROF<o:p></o:p></span></p>
+  </td>
+  <td width=102 rowspan=2 style='width:60.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>概况定时器<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 rowspan=2 style='width:126.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程运行于用户态和系统态时更新<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_prof_value<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=212 valign=top style='width:127.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>it_prof_incr<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程有三种类型的定时器：实时定时器、虚拟定时器和概况定时器。这三种定时器的特征共有三个：到期时间、定时间隔、要触发的事件。到期时间就是定时器到什么时候完成定时操作，从而触发相应的事件；定时间隔就是两次定时操作的时间间隔，它决定了定时操作是否继续进行，如果定时间隔大于<span
+lang=EN-US>0</span>，则在定时器到期时，该定时器的到期时间被重新赋值，使定时操作继续进行下去，直到进程结束或停止使用定时器，只不过对不同的定时器，到期时间的重新赋值操作是不同的。在表<span
+lang=EN-US>4.8</span>中，每个定时器都有<span class=GramE>两个域来表示</span>到期时间和定时间隔：<span
+lang=EN-US>value</span>和<span lang=EN-US>incr</span>，二者的单位都是时钟滴答，和<span
+lang=EN-US>jiffies</span>的单位是一致的，<span lang=EN-US>Linux</span>所有的时间应用都建立在<span
+lang=EN-US>jiffies</span>之上。虚拟定时器和概况定时器到期时由内核发送相应的信号，而实时定时器比较特殊，它由内核机制提供支持，我们将在后面讨论这个问题。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>每个时钟中断，当前进程所有和时间有关的信息都要更新：
+当前进程耗费的<span lang=EN-US>CPU</span>时间要更新，以便于最后的计费；时间片计数器<span lang=EN-US>counter</span>要更新，如果<span
+lang=EN-US>counter&lt;=0</span>，则要执行调度程序；进程申请的延时要更新，如果延时时间到了，则唤醒该进程；所有的定时器都要更新，<span
+lang=EN-US>Linux</span>内核检测这些定时器是否到期，如果到期，则执行相应的操作。在这里，“更新”的具体操作是不同的：对<span
+lang=EN-US>counter</span>，内核要对它减值，而对于所有的定时器，就是检测它的值，内核把系统当前时间和其到期时间作一比较，如果到期时间小于系统时间，则表示该定时器到期。但为了方便，我们把这些操作一概称为“更新”，请读者注意。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>请特别注意上面三个定时器的更新时间。实时定时器不管其所属的进程是否运行都要更新，所以，时钟中断来临时，系统中所有进程的实时定时器都被更新，如果有多个进程的实时定时器到期，则内核要一一处理这些定时器所触发的事件。而虚拟定时器和概况定时器只在进程运行时更新，所以，时钟中断来临时，只有当前进程的概况定时器得到更新，如果当前进程运行于用户态，则其虚拟定时器也得到更新。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>此外，<span lang=EN-US>Linux</span>内核对这三种定时器的处理是不同的，虚拟定时器和概况定时器到期时，内核向当前进程发送相应的信号：<span
+lang=EN-US>SIGVTALRM<span style='mso-spacerun:yes'>&nbsp; </span></span>、<span
+lang=EN-US>SIGPROF </span>；而实时定时器要执行的操作由<span lang=EN-US>real_timer</span>决定，<span
+lang=EN-US>real_time</span>是<span lang=EN-US>timer_list</span>类型的变量（定义：<span
+lang=EN-US>struct timer_list real_timer</span>），其中容纳了实时定时器的到期时间、定时间隔等信息，我们将在下一章详细讨论这些内容。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>7. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>文件系统信息（<span lang=EN-US>File System</span>）<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程可以打开或关闭文件，文件属于系统资源，<span
+lang=EN-US>Linux</span>内核要<span class=GramE>对进程</span>使用文件的情况进行记录。<span
+lang=EN-US>task_struct</span>结构中有两个数据结构用于描述进程与文件相关的信息。其中，<span lang=EN-US>fs_struct</span>中描述了两个<span
+lang=EN-US>VFS</span>索引节点（<span lang=EN-US>VFS inode</span>），这两个索引节点叫做<span
+lang=EN-US>root</span>和<span lang=EN-US>pwd</span>，分别指向进程的可执行<span class=GramE>映象</span>所对应的根目录（<span
+lang=EN-US>home directory</span>）和当前目录或工作目录。<span lang=EN-US>file_struct</span>结构用来记录了进程打开的文件的描述符（<span
+lang=EN-US>descriptor</span>）。如表<span lang=EN-US>4.9</span>所示。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>表<span lang=EN-US>4.9<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>与文件系统相关的域<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:16.35pt'>
+  <td width=334 valign=top style='width:200.4pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:16.35pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>定义形式<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=334 valign=top style='width:200.4pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:16.35pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=334 valign=top style='width:200.4pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Sruct fs_struct *fs<o:p></o:p></span></p>
+  </td>
+  <td width=334 valign=top style='width:200.4pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程的可执行<span class=GramE>映象</span>所在的文件系统<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=334 valign=top style='width:200.4pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct files_struct *files<o:p></o:p></span></p>
+  </td>
+  <td width=334 valign=top style='width:200.4pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>进程打开的文件<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>在文件系统中，每个<span
+lang=EN-US>VFS</span>索引节点唯一描述一个文件或目录，同时该节点也是向更低层的文件系统提供的统一的接口。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>8. </span></b><b style='mso-bidi-font-weight:
+normal'><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>虚拟内存信息（<span lang=EN-US>Virtual Memory</span>）<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>除了内核线程（<span
+lang=EN-US>kernel thread</span>），每个进程都拥有自己的地址空间（也叫虚拟空间），用</span><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+mso-font-kerning:0pt'>mm_struct</span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";mso-font-kerning:0pt'>来描述<span style='color:black'>。另外<span
+lang=EN-US>Linux2.4</span>还引入了另外一个域</span><span lang=EN-US>active_mm<span
+style='color:black'>,</span></span><span style='color:black'>这是为内核线程而引入。因为内核线程没有自己的地址空间，为了让内核线程与普通进程具有统一的上下文切换方式，当内核线程进行上下文切换时，让切换进来的线程的</span><span
+lang=EN-US>active_mm<span style='color:black'> </span></span><span
+style='color:black'>指向刚被调度出去的进程的</span><span lang=EN-US>active_mm</span><span
+style='color:black'>（如果进程的<span lang=EN-US>mm</span><span class=GramE>域不为</span>空，则其</span><span
+lang=EN-US>active_mm</span><span class=GramE>域与</span><span lang=EN-US>mm</span>域相同）<span
+style='color:black'>。内存信息如表<span lang=EN-US>4.10</span>所示。<span lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>表<span lang=EN-US>4.10<span
+style='mso-tab-count:1'>&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span></span>虚拟内存描述信息<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:24.35pt'>
+  <td width=314 valign=top style='width:188.2pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:24.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>定义形式<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=314 valign=top style='width:188.2pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:24.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>解释<span lang=EN-US> <o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='page-break-inside:avoid;height:27.2pt'>
+  <td width=314 valign=top style='width:188.2pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct mm_struct *mm<o:p></o:p></span></p>
+  </td>
+  <td width=314 valign=top style='width:188.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:27.2pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>描述进程的地址空间<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:26.35pt'>
+  <td width=314 valign=top style='width:188.2pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct mm_struct *active_mm<o:p></o:p></span></p>
+  </td>
+  <td width=314 valign=top style='width:188.2pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:26.35pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>内核线程所借用的地址空间<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:
+0pt'>9</span></b><b style='mso-bidi-font-weight:normal'><span style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>．页面管理信息<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>当物理内存不足时，<span
+lang=EN-US>Linux</span>内存管理子系统需要把内存中的部分页面交换到外存，其交换是以页为单位的。有关页面的描述信息如表<span
+lang=EN-US>4.11</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.11<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>页面管理信息<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:.5pt solid windowtext;
+ mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-family:宋体;
+  mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>定义形式<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>Int swappable<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>进程占用的内存页面是否可换出<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>Unsigned long
+  min_flat,maj_flt,nswap<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>进程累计的次（<span lang=EN-US>minor</span>）缺页次数、主<span
+  lang=EN-US>(major)</span>次数及累计换出、换入页面数<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>Unsigned long
+  cmin_flat,cmaj_flt,cnswap<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'>本进程作为祖先进程，其所有层次子进程的累计的次（<span
+  lang=EN-US>minor</span>）缺页次数、主<span lang=EN-US>(major)</span>次数及累计换出、换入页面数<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:
+0pt'>10</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>．对称多处理机（<span lang=EN-US>SMP</span>）信息<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>Linux2.4</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>对<span lang=EN-US>SMP</span>进行了全面的支持，表<span lang=EN-US>4.12</span>是与多处理机相关的几个域。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>表<span lang=EN-US>4.12 </span>与多处理机相关的域<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:.5pt solid windowtext;
+ mso-border-insidev:.5pt solid windowtext'>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+  </span></span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+  font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+  mso-font-kerning:0pt'>定义形式<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;mso-layout-grid-align:
+  none;text-autospace:none'><span style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+  mso-font-kerning:0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>Int has_cpu<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-family:宋体;
+  mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程是否当前拥有<span
+  lang=EN-US>CPU<o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>Int processor<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-family:宋体;
+  mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>进程当前正在使用的<span
+  lang=EN-US>CPU<o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=349 valign=top style='width:209.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span>Int lock_depth<o:p></o:p></span></p>
+  </td>
+  <td width=349 valign=top style='width:209.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+  none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+  "Times New Roman";color:black;mso-font-kerning:0pt'><span
+  style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-family:宋体;
+  mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>上下文切换时内核锁的深度<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>11</span><span style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>．<b style='mso-bidi-font-weight:
+normal'> 和处理器相关的环境（上下文）信息（<span lang=EN-US>Processor Specific Context</span>）<span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>这里要特别注意标题：和“<b
+style='mso-bidi-font-weight:normal'>处理器</b>”相关的环境信息。进程作为一个执行环境的综合，当系统调度某个进程执行，即为该进程建立完整的环境时，处理器（<span
+lang=EN-US>processor</span>）的寄存器、堆栈等是必不可少的。因为不同的处理器对内部寄存器和堆栈的定义不尽相同，所以叫做“和处理器相关的环境”，也叫做“<b
+style='mso-bidi-font-weight:normal'>处理机状态</b>”。当进程暂时停止运行时，处理机状态必须保存在进程的<span
+lang=EN-US>task_struct</span>结构中，当进程被调度重新运行时再从中恢复这些环境，也就是恢复这些寄存器和堆栈的值。处理机信息如表<span
+lang=EN-US>4.13</span>所示。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>表<span
+lang=EN-US>4.13<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>与处理机相关的信息<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse;border:none;mso-border-top-alt:
+ solid black 1.0pt;mso-border-left-alt:solid black 1.0pt;mso-border-right-alt:
+ solid black 1.0pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='page-break-inside:avoid;height:22.65pt'>
+  <td width=328 valign=top style='width:197.0pt;border:solid black 1.0pt;
+  mso-border-top-alt:1.0pt;mso-border-left-alt:1.0pt;mso-border-bottom-alt:
+  .5pt;mso-border-right-alt:.5pt;mso-border-color-alt:black;mso-border-style-alt:
+  solid;padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>定义形式<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=329 valign=top style='width:197.25pt;border:solid black 1.0pt;
+  border-left:none;mso-border-top-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>解释<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes;page-break-inside:avoid;height:22.65pt'>
+  <td width=328 valign=top style='width:197.0pt;border:solid black 1.0pt;
+  border-top:none;mso-border-left-alt:solid black 1.0pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  mso-font-kerning:0pt'>Struct thread_struct *tss<o:p></o:p></span></p>
+  </td>
+  <td width=329 valign=top style='width:197.25pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  mso-border-bottom-alt:solid black .5pt;mso-border-right-alt:solid black .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:22.65pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+  0pt'>任务切换状态<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+mso-font-kerning:0pt'>12.</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";mso-font-kerning:
+0pt'>其它<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>（<span lang=EN-US>1</span>）<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp; </span>struct wait_queue *wait_chldexit<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>在进程结束时<span lang=EN-US>,</span>或发出系统调用<span lang=EN-US>wait4</span>时，为了等待子进程的结束，而将自己（父进程）睡眠在该等待队列上，设置状态标志为<span
+lang=EN-US>TASK_INTERRUPTIBLE</span>，并且把控制权转给调度程序。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>（<span lang=EN-US>2</span>）<span lang=EN-US>Struct rlimit
+rlim[RLIM_NLIMITS];<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>每一个进程可以通过系统调用<span lang=EN-US>setlimit</span>和<span
+lang=EN-US>getlimit</span>来限制它资源的使用。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>（<span lang=EN-US>3</span>）<span lang=EN-US>Int
+exit_code exit_signal;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>程序的返回代码以及程序异常终止产生的信号，这些数据由父进程（子进程完成后）<span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span>轮流查询。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>（<span lang=EN-US>4</span>）<span lang=EN-US>Char
+comm[16]<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>这个域存储进程执行的程序的名字，这个名字用在调试中。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>（<span lang=EN-US>5</span>）<span lang=EN-US>Unsigned
+long personality;<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>Linux</span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>可以运行<span lang=EN-US>X86</span>平台上其它<span lang=EN-US>Unix</span>操作系统生成的符合<span
+lang=EN-US>iBCS2</span>标准的程序<span lang=EN-US>, personality</span>进一步描述进程执行的程序属于何种<span
+lang=EN-US>Unix</span>平台的“个性”信息。通常有<span lang=EN-US>PER_Linux,PER_Linux_32BIT,PER_Linux_EM86,PER_SVR4,PER_SVR3,PER_SCOSVR3,PER_WYSEV386,PER_ISCR4,PER_BSD,PER_XENIX</span>和<span
+lang=EN-US>PER_MASK</span>等，参见<span lang=EN-US>include</span>／<span lang=EN-US>Linux/personality.h&gt;</span>。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt;
+mso-outline-level:1;mso-layout-grid-align:none;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>(6) <span class=GramE>int</span> did_exec:1;<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:20.4pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>按<span
+lang=EN-US>POSIX</span>要求设计的布尔量，区分进程正在执行老程序代码，还是用系统调用<span lang=EN-US>execve</span>（）装入一个新的程序。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>（<span
+lang=EN-US>7</span>）<span lang=EN-US>struct linux_binfmt *binfmt<o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>指向进程所属的全局执行文件格式结构，共有<span lang=EN-US>a.out</span>、<span
+lang=EN-US>script</span>、<span lang=EN-US>elf</span>、<span lang=EN-US>java</span>等四种。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-indent:23.8pt;
+mso-layout-grid-align:none;text-autospace:none'><span style='font-family:宋体;
+mso-hansi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>综上所述，我们<span
+class=GramE>对进程</span>的<span lang=EN-US>task_struct</span>结构进行了归类讨论<span
+lang=EN-US>,</span>还有一些<span class=GramE>域没有</span>涉及到，在第六<span class=GramE>章进程</span>的创建与执行一节几乎涉及到所有的域，在那里可以对很多域有更深入一步的理解。<span
+lang=EN-US>task_struct</span>结构是进程实体的核心，<span lang=EN-US>Linux</span>内核通过该结构来控制进程：首先通过其中的调度信息决定该进程是否运行；当该进程运行时，根据其中保存的处理机状态信息来恢复进程运行现场，然后根据虚拟内存信息，找到程序的正文和数据；通过其中的通信信息和其他进程实现同步、通信等合作。几乎所有的操作都要依赖该结构，所以，<span
+lang=EN-US>task_struct</span>结构是一个进程存在的唯一标志。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:16 GMT -->
+</html>

@@ -1,0 +1,808 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.6.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:39 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="1.6.3.files/filelist.html">
+<title>从何处开始阅读源代码</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-14T02:11:00Z</o:Created>
+  <o:LastSaved>2007-08-14T02:11:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>346</o:Words>
+  <o:Characters>1978</o:Characters>
+  <o:Lines>16</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2320</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+ color:black;mso-font-kerning:0pt'>1.6.3</span></st1:chsdate><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>从何处开始阅读源代码</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>像</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>内核这样庞大而复杂的程序看起来确实让人望而生畏，它<span class=GramE>象</span>一个很大的球，没有起点和终点。在读源代码的过程中，你会遇到这样的情况，当读到内核的某一部分时又会涉及到其它更多的文件，当返回到原来的地方想继续往下读时，又忘了原来读的内容。在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>internet</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>上，很多人为此付出了很大的努力，制作出了源代码导航器，这为源代码阅读提供了良好的条件，站点为：</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><a href="http://lxr.linux.no/source"><span
+style='font-family:"Times New Roman";mso-font-kerning:1.0pt'>http://lxr.linux.no/source</span></a></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，下面给出阅读源代码的一些线索。</span><span lang=EN-US
+style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>1. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>系统的启动和初始化</span><span
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>在基于</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>Intel</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>的系统上，当</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> loadlin.exe </span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>或</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'> LILO</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>把内核装入到内存并把控制权传递给内核时，内核开始启动。关于这一部分，看</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>arch/i386/kernel/head.S </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>head.S</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>进行特定结构的设置，然后跳转到</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>init/main.c</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>的</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>main()</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>例程。</span><span lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>2. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>内存管理</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>内存管理的代码主要在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>/mm</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>，但特定结构的代码在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>arch/*/mm</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>。缺页中断处理的代码在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>mm/memory.c
+</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>，而内存映射和页高速缓存器的代码在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>mm/filemap.c</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>。缓冲器高速缓存是在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>mm/buffer.c
+</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>中实现，而交换高速缓存是在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>mm/swap_state.c </span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>和</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'> mm/swapfile.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中实现。</span><span lang=EN-US style='color:
+black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>3. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>内核</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>内核中，特定结构的代码在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>arch/*/kernel</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>，调度程序在</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>kernel/sched.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>fork</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>的代码在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>kernel/fork.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>task_struct
+</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>数据结构在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> include/linux/sched.h</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>中。</span><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>4.<span style='mso-spacerun:yes'>&nbsp; </span>PCI<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>PCI </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>伪驱动程序在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> drivers/pci/pci.c </span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>，其定义在</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>include/linux/pci.h</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>。每一种结构都有一些特定的</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> PCI BIOS </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>代码，</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> Intel</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>的在</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>arch/alpha/kernel/bios32.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>5.<span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>进程间通信</span><span lang=EN-US
+style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>所有</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>System
+V IPC </span><span style='font-family:宋体;mso-ascii-font-family:Arial;
+mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>对象权限都包含在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> ipc_perm </span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>数据结构中，这可以在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp; </span>include/linux/ipc.h</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中找到。</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>
+System V </span><span style='font-family:宋体;mso-ascii-font-family:Arial;
+mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>消息是在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> ipc/msg.c</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>中实现</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>, </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>共享内存在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> ipc/shm.c</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中，信号量在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;
+</span>ipc/sem.c</span><span style='font-family:宋体;mso-ascii-font-family:Arial;
+mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中，管道在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> ipc/pipe.c</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>中实现。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>6. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中断处理</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>内核的中断处理代码是几乎所有的微处理器所特有的。中断处理代码在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;
+</span>arch/i386/kernel/irq.c</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中，其定义子在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> include/asm-i386/irq.h</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>7. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>设备驱动程序</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>内核源代码的很多行是设备驱动程序。</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>Linux</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>设备驱动程序的所有源代码都保存在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>/driver</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>，根据类型可进一步划分为：</span><span style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'> <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/block<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>块设备驱动程序如</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>ide(</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>ide.c)</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>。如果你想看包含文件系统的所有设备是如何被初始化的，你应当看</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>drivers/block/genhd.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中的</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>device_setup()</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>device_setup()</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>不仅初始化了硬盘，当一个网络安装</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>nfs</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>文件系统时，它也初始化网络。<span
+class=GramE>块设备</span>包含了基于</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>IDE</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>和</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>SCSI</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>的设备。</span><span lang=EN-US style='color:
+black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/char<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>这是看字符设备</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>(</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>如</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>tty</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>，串口及鼠标等</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>)</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>驱动程序的地方。</span><span lang=EN-US
+style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/cdrom<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Linux</span><span style='font-family:宋体;mso-ascii-font-family:Arial;
+mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>的所有</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>CDROM</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>代码都在这儿，如在这儿可以找到</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>Soundblaster
+CDROM</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>的驱动程序。注意</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>ide CD</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>的驱动程序是</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> ide-cd.c</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>，放在</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>drivers/block</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>SCSI
+CD</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>的驱动程序是</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>scsi.c</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>，放在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>drivers/scsi</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>。</span><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/pci<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>这是</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>PCI</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>伪驱动程序的源代码，在这里可以看到</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>PCI</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>子系统是如何被映射和初始化的。</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/<span class=GramE>scsi</span><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>在这里可以找到所有的</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>SCSI</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>代码及</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>Linux</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>所支持的</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>scsi</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>设备的所有设备驱动程序。</span><span lang=EN-US
+style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/net<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>在这里可以找到网络设备驱动程序，如</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>DECChip 21040 PCI </span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>以太网驱动程序在</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>tulip.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>/sound<o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>这是所有声卡驱动程序的所在地。</span><span lang=EN-US
+style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>8. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>文件系统</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span>EXT2 </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>文件系统的源代码全部在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp; </span>fs/ext2/ </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>目录下，而其数据结构的定义在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'><span style='mso-spacerun:yes'>&nbsp;
+</span>include/linux/ext2_fs.h, ext2_fs_i.h </span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>及</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>
+ext2_fs_sb.h</span><span style='font-family:宋体;mso-ascii-font-family:Arial;
+mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中。</span><span
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>虚拟文件系统的数据结构在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> include/linux/fs.h</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中描述，而代码是在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>fs/*</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中。</span><span
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'> </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>缓冲区高速缓存与更新内核的守护进程的实现是在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'> fs/buffer.c</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>中</span><span style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'> </span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>8. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>网络</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>网络代码保存在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>/net</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>中，大部分的</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>include</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>文件在</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>include/net</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>下，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>BSD</span><span
+class=GramE><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>套节口代码</span></span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>net/socket.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>IP
+</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>第</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>4</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>版本的<span
+class=GramE>套节口代码</span>在</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>net/ipv4/af_inet.c</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>。一般的协议支持代码</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>(</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>包括</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>sk_buff </span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>处理例程</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>)</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>在</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>net/core</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>下，</span><span lang=EN-US style='font-family:
+Arial;mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>TCP/IP</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>联网代码在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>net/ipv4</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>下，网络设备驱动程序在</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>/drivers/net</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>下。</span><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='color:black;mso-font-kerning:
+0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-outline-level:1;
+mso-layout-grid-align:none;text-autospace:none'><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>9. </span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>模块</span><span
+lang=EN-US style='color:black;mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=left style='text-align:left;mso-layout-grid-align:
+none;text-autospace:none'><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>内核模块的代码部分在内核中，部分在模块包中，前者全部在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>kernel/modules.c</span><span style='font-family:宋体;
+mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:
+0pt'>中，而数据结构和内核守护进程</span><span lang=EN-US style='font-family:Arial;mso-bidi-font-family:
+"Times New Roman";color:black;mso-font-kerning:0pt'>kerneld</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>的信息分别在</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>include/linux/module.h</span><span style='font-family:
+宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;color:black;
+mso-font-kerning:0pt'>和</span><span lang=EN-US style='font-family:Arial;
+mso-bidi-font-family:"Times New Roman";color:black;mso-font-kerning:0pt'>include/linux/kerneld.h
+</span><span style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:
+Arial;color:black;mso-font-kerning:0pt'>中。如果你想看</span><span lang=EN-US
+style='font-family:Arial;mso-bidi-font-family:"Times New Roman";color:black;
+mso-font-kerning:0pt'>ELF</span><span style='font-family:宋体;mso-ascii-font-family:
+Arial;mso-hansi-font-family:Arial;color:black;mso-font-kerning:0pt'>目标文件的结构，它位于</span><span
+lang=EN-US style='font-family:Arial;mso-bidi-font-family:"Times New Roman";
+color:black;mso-font-kerning:0pt'>include/linux/elf.h</span><span
+style='font-family:宋体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
+color:black;mso-font-kerning:0pt'>中。</span><span lang=EN-US style='color:black;
+mso-font-kerning:0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗竴绔犺蛋杩沴inux/1.6.3.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 02:59:39 GMT -->
+</html>

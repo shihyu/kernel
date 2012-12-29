@@ -1,0 +1,399 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.8.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:22 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="4.8.2.files/filelist.html">
+<title>原子操作</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>2007-08-15T03:08:00Z</o:Created>
+  <o:LastSaved>2007-08-15T03:08:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>188</o:Words>
+  <o:Characters>1073</o:Characters>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1259</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoPlainText><st1:chsdate Year="1899" Month="12" Day="30"
+IsLunarDate="False" IsROCDate="False" w:st="on"><span lang=EN-US
+ style='mso-font-kerning:0pt'>4.8.2</span></st1:chsdate><span style='mso-font-kerning:
+0pt'>原子操作<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span></span><span style='mso-font-kerning:
+0pt'>避免干扰的最简单方法就是保证操作的原子性，即操作必须在一条单独的指令内执行。有两种类型的原子操作，即位<span class=GramE>图操作</span>和数学的加减操作。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span>1</span><span style='mso-font-kerning:
+0pt'>．位图操作<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>在内核的很多地方用到位图，例如内存管理中对空闲页的管理，位图还有一个广泛的用途就是简单的加锁，例如提供对打开设备的互斥访问。关于位图的操作函数如下：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>以下函数的参数中，<span lang=EN-US>addr</span>指向位图。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>void set_bit(int nr, volatile void *addr)</span><span
+style='mso-font-kerning:0pt'>：设置位图的第<span lang=EN-US>nr</span>位。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>void clear_bit(int nr, volatile void *addr): </span><span
+style='mso-font-kerning:0pt'>清位图的第<span lang=EN-US>nr</span>位<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>void change_bit(int nr, volatile void *addr): </span><span
+style='mso-font-kerning:0pt'>改变位图的第<span lang=EN-US>nr</span>位<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='margin-left:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>int test_and_set_bit(int nr, volatile void *addr):
+</span><span class=GramE><span style='mso-font-kerning:0pt'>设置第</span></span><span
+lang=EN-US style='mso-font-kerning:0pt'>nr</span><span style='mso-font-kerning:
+0pt'>位，并返回该<span class=GramE>位原来</span>的值，且两个操作是原子操作，不可分割。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='margin-left:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>int test_and_clear_bit(int nr, volatile void
+*addr): </span><span style='mso-font-kerning:0pt'>清第<span lang=EN-US>nr</span>为，并返回该<span
+class=GramE>位原来</span>的值，且两个操作是原子操作。<span lang=EN-US> <o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='margin-left:21.6pt'><span lang=EN-US
+style='mso-font-kerning:0pt'>int test_and_change_bit(int nr, volatile void
+*addr)</span><span style='mso-font-kerning:0pt'>：改变第<span lang=EN-US>nr</span>位，并返回该<span
+class=GramE>位原来</span>的值，且这两个操作是原子操作。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>这些操作利用了<span lang=EN-US>LOCK_PREFIX</span>宏，对于<span lang=EN-US>SMP</span>内核，该宏是总线锁指令的前缀，对于单<span
+lang=EN-US>CPU</span>这个宏不起任何作用。这就保证了在<span lang=EN-US>SMP</span>环境下访问的原子性。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText><span lang=EN-US style='mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;</span>2</span><span style='mso-font-kerning:
+0pt'>．算术操作<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span style='mso-font-kerning:
+0pt'>有时候位操作是不方便的，取而代之的是需要执行算术操作，即加、<span class=GramE>减操作</span>及加<span
+lang=EN-US>1</span>、减<span lang=EN-US>1</span>操作。典型的例子是很多数据结构中的引用计数域<span
+lang=EN-US>count</span>（如<span lang=EN-US>inode</span>结构）。这些操作的原子性是由<span
+lang=EN-US>atomic_t</span>数据类型和表<span lang=EN-US>4.14</span>中的函数保证的。<span
+lang=EN-US>atomic_t</span>的类型在<span lang=EN-US>include/ i386/atomic.h</span>定义如下：<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Courier New";color:black;mso-font-kerning:0pt'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span class=GramE>typedef</span>
+struct { volatile int counter; } atomic_t;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='text-indent:21.0pt'><span lang=EN-US
+style='mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoPlainText><span style='mso-font-kerning:0pt'>表<span lang=EN-US>4.14
+</span>原子操作<span lang=EN-US><o:p></o:p></span></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;border:none;border-right:solid windowtext 1.0pt;
+  mso-border-right-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>函数<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>说明<span
+  lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;border:none;border-top:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>atomic_read(v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border-top:solid windowtext 1.0pt;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:none;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>返回<span
+  lang=EN-US>*v</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>atomic_set(v,i)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>把<span
+  lang=EN-US>*v</span>设置成<span lang=EN-US>i</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_add(I,v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>给<span
+  lang=EN-US>*v</span>增加<span lang=EN-US>i</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_sub(I,v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>从<span
+  lang=EN-US>*v</span>中减去<span lang=EN-US>I</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_inc(v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>给<span
+  lang=EN-US>*v</span>加<span lang=EN-US>1</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_dec(v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>从<span
+  lang=EN-US>*v</span>中减去<span lang=EN-US>1<o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_dec_and_test(v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>从<span
+  lang=EN-US>*v</span>中减去<span lang=EN-US>1</span>，如果结果非空就返回<span lang=EN-US>1</span>；否则返回<span
+  lang=EN-US>0</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_inc_and_test_greater_zero(v)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>给<span
+  lang=EN-US>*v</span>加<span lang=EN-US>1</span>，如果结果为正就返回<span lang=EN-US>1</span>；否则就返回<span
+  lang=EN-US>0</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=324 valign=top style='width:194.4pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_clear_mask(mask,addr)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border:none;border-left:solid windowtext 1.0pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>清除由<span
+  lang=EN-US>mask</span>所指定的<span lang=EN-US>addr</span>中的所有位。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-lastrow:yes'>
+  <td width=324 valign=top style='width:194.4pt;border:none;border-bottom:solid windowtext 1.0pt;
+  mso-border-bottom-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman";
+  color:black'>Atomic_set_mask(mask,addr)<o:p></o:p></span></p>
+  </td>
+  <td width=414 valign=top style='width:248.4pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-bottom-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-family:宋体;mso-hansi-font-family:"Times New Roman";color:black'>设置由<span
+  lang=EN-US>mask</span>所指定的<span lang=EN-US>addr</span>中的所有位。<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗洓绔�%20杩涚▼鎻忚堪/4.8.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:22 GMT -->
+</html>

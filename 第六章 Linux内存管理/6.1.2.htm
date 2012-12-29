@@ -1,0 +1,848 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.1.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:31 GMT -->
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="6.1.2.files/filelist.xml">
+<link rel=Edit-Time-Data href="6.1.2.files/editdata.html">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>内核空间和用户空间</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chsdate" downloadurl=""/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="chmetcnv" downloadurl=""/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CLJ</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>CLJ</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>20</o:TotalTime>
+  <o:Created>2007-08-15T04:01:00Z</o:Created>
+  <o:LastSaved>2007-08-15T04:01:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>357</o:Words>
+  <o:Characters>2036</o:Characters>
+  <o:Lines>16</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2389</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="3074" style='mso-position-vertical:top'
+  fillcolor="white" stroke="f">
+  <v:fill color="white"/>
+  <v:stroke on="f"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='mso-outline-level:1'><st1:chsdate Year="1899"
+Month="12" Day="30" IsLunarDate="False" IsROCDate="False" w:st="on"><span
+ lang=EN-US>6.1.2</span></st1:chsdate><span lang=EN-US> </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内核空间和用户空间</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>从第二章我们知道，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>简化了分段机制，使得虚拟地址与线性地址总是一致，因此，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的虚拟地址空间也为</span><span lang=EN-US>0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>～</span><st1:chmetcnv UnitName="g" SourceValue="4"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on"><span
+ lang=EN-US>4G</span></st1:chmetcnv><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核将这</span><st1:chmetcnv UnitName="g"
+SourceValue="4" HasSpace="False" Negative="False" NumberType="1" TCSC="0"
+w:st="on"><span lang=EN-US>4G</span></st1:chmetcnv><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>字节的空间分为两部分。将最高的</span><st1:chmetcnv
+UnitName="g" SourceValue="1" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>1G</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>字节（从虚拟地址</span><span lang=EN-US>0xC0000000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>到</span><span lang=EN-US>0xFFFFFFFF</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>），供内核使用，称为“<b style='mso-bidi-font-weight:normal'>内核空间</b>”。而将较低的</span><st1:chmetcnv
+UnitName="g" SourceValue="3" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>3G</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>字节（从虚拟地址</span><span lang=EN-US>0x00000000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>到</span><span lang=EN-US>0xBFFFFFFF</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>），<span class=GramE>供各个</span>进程使用，称为“<b style='mso-bidi-font-weight:
+normal'>用户空间</b>）。因为每个进程可以通过系统调用进入内核，因此，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内核由系统内的所有进程共享。于是，从具体进程的角度来看，每个进程可以拥有</span><st1:chmetcnv
+UnitName="g" SourceValue="4" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>4G</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>字节的虚拟空间。图</span><span lang=EN-US> 6.3 </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>给出了进程虚拟空间示意图。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><!--[if gte vml 1]><v:rect id="_x0000_s1026"
+ style='position:absolute;left:0;text-align:left;margin-left:1in;margin-top:6.65pt;
+ width:267.75pt;height:25.5pt;z-index:-15'/><![endif]--><![if !vml]><span
+style='mso-ignore:vglayout;position:absolute;z-index:-15;left:0px;margin-left:
+95px;margin-top:8px;width:363px;height:40px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=363 height=40 bgcolor=white style='border:.75pt solid black;
+  vertical-align:top;background:white'><![endif]><![if !mso]><span
+  style='position:absolute;mso-ignore:vglayout;left:0pt;z-index:-15'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1026" style='padding:4.35pt 7.95pt 4.35pt 7.95pt'
+    class=shape>
+    <p class=MsoNormal align=center style='text-align:center'><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>虚拟内核空间（</span><span lang=EN-US>1GB</span><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>）</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+</table>
+
+</span><![endif]><span lang=EN-US><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:rect id="_x0000_s1027" style='position:absolute;
+ left:0;text-align:left;margin-left:1in;margin-top:24.6pt;width:52.5pt;
+ height:90.6pt;z-index:2'/><v:rect id="_x0000_s1030" style='position:absolute;
+ left:0;text-align:left;margin-left:292.2pt;margin-top:30.35pt;width:52.5pt;
+ height:90.65pt;z-index:5'/><v:rect id="_x0000_s1028" style='position:absolute;
+ left:0;text-align:left;margin-left:144.6pt;margin-top:26.7pt;width:52.5pt;
+ height:94.8pt;z-index:3'/><![endif]--><![if !vml]><span style='mso-ignore:
+vglayout'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=95 height=32></td>
+  <td width=76></td>
+  <td width=21></td>
+  <td width=76></td>
+  <td width=121></td>
+  <td width=76></td>
+ </tr>
+ <tr>
+  <td height=2></td>
+  <td rowspan=3 width=76 height=126 bgcolor=white style='border:.75pt solid black;
+  vertical-align:top;background:white'><![endif]><![if !mso]><span
+  style='position:absolute;mso-ignore:vglayout;left:0pt;z-index:2'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1027" style='padding:4.35pt 7.95pt 4.35pt 7.95pt'
+    class=shape>
+    <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进程</span><span lang=EN-US>1</span><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>的用户空间</span><span lang=EN-US>(3GB)</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+ <tr>
+  <td height=5></td>
+  <td></td>
+  <td rowspan=4 width=76 height=133 bgcolor=white style='border:.75pt solid black;
+  vertical-align:top;background:white'><![endif]><![if !mso]><span
+  style='position:absolute;mso-ignore:vglayout;left:0pt;z-index:3'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1028" style='padding:4.35pt 7.95pt 4.35pt 7.95pt'
+    class=shape>
+    <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进程</span><span lang=EN-US>2</span><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>的用户空间</span><span lang=EN-US>(3GB)</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+ <tr>
+  <td height=119></td>
+  <td></td>
+  <td></td>
+  <td rowspan=2 width=76 height=127 bgcolor=white style='border:.75pt solid black;
+  vertical-align:top;background:white'><![endif]><![if !mso]><span
+  style='position:absolute;mso-ignore:vglayout;left:0pt;z-index:5'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1030" style='padding:4.35pt 7.95pt 4.35pt 7.95pt'
+    class=shape>
+    <p class=MsoNormal><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+    mso-hansi-font-family:"Times New Roman"'>进程</span><span lang=EN-US>n</span><span
+    style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+    "Times New Roman"'>的用户空间</span><span lang=EN-US>(3GB)</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+ <tr>
+  <td height=8></td>
+ </tr>
+ <tr>
+  <td height=1></td>
+ </tr>
+</table>
+
+</span><![endif]><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><!--[if gte vml 1]><v:shapetype id="_x0000_t202"
+ coordsize="21600,21600" o:spt="202" path="m,l,21600r21600,l21600,xe">
+ <v:stroke joinstyle="miter"/>
+ <v:path gradientshapeok="t" o:connecttype="rect"/>
+</v:shapetype><v:shape id="_x0000_s1029" type="#_x0000_t202" style='position:absolute;
+ left:0;text-align:left;margin-left:217.95pt;margin-top:0;width:26.25pt;
+ height:34pt;text-indent:0;z-index:-12;mso-position-vertical:top' stroked="f">
+ <v:textbox style='mso-next-textbox:#_x0000_s1029'/>
+</v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout;position:
+absolute;z-index:-12;left:0px;margin-left:291px;margin-top:0px;width:39px;
+height:50px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=39 height=50 bgcolor=white style='vertical-align:top;background:
+  white'><![endif]><![if !mso]><span style='position:absolute;mso-ignore:vglayout;
+  left:0pt;z-index:-12'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div v:shape="_x0000_s1029" style='padding:3.6pt 7.2pt 3.6pt 7.2pt'
+    class=shape>
+    <p class=MsoNormal><span lang=EN-US style='font-family:Symbol;mso-ascii-font-family:
+    "Times New Roman";mso-hansi-font-family:"Times New Roman";mso-char-type:
+    symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:symbol;
+    mso-symbol-font-family:Symbol'>&frac14;</span></span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  </span><![endif]><![if !mso & !vml]>&nbsp;<![endif]><![if !vml]></td>
+ </tr>
+</table>
+
+</span><![endif]></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:147.0pt;mso-char-indent-count:14.0;
+mso-outline-level:1'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US>6.3<span
+style='mso-spacerun:yes'>&nbsp; </span>Linux </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程的虚拟空间</span></p>
+
+<p class=MsoNormal style='text-indent:10.5pt;mso-char-indent-count:1.0'><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:10.5pt;mso-char-indent-count:1.0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:10.5pt;mso-char-indent-count:1.0'><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>使用两级保护机制：</span><span lang=EN-US>0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>级供内核使用，</span><span lang=EN-US>3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>级供用户程序使用。从图中可以看出，每个进程有各自的私有用户空间（</span><span lang=EN-US>0</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>～</span><st1:chmetcnv UnitName="g" SourceValue="3"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on"><span
+ lang=EN-US>3G</span></st1:chmetcnv><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>），这个空间对系统中的其他进程是不可见的。最高的</span><span
+lang=EN-US>1GB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>字节虚拟内核空间则为所有进程以及内核所共享。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>1</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．虚拟内核空间到物理空间的映射</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核空间中存放的是内核代码和数据，<span class=GramE>而进程</span>的用户空间中存放的是用户程序的代码和数据。不管是内核空间还是用户空间，它们都处于虚拟空间中。读者会问，系统启动时，内核的代码和数据不是被装入到物理内存吗？它们为什么也处于虚拟内存中呢？这和编译程序有关，后面我们通过具体讨论就会明白这一点。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>虽然内核空间占据了每个虚拟空间中的最高</span><span
+lang=EN-US>1GB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>字节，但映射到物理内存却总是从最低地址（</span><span
+lang=EN-US>0x00000000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）开始。如图</span><span
+lang=EN-US>6.4</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>所示，对内核空间来说，其地址映射是很简单的线性映射，</span><span
+lang=EN-US>0xC0000000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>就是物理地址与线性地址之间的位移量，在</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>代码中就叫做</span><span lang=EN-US>PAGE_OFFSET</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:line id="_x0000_s1033" style='position:absolute;
+ left:0;text-align:left;z-index:8;mso-position-vertical:top' from="134.25pt,63.6pt"
+ to="197.25pt,63.6pt"/><v:line id="_x0000_s1034" style='position:absolute;
+ left:0;text-align:left;z-index:9' from="197.25pt,65.45pt" to="280.8pt,155.1pt">
+ <v:stroke dashstyle="1 1" endcap="round"/>
+</v:line><v:line id="_x0000_s1035" style='position:absolute;left:0;
+ text-align:left;z-index:10' from="200.25pt,20.5pt" to="284.25pt,122.5pt">
+ <v:stroke dashstyle="1 1" endcap="round"/>
+</v:line><v:shape id="_x0000_s1037" type="#_x0000_t202" style='position:absolute;
+ left:0;text-align:left;margin-left:108.9pt;margin-top:52.5pt;width:31.5pt;
+ height:25.5pt;z-index:12' stroked="f">
+ <v:fill opacity=".5"/>
+ <v:textbox style='mso-next-textbox:#_x0000_s1037'>
+  <![if !mso]>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div>
+    <p class=MsoNormal><st1:chmetcnv UnitName="g" SourceValue="3"
+    HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on"><span
+     lang=EN-US>3G</span></st1:chmetcnv></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  <![endif]></v:textbox>
+</v:shape><v:shape id="_x0000_s1038" type="#_x0000_t202" style='position:absolute;
+ left:0;text-align:left;margin-left:112.2pt;margin-top:3.15pt;width:39.6pt;
+ height:20.85pt;z-index:13' stroked="f">
+ <v:fill opacity=".5"/>
+ <v:textbox style='mso-next-textbox:#_x0000_s1038'>
+  <![if !mso]>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div>
+    <p class=MsoNormal><st1:chmetcnv UnitName="g" SourceValue="4"
+    HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on"><span
+     lang=EN-US>4G</span></st1:chmetcnv></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  <![endif]></v:textbox>
+</v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=145 height=4></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=237 height=206 src="6.1.2.files/image001.gif" v:shapes="_x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1037 _x0000_s1038"></td>
+ </tr>
+</table>
+
+</span><![endif]><!--[if gte vml 1]><v:rect id="_x0000_s1031" style='position:absolute;
+ left:0;text-align:left;margin-left:133.65pt;margin-top:14.4pt;width:63pt;
+ height:161.5pt;z-index:-10'/><![endif]--><![if !vml]><span style='mso-ignore:
+vglayout;position:absolute;z-index:-10;left:0px;margin-left:177px;margin-top:
+18px;width:86px;height:218px'><img width=86 height=218
+src="6.1.2.files/image002.gif" v:shapes="_x0000_s1031"></span><![endif]></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:shape id="_x0000_s1036" type="#_x0000_t202"
+ style='position:absolute;left:0;text-align:left;margin-left:102.75pt;
+ margin-top:77.1pt;width:31.5pt;height:25.5pt;z-index:11' stroked="f">
+ <v:fill opacity=".5"/>
+ <v:textbox style='mso-next-textbox:#_x0000_s1036'>
+  <![if !mso]>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div>
+    <p class=MsoNormal><span lang=EN-US>0</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  <![endif]></v:textbox>
+</v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout;position:
+absolute;z-index:11;left:0px;margin-left:137px;margin-top:102px;width:46px;
+height:39px'><img width=46 height=39 src="6.1.2.files/image003.gif" alt="文本框: 0"
+v:shapes="_x0000_s1036"></span><![endif]><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:group id="_x0000_s1047" editas="canvas"
+ style='position:absolute;left:0;text-align:left;margin-left:270.45pt;
+ margin-top:13.05pt;width:32.25pt;height:28.55pt;z-index:15' coordorigin="5564,5226"
+ coordsize="559,495">
+ <o:lock v:ext="edit" aspectratio="t"/>
+ <v:shapetype id="_x0000_t75" coordsize="21600,21600" o:spt="75"
+  o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s1046" type="#_x0000_t75" style='position:absolute;
+  left:5564;top:5226;width:559;height:495;mso-position-vertical:top'
+  o:preferrelative="f">
+  <v:fill o:detectmouseclick="t"/>
+  <v:path o:extrusionok="t" o:connecttype="none"/>
+  <o:lock v:ext="edit" text="t"/>
+ </v:shape><v:rect id="_x0000_s1048" style='position:absolute;left:5660;top:5309;
+  width:406;height:412;mso-position-vertical:top' stroked="f">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US>X</span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect></v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=361 height=17></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=43 height=40 src="6.1.2.files/image004.gif" v:shapes="_x0000_s1047 _x0000_s1046 _x0000_s1048"></td>
+ </tr>
+</table>
+
+</span><![endif]><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal style='tab-stops:center 293.7pt'><!--[if gte vml 1]><v:rect
+ id="_x0000_s1032" style='position:absolute;left:0;text-align:left;
+ margin-left:290.85pt;margin-top:13.3pt;width:42pt;height:42.5pt;z-index:7'/><![endif]--><![if !vml]><span
+style='mso-ignore:vglayout;position:absolute;z-index:7;left:0px;margin-left:
+387px;margin-top:16px;width:58px;height:59px'><img width=58 height=59
+src="6.1.2.files/image005.gif" v:shapes="_x0000_s1032"></span><![endif]><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:shape id="_x0000_s1043" type="#_x0000_t202"
+ style='position:absolute;left:0;text-align:left;margin-left:276.15pt;
+ margin-top:10pt;width:31.5pt;height:25.5pt;z-index:14' stroked="f">
+ <v:fill opacity=".5"/>
+ <v:textbox>
+  <![if !mso]>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td><![endif]>
+    <div>
+    <p class=MsoNormal><span lang=EN-US>0</span></p>
+    </div>
+    <![if !mso]></td>
+   </tr>
+  </table>
+  <![endif]></v:textbox>
+</v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=368 height=13></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=47 height=39 src="6.1.2.files/image006.gif" alt="文本框: 0"
+  v:shapes="_x0000_s1043"></td>
+ </tr>
+</table>
+
+</span><![endif]><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:42.0pt;mso-char-indent-count:4.0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal style='text-indent:136.5pt;mso-char-indent-count:13.0'><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:136.5pt;mso-char-indent-count:13.0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:136.5pt;mso-char-indent-count:13.0'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>虚地址空间</span><span lang=EN-US><span style='mso-tab-count:
+2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><span
+style='mso-spacerun:yes'>&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;</span><span
+style='mso-spacerun:yes'>&nbsp;</span></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>物理地址空间</span><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span></span></p>
+
+<p class=MsoNormal style='text-indent:136.5pt;mso-char-indent-count:13.0'><span
+lang=EN-US><span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>图</span><span lang=EN-US>6.4</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内核的虚拟地址空间到物理地址空间的映射</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>我们来看一下在</span><span
+lang=EN-US>include/asm/i386/page.h</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中对内核空间中地址映射的说明及定义：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>/*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* This handles
+the memory map<span class=GramE>..</span> We could make this a config</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* <span
+class=GramE>option</span>, but too many people screw it up, and too few need</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* <span
+class=GramE>it</span>.</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* A
+__PAGE_OFFSET of 0xC0000000 means that the kernel has</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* <span
+class=GramE>a</span> virtual address space of one gigabyte, which limits the</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* <span
+class=GramE>amount</span> of physical memory you can use to about 950MB. </span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>*</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* If you want
+more physical memory than this then see the CONFIG_HIGHMEM<st1:chmetcnv
+UnitName="g" SourceValue="4" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">4G</st1:chmetcnv></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>* <span
+class=GramE>and</span> CONFIG_HIGHMEM<st1:chmetcnv UnitName="g" SourceValue="64"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on">64G</st1:chmetcnv>
+options in the kernel configuration.</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>*/</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#<span
+class=GramE>define</span> __PAGE_OFFSET<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(0xC0000000)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>……</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+PAGE_OFFSET<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>((unsigned long<span class=GramE>)_</span>_PAGE_OFFSET)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+__pa(x)<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>((unsigned long<span class=GramE>)(</span>x)-PAGE_OFFSET)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>#define
+__va(x)<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>((void *<span class=GramE>)(</span>(unsigned long)(x)+PAGE_OFFSET))</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>源代码的注释中说明，如果你的物理内存大于</span><span
+lang=EN-US>950MB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，那么在编译内核时就需要加</span><span lang=EN-US>CONFIG_HIGHMEM<st1:chmetcnv
+UnitName="g" SourceValue="4" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">4G</st1:chmetcnv></span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>CONFIG_HIGHMEM<st1:chmetcnv UnitName="g" SourceValue="64"
+HasSpace="False" Negative="False" NumberType="1" TCSC="0" w:st="on">64G</st1:chmetcnv></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>选项，这种情况我们暂不考虑。如果物理内存小于</span><span lang=EN-US>950MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，则对于内核空间而言，给定一个虚地址</span><span lang=EN-US>x</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，其物理地址为“</span><span lang=EN-US>x- PAGE_OFFSET”</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，给定一个物理地址</span><span lang=EN-US>x</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，其虚地址为“</span><span lang=EN-US>x+ PAGE_OFFSET</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>”。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这里再次说明，宏</span><span
+lang=EN-US>__pa()</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>仅仅把一个内核空间的虚地址映射到物理地址，而决不适用于用户空间，用户空间的地址映射要复杂得多。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>．内核映像</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;
+</span></span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在下面的描述中，我们把内核的代码和数据就叫内核映像（</span><span
+lang=EN-US>kernel image</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）。当系统启动时，</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核映像被安装在物理地址</span><span lang=EN-US>0x00100000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>开始的地方，即</span><span lang=EN-US>1MB</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>开始的区间</span><span lang=EN-US>(</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>第</span><st1:chmetcnv
+UnitName="m" SourceValue="1" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on"><span lang=EN-US>1M</span></st1:chmetcnv><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>留作它用</span><span lang=EN-US>)</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。然而，在正常运行时，</span>
+<span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>整个内核映像应该在虚拟内核空间中，因此，连接程序在连接内核映像时，在所有的符号地址上加一个偏移量</span><span
+lang=EN-US>PAGE_OFFSET</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，这样，内核映像在内核空间的起始地址就为</span><span
+lang=EN-US>0xC0100000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>例如，进程的页目录</span><span
+lang=EN-US>PGD</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>（属于内核数据结构）就处于内核空间中。在进程切换时，要将寄存器</span><span
+lang=EN-US>CR3</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>设置成指向新进程的页目录</span><span lang=EN-US>PGD</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，而该目录的起始地址在内核空间中是虚地址，但</span><span lang=EN-US>CR3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>所需要的是物理地址，这时候就要用</span><span lang=EN-US>__pa()</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进行地址转换。在</span><span lang=EN-US>mm_context.h</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中就有这么一行语句：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span class=GramE><span
+lang=EN-US>asm</span></span><span lang=EN-US> volatile(“movl %0,%%cr<st1:chmetcnv
+UnitName="”" SourceValue="3" HasSpace="False" Negative="False" NumberType="1"
+TCSC="0" w:st="on">3”</st1:chmetcnv>: :”r” (__pa(next-&gt;pgd));</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这是一行嵌入式汇编代码，其含义是将下一个进程的页目录起始地址</span><span
+lang=EN-US>next_pgd</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，通过</span><span
+lang=EN-US>__pa()</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>转换成物理地址，存放在某个寄存器中，然后用</span><span
+lang=EN-US>mov</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>指令将其写入</span><span lang=EN-US>CR3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>寄存器中。经过这行语句的处理，</span><span lang=EN-US>CR3</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>就指向新进程</span><span lang=EN-US>next</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的页目录表</span><span lang=EN-US>PGD</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>了。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.kerneltravel.net/kernel-book/绗叚绔�%20Linux鍐呭瓨绠＄悊/6.1.2.htm by HTTrack Website Copier/3.x [XR&CO'2008], Sat, 29 Dec 2012 03:00:33 GMT -->
+</html>
